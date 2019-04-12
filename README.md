@@ -6,7 +6,9 @@
 
 - Instalar Node.js
 
-- npm install -g @angular/cli
+- Para tener ng: npm install -g @angular/cli
+
+- npm install
 
 ### Ejecución
 
