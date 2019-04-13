@@ -27,8 +27,10 @@ export class ForbiddenWordsComponent implements OnInit {
     // this.words.push({ id: 3, word: newWord, createdAt: 'ssd', updatedAt: 'sds', organizationId: 1 });
   }
 
-  deleteWord(deleteWord) {
-    this.words = this.words.filter(word => word.word !== deleteWord);
-    // TODO eliminar palabra en el server
+  deleteWord(deleteWord: ForbiddenWords) {
+    this.forbiddenWordsService.deleteForbiddenWord(deleteWord.id).subscribe(data => {
+      this.words = this.words.filter(word => word.word !== deleteWord.word);
+      // TODO verificar error
+    });
   }
 }

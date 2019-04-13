@@ -20,9 +20,9 @@
     <th>Action</th>
   </tr>
   <tr *ngFor="let word of words">
-    <td>{{word.word}}</td>
+    <td><b>{{word.word}}</b></td>
     <td>
-      <button class='delete' class="btn btn-primary" (click)="deleteWord(word.word)">Delete</button>
+      <button class='delete' class="btn btn-danger" (click)="deleteWord(word)">Delete</button>
     </td>
   </tr>
 </table>
