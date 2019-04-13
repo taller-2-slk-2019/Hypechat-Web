@@ -1,0 +1,28 @@
+<h1>{{ title }}</h1>
+
+<!--
+<input type="text" #newWord/>
+<button class='add' (click)="addWord(newWord.value); newWord.value=''">Add</button>
+-->
+
+<div class="md-form">
+  <input type="text" class="form-control" aria-describedby="wordHelp"
+         placeholder="Ingrese una palabra" [maxLength]="50" #inputWord/>
+  <small id="wordHelp" class="form-text text-muted">La palabra será agregada a la lista de palabras prohibidas.</small>
+  <button type="submit" class="btn btn-primary" (click)="addWord(inputWord.value); inputWord.value=''">
+    Agregar palabra
+  </button>
+</div>
+
+<table class="table">
+  <tr>
+    <th>Word</th>
+    <th>Action</th>
+  </tr>
+  <tr *ngFor="let word of words">
+    <td>{{word.word}}</td>
+    <td>
+      <button class='delete' class="btn btn-primary" (click)="deleteWord(word.word)">Delete</button>
+    </td>
+  </tr>
+</table>

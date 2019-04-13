@@ -1,0 +1,47 @@
+h1 {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+input {
+  padding: 10px;
+  width: 80%;
+  margin-left: 20px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+small {
+  margin-left: 20px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 10px;
+  margin-left: 20px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+table {
+  font-family: arial, sans-serif;
+  width: 75%;
+  margin: 1em auto;
+}
+
+td {
+  background: lightyellow;
+  padding: 10px;
+  margin: 10px;
+  text-align: center;
+}
+
+th {
+  background: blue;
+  color: white;
+  padding: 10px;
+  margin: 10px;
+  text-align: center;
+}
