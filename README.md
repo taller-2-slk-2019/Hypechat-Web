@@ -14,6 +14,8 @@
 
 - Development server: ng serve
 
+- Production server: ng serve --prod
+
 ### Code 
 
 - Generar componente: ng generate component <component-name>
