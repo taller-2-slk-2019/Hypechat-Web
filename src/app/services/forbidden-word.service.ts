@@ -4,6 +4,8 @@ import { ForbiddenWord } from '../models/ForbiddenWord';
 import { ServerService } from './server.service';
 import {Observable} from 'rxjs';
 
+const SLASH = '/';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -26,7 +28,7 @@ export class ForbiddenWordService {
   }
 
   deleteForbiddenWord(deleteWord: number) {
-    const extension = this.extension +  deleteWord.toString();
+    const extension = this.extension + SLASH + deleteWord.toString();
     return this.serverService.delete(extension);
   }
 }
