@@ -15,6 +15,8 @@ export class ForbiddenWordComponent implements OnInit {
   title = 'Palabras Prohibidas';
   words: Array<ForbiddenWord>;
   touched = false;
+  successMessage = '';
+  errorMessage = '';
 
   form = new FormGroup({
     input: new FormControl('')
@@ -29,9 +31,12 @@ export class ForbiddenWordComponent implements OnInit {
   }
 
   addWord(newWord) {
-    this.forbiddenWordService.addForbiddenWord(newWord).subscribe( data => {
-      this.words.push(data);
-    });
+    if (this.words.filter(word => word.word === newWord).length === 0) {
+      this.forbiddenWordService.addForbiddenWord(newWord).subscribe(data => {
+        this.words.push(data);
+      });
+      this.successMessage = ' la palabra se cargo correctamente';
+    }
     this.touched = false;
     // TODO retry y el alert indicando error
   }
@@ -41,6 +46,7 @@ export class ForbiddenWordComponent implements OnInit {
       this.words = this.words.filter(word => word.word !== deleteWord.word);
       // TODO verificar error
     });
+    this.successMessage = ' la palabra se elimino correctamente';
   }
 
   isInvalid(word: string) {
