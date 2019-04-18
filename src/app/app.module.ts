@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 
 import { ForbiddenWordsComponent } from './forbidden-words/forbidden-words.component';
 import { ForbiddenWordsService } from './services/forbidden-words.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,9 @@ import { ForbiddenWordsService } from './services/forbidden-words.service';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [ForbiddenWordsService],
   bootstrap: [AppComponent]

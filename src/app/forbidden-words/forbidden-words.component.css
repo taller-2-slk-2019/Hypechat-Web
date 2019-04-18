@@ -45,3 +45,11 @@ th {
   margin: 10px;
   text-align: center;
 }
+
+input.is-invalid {
+  border-color: red;
+}
+
+div.help-block {
+  color: red;
+}

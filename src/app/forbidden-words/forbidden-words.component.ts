@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ForbiddenWordsService } from '../services/forbidden-words.service';
 import { ForbiddenWords } from '../Models/forbiddenWords';
+import { FormControl, FormGroup } from '@angular/forms';
+
+const SPACE = ' ';
+const EMPTY_WORD = '';
 
 @Component({
   selector: 'app-forbidden-words',
@@ -10,6 +14,11 @@ import { ForbiddenWords } from '../Models/forbiddenWords';
 export class ForbiddenWordsComponent implements OnInit {
   title = 'Palabras Prohibidas';
   words: Array<ForbiddenWords>;
+  touched = false;
+
+  form = new FormGroup({
+    input: new FormControl('')
+  });
 
   constructor(private forbiddenWordsService: ForbiddenWordsService) { }
 
@@ -23,8 +32,8 @@ export class ForbiddenWordsComponent implements OnInit {
     this.forbiddenWordsService.addForbiddenWord(newWord).subscribe( data => {
       this.words.push(data);
     });
+    this.touched = false;
     // TODO retry y el alert indicando error
-    // this.words.push({ id: 3, word: newWord, createdAt: 'ssd', updatedAt: 'sds', organizationId: 1 });
   }
 
   deleteWord(deleteWord: ForbiddenWords) {
@@ -32,5 +41,9 @@ export class ForbiddenWordsComponent implements OnInit {
       this.words = this.words.filter(word => word.word !== deleteWord.word);
       // TODO verificar error
     });
+  }
+
+  isInvalid(word: string) {
+    return word.includes(SPACE) || word === EMPTY_WORD;
   }
 }
