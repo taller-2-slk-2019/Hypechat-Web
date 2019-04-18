@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { ForbiddenWords } from '../Models/forbiddenWords';
+import { ForbiddenWord } from '../models/ForbiddenWord';
 import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ForbiddenWordsService {
+export class ForbiddenWordService {
   private baseUrl = environment.baseUrl + '/forbiddenWords';
 
   constructor(private http: HttpClient) { }
 
   getForbiddenWords() {
     const params = new HttpParams().set('organizationId', '1');
-    return this.http.get<ForbiddenWords[]>(this.baseUrl, { params });
+    return this.http.get<ForbiddenWord[]>(this.baseUrl, { params });
   }
 
   addForbiddenWord(newWord: string) {
@@ -21,7 +21,7 @@ export class ForbiddenWordsService {
       word: newWord,
       organizationId: '1'
     };
-    return this.http.post<ForbiddenWords>(this.baseUrl, data);
+    return this.http.post<ForbiddenWord>(this.baseUrl, data);
   }
 
   deleteForbiddenWord(deleteWord: number) {

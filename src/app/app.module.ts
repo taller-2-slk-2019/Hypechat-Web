@@ -6,14 +6,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { ForbiddenWordsComponent } from './forbidden-words/forbidden-words.component';
-import { ForbiddenWordsService } from './services/forbidden-words.service';
+import { ForbiddenWordComponent } from './forbidden-word/forbidden-word.component';
+import { ForbiddenWordService } from './services/forbidden-word.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ForbiddenWordsComponent
+    ForbiddenWordComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +23,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [ForbiddenWordsService],
+  providers: [ForbiddenWordService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
