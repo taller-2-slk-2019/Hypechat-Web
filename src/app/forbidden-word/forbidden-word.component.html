@@ -4,21 +4,23 @@
   <div class="md-form">
     <input type="text" class="form-control" aria-describedby="wordHelp"
            placeholder="Ingrese una palabra" [maxLength]="50" formControlName="input"
-           [ngClass]="{'is-invalid': touched && isInvalid(inputWord.value) }"
-           (ngModelChange)="touched=true;" #inputWord/>
+           [ngClass]="{'is-invalid': isInvalid() }"
+           (ngModelChange)="newWord = inputWord.value;" #inputWord/>
 
-    <div *ngIf="touched && isInvalid(inputWord.value)" class="help-block">
+    <div *ngIf="isInvalid()" class="help-block">
       <small class="error">Debe ingresar una palabra</small>
     </div>
 
-    <button type="submit" class="btn btn-primary" (click)="addWord(inputWord.value); inputWord.value=''"
-            [disabled]="isInvalid(inputWord.value)">
+    <button type="submit" class="btn btn-primary" (click)="addWord(); inputWord.value = ''"
+            [disabled]="isInvalid() || newWord==''">
       Agregar palabra
     </button>
   </div>
 </form>
 
-<app-alert></app-alert>
+<app-alert-success [successMessage]="successMessage"></app-alert-success>
+
+<app-alert-error [errorMessage]="errorMessage"></app-alert-error>
 
 <table class="table">
   <tr>

@@ -1,9 +1,7 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ForbiddenWordService } from '../services/forbidden-word.service';
 import { ForbiddenWord } from '../models/ForbiddenWord';
 import { FormControl, FormGroup } from '@angular/forms';
-
-import { AlertComponent } from '../alert/alert.component';
 
 const SPACE = ' ';
 const EMPTY_WORD = '';
@@ -21,10 +19,9 @@ const DELETE_WORD_ERROR = 'no se pudo eliminar la palabra';
 export class ForbiddenWordComponent implements OnInit {
   title = 'Palabras Prohibidas';
   words: Array<ForbiddenWord> = [];
-  touched = false;
-
-  @ViewChild(AlertComponent)
-  private alert: AlertComponent;
+  newWord = '';
+  successMessage = '';
+  errorMessage = '';
 
   form = new FormGroup({
     input: new FormControl('')
@@ -34,29 +31,29 @@ export class ForbiddenWordComponent implements OnInit {
 
   ngOnInit() {
     this.forbiddenWordService.getForbiddenWords().subscribe(data => this.words = data,
-      error =>  this.alert.changeErrorMessage(CONNECTION_ERROR));
+      error =>  this.errorMessage = CONNECTION_ERROR);
   }
 
-  addWord(newWord) {
-    if (this.words.filter(word => word.word === newWord).length === 0) {
-      this.forbiddenWordService.addForbiddenWord(newWord).subscribe(data => {
+  addWord() {
+    if (this.words.filter(word => word.word === this.newWord).length === 0) {
+      this.forbiddenWordService.addForbiddenWord(this.newWord).subscribe(data => {
         this.words.push(data);
-        this.alert.changeSuccessMessage(SUCCESSFULLY_ADDED_WORD);
+        this.successMessage = SUCCESSFULLY_ADDED_WORD;
         },
-        error =>  this.alert.changeErrorMessage(ADD_WORD_ERROR));
+        error =>  this.errorMessage = ADD_WORD_ERROR);
     }
-    this.touched = false;
+    this.newWord = '';
   }
 
-  deleteWord(deleteWord: ForbiddenWord) {
-    this.forbiddenWordService.deleteForbiddenWord(deleteWord.id).subscribe(data => {
-      this.words = this.words.filter(word => word.id !== deleteWord.id);
-      this.alert.changeSuccessMessage(SUCCESSFULLY_DELETED_WORD);
+  deleteWord(deletedWord: ForbiddenWord) {
+    this.forbiddenWordService.deleteForbiddenWord(deletedWord.id).subscribe(data => {
+      this.words = this.words.filter(word => word.id !== deletedWord.id);
+      this.successMessage = SUCCESSFULLY_DELETED_WORD;
     },
-      error =>  this.alert.changeErrorMessage(DELETE_WORD_ERROR));
+      error =>  this.errorMessage = DELETE_WORD_ERROR);
   }
 
-  isInvalid(word: string) {
-    return word.includes(SPACE) || word === EMPTY_WORD;
+  isInvalid() {
+    return this.newWord.includes(SPACE);
   }
 }
