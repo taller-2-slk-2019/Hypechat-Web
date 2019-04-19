@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-alert-success',
@@ -8,9 +8,14 @@ import {Component, Input, OnInit} from '@angular/core';
 export class AlertSuccessComponent implements OnInit {
 
   @Input() successMessage = '';
+  @Output() close = new EventEmitter<string>();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  reset(){
+    this.close.emit('');
   }
 }
