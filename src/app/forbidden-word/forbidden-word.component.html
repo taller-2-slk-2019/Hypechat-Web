@@ -1,22 +1,20 @@
 <h1>{{ title }}</h1>
 
-<form name="form" [formGroup]="form">
-  <div class="md-form">
-    <input type="text" class="form-control" aria-describedby="wordHelp"
-           placeholder="Ingrese una palabra" [maxLength]="50" formControlName="input"
-           [ngClass]="{'is-invalid': isInvalid() }"
-           (ngModelChange)="newWord = inputWord.value;" #inputWord/>
+<div class="md-form">
+  <input type="text" class="form-control" aria-describedby="wordHelp"
+         placeholder="Ingrese una palabra" maxlength="50"
+         [ngClass]="{'is-invalid': isInvalid() }"
+         [(ngModel)]="newWord"/>
 
-    <div *ngIf="isInvalid()" class="help-block">
-      <small class="error">Debe ingresar una palabra</small>
-    </div>
-
-    <button type="submit" class="btn btn-primary" (click)="addWord(); inputWord.value = ''"
-            [disabled]="isInvalid() || newWord==''">
-      Agregar palabra
-    </button>
+  <div *ngIf="isInvalid()" class="help-block">
+    <small class="error">Debe ingresar una palabra</small>
   </div>
-</form>
+
+  <button type="submit" class="btn btn-primary" (click)="addWord()"
+          [disabled]="isInvalid() || newWord==''">
+    Agregar palabra
+  </button>
+</div>
 
 <app-alert-success [successMessage]="successMessage"></app-alert-success>
 

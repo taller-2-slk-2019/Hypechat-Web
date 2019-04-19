@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ForbiddenWordService } from '../services/forbidden-word.service';
 import { ForbiddenWord } from '../models/ForbiddenWord';
-import { FormControl, FormGroup } from '@angular/forms';
 
 const SPACE = ' ';
 const EMPTY_WORD = '';
@@ -19,13 +18,9 @@ const DELETE_WORD_ERROR = 'no se pudo eliminar la palabra';
 export class ForbiddenWordComponent implements OnInit {
   title = 'Palabras Prohibidas';
   words: Array<ForbiddenWord> = [];
-  newWord = '';
-  successMessage = '';
-  errorMessage = '';
-
-  form = new FormGroup({
-    input: new FormControl('')
-  });
+  newWord = EMPTY_WORD;
+  successMessage = EMPTY_WORD;
+  errorMessage = EMPTY_WORD;
 
   constructor(private forbiddenWordService: ForbiddenWordService) { }
 
@@ -42,7 +37,7 @@ export class ForbiddenWordComponent implements OnInit {
         },
         error =>  this.errorMessage = ADD_WORD_ERROR);
     }
-    this.newWord = '';
+    this.newWord = EMPTY_WORD;
   }
 
   deleteWord(deletedWord: ForbiddenWord) {
