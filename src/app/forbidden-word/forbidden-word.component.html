@@ -1,0 +1,33 @@
+<h1 class="text-center my-5">{{ title }}</h1>
+
+<div class="d-flex justify-content-center">
+  <div class="w-50">
+    <input type="text" class="form-control"
+           placeholder="Nueva palabra" maxlength="50"
+           [ngClass]="{'is-invalid': isInvalid() }"
+           [(ngModel)]="newWord"/>
+
+    <div *ngIf="isInvalid()" class="text-danger">
+      <small class="error">Debe ingresar una sola palabra</small>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary h-100 ml-4" (click)="addWord()"
+          [disabled]="isInvalid() || !newWord">
+    <i class="fas fa-plus"></i>
+  </button>
+</div>
+
+<div class="d-flex justify-content-center my-3">
+  <app-alert-success [successMessage]="successMessage"></app-alert-success>
+  <app-alert-error [errorMessage]="errorMessage"></app-alert-error>
+</div>
+
+<div class="d-flex justify-content-center">
+  <ul class="list-group w-50">
+    <li *ngFor="let word of words" class="list-group-item d-flex justify-content-around">
+      <span>{{word.word}}</span>
+      <button class="btn btn-danger" (click)="deleteWord(word)"><i class="fas fa-trash"></i></button>
+    </li>
+  </ul>
+</div>
