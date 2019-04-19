@@ -11,13 +11,15 @@ import { ForbiddenWordService } from './services/forbidden-word.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AlertSuccessComponent } from './alert-success/alert-success.component';
 import { AlertErrorComponent } from './alert-error/alert-error.component';
+import { OrganizationListComponent } from './organization-list/organization-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ForbiddenWordComponent,
     AlertSuccessComponent,
-    AlertErrorComponent
+    AlertErrorComponent,
+    OrganizationListComponent
   ],
   imports: [
     BrowserModule,
