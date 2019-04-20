@@ -27,12 +27,11 @@ export class ForbiddenWordComponent implements OnInit {
   constructor(private route: ActivatedRoute, private forbiddenWordService: ForbiddenWordService) { }
 
   ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.organizationId = id;
+    this.organizationId = this.route.snapshot.paramMap.get('id');
 
     this.forbiddenWordService.getForbiddenWords(this.organizationId)
       .subscribe(data => this.words = data,
-                  error =>  this.errorMessage = CONNECTION_ERROR
+                 error => this.errorMessage = CONNECTION_ERROR
                 );
   }
 

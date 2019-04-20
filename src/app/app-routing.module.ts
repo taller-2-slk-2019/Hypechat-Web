@@ -2,10 +2,12 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {OrganizationListComponent} from './organization-list/organization-list.component';
 import {ForbiddenWordComponent} from './forbidden-word/forbidden-word.component';
+import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
   { path: '', component: OrganizationListComponent },
-  { path: 'forbiddenWord/:id', component: ForbiddenWordComponent }
+  { path: 'forbiddenWord/:id', component: ForbiddenWordComponent },
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
@@ -14,4 +16,5 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 export const routingComponents = [OrganizationListComponent,
-                                  ForbiddenWordComponent];
+                                  ForbiddenWordComponent,
+                                  PageNotFoundComponent];
