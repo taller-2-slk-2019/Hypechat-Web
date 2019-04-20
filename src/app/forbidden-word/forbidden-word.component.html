@@ -4,7 +4,7 @@
   <div class="w-50">
     <input type="text" class="form-control"
            placeholder="Nueva palabra" maxlength="50"
-           [ngClass]="{'is-invalid': isInvalid() }"
+           [ngClass]="{ 'is-invalid': isInvalid() }"
            [(ngModel)]="newWord"/>
 
     <div *ngIf="isInvalid()" class="text-danger">
@@ -25,7 +25,7 @@
 
 <div class="d-flex justify-content-center">
   <ul class="list-group w-50">
-    <li *ngFor="let word of words" class="list-group-item d-flex justify-content-around">
+    <li *ngFor="let word of words" class="list-group-item d-flex justify-content-between">
       <span>{{word.word}}</span>
       <button class="btn btn-danger" (click)="deleteWord(word)"><i class="fas fa-trash"></i></button>
     </li>

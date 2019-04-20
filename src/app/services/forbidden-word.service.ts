@@ -4,6 +4,8 @@ import { ForbiddenWord } from '../models/ForbiddenWord';
 import { ServerService } from './server.service';
 import {Observable} from 'rxjs';
 
+const QUERY_PARAMETER = 'organizationId';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,15 +14,15 @@ export class ForbiddenWordService {
 
   constructor(private http: HttpClient, private serverService: ServerService) { }
 
-  getForbiddenWords(): Observable<any> {
-    const params = new HttpParams().set('organizationId', '1');  //TODO harcoded id
+  getForbiddenWords(organizationId: string): Observable<any> {
+    const params = new HttpParams().set(QUERY_PARAMETER, organizationId);
     return this.serverService.get<ForbiddenWord[]>(this.url, params);
   }
 
-  addForbiddenWord(newWord: string) {
+  addForbiddenWord(newWord: string, id: string) {
     const data = {
       word: newWord,
-      organizationId: '1'  //TODO harcoded id
+      organizationId: id
     };
     return this.serverService.post(this.url, data);
   }

@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Organization} from '../models/Organization';
+import { Organization } from '../models/Organization';
 
 @Component({
   selector: 'app-organization',
@@ -15,7 +15,6 @@ export class OrganizationComponent implements OnInit {
 
   ngOnInit() {
     const date = new Date (this.organization.createdAt);
-    this.createdAt = date.getDay() + '/' + date.getMonth() + '/' + date.getFullYear();
+    this.createdAt = `${date.getDay()}/${date.getMonth()}/${date.getFullYear()}`;
   }
-
 }

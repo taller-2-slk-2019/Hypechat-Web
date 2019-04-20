@@ -3,24 +3,21 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { ForbiddenWordComponent } from './forbidden-word/forbidden-word.component';
 import { ForbiddenWordService } from './services/forbidden-word.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AlertSuccessComponent } from './alert-success/alert-success.component';
 import { AlertErrorComponent } from './alert-error/alert-error.component';
-import { OrganizationListComponent } from './organization-list/organization-list.component';
 import { OrganizationComponent } from './organization/organization.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ForbiddenWordComponent,
     AlertSuccessComponent,
     AlertErrorComponent,
-    OrganizationListComponent,
+    routingComponents,
     OrganizationComponent
   ],
   imports: [
