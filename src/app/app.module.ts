@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AlertSuccessComponent } from './alert-success/alert-success.component';
 import { AlertErrorComponent } from './alert-error/alert-error.component';
 import { OrganizationListComponent } from './organization-list/organization-list.component';
+import { OrganizationComponent } from './organization/organization.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { OrganizationListComponent } from './organization-list/organization-list
     ForbiddenWordComponent,
     AlertSuccessComponent,
     AlertErrorComponent,
-    OrganizationListComponent
+    OrganizationListComponent,
+    OrganizationComponent
   ],
   imports: [
     BrowserModule,
