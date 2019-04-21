@@ -1,0 +1,8 @@
+<mat-toolbar style="background-color: blueviolet; color: white">
+  <h1 class="mr-4">Hypechat</h1>
+  <button mat-button routerLink="">Organizaciones</button>
+  <button mat-button *ngIf="organizationId !== ''">Estadísticas</button>
+  <button mat-button *ngIf="organizationId !== ''" routerLink="/forbiddenWord/{{organizationId}}">
+    Palabras Prohibidas
+  </button>
+</mat-toolbar>

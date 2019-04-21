@@ -11,6 +11,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AlertSuccessComponent } from './alert-success/alert-success.component';
 import { AlertErrorComponent } from './alert-error/alert-error.component';
 import { OrganizationComponent } from './organization/organization.component';
+import { MenuBarComponent } from './menu-bar/menu-bar.component';
+import {MatButtonModule, MatToolbarModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,8 @@ import { OrganizationComponent } from './organization/organization.component';
     AlertSuccessComponent,
     AlertErrorComponent,
     routingComponents,
-    OrganizationComponent
+    OrganizationComponent,
+    MenuBarComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +29,9 @@ import { OrganizationComponent } from './organization/organization.component';
     NgbModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatToolbarModule,
+    MatButtonModule
   ],
   providers: [ForbiddenWordService],
   bootstrap: [AppComponent]
