@@ -1,8 +1,11 @@
 <mat-toolbar style="background-color: blueviolet; color: white">
-  <h1 class="mr-4">Hypechat</h1>
-  <button mat-button routerLink="">Organizaciones</button>
-  <button mat-button *ngIf="organizationId !== ''">Estadísticas</button>
+  <img src="../../assets/favicon.png" class="mr-2">
+  <h1 class="mr-4"><b>Hypechat</b></h1>
+  <button mat-button routerLink=""><b>Organizaciones</b></button>
+  <button mat-button *ngIf="organizationId !== ''" routerLink="/statistics/{{organizationId}}">
+    <b>Estadísticas</b>
+  </button>
   <button mat-button *ngIf="organizationId !== ''" routerLink="/forbiddenWord/{{organizationId}}">
-    Palabras Prohibidas
+    <b>Palabras Prohibidas</b>
   </button>
 </mat-toolbar>

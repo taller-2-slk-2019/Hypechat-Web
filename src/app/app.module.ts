@@ -12,7 +12,7 @@ import { AlertSuccessComponent } from './alert-success/alert-success.component';
 import { AlertErrorComponent } from './alert-error/alert-error.component';
 import { OrganizationComponent } from './organization/organization.component';
 import { MenuBarComponent } from './menu-bar/menu-bar.component';
-import {MatButtonModule, MatToolbarModule} from '@angular/material';
+import { MatButtonModule, MatToolbarModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,7 @@ import {MatButtonModule, MatToolbarModule} from '@angular/material';
     AlertErrorComponent,
     routingComponents,
     OrganizationComponent,
-    MenuBarComponent
+    MenuBarComponent,
   ],
   imports: [
     BrowserModule,
