@@ -1,14 +1,14 @@
 import {UserOrganizations} from './userOrganizations';
 
-export interface Organization {
+export interface User {
   id: number;
   name: string;
+  email: string;
+  username: string;
   picture: string;
+  updatedAt: string;
+  createdAt: string;
   latitude: number;
   longitude: number;
-  description: string;
-  welcome: string;
-  createdAt: string;
-  updatedAt: string;
   userOrganizations: UserOrganizations;
 }
