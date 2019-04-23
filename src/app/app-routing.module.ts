@@ -7,8 +7,8 @@ import { StatisticsComponent } from './statistics/statistics.component';
 
 const routes: Routes = [
   { path: '', component: OrganizationListComponent },
-  { path: 'statistics/:id', component: StatisticsComponent },
-  { path: 'forbiddenWord/:id', component: ForbiddenWordComponent },
+  { path: 'organization/:id/statistics', component: StatisticsComponent },
+  { path: 'organization/:id/forbiddenWord', component: ForbiddenWordComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 

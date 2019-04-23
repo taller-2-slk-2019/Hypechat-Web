@@ -2,10 +2,10 @@
   <img src="../../assets/favicon.png" class="mr-2">
   <h1 class="mr-4"><b>Hypechat</b></h1>
   <button mat-button routerLink=""><b>Organizaciones</b></button>
-  <button mat-button *ngIf="organizationId !== ''" routerLink="/statistics/{{organizationId}}">
+  <button mat-button *ngIf="organizationId !== ''" routerLink="/organization/{{organizationId}}/statistics">
     <b>Estadísticas</b>
   </button>
-  <button mat-button *ngIf="organizationId !== ''" routerLink="/forbiddenWord/{{organizationId}}">
+  <button mat-button *ngIf="organizationId !== ''" routerLink="/organization/{{organizationId}}/forbiddenWord">
     <b>Palabras Prohibidas</b>
   </button>
 </mat-toolbar>
