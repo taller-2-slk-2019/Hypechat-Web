@@ -13,7 +13,7 @@ const EMPTY_WORD = '';
 
 export class OrganizationListComponent implements OnInit {
   title = 'Organizaciones';
-  userToken = 'dahggdfhsddfvswaer'; // TODO harcoded token
+  userToken = 'gAE4p7b1bRc4CZ77aExzgTFcv102'; // TODO harcoded token
   organizations: Array<Organization> = [];
   successMessage = EMPTY_WORD;
   errorMessage = EMPTY_WORD;
