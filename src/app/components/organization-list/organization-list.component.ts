@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { OrganizationService } from '../services/organization.service';
-import {Organization} from '../models/Organization';
+import {Organization} from '../../models/Organization';
+import {OrganizationService} from '../../services/organization.service';
 
 const CONNECTION_ERROR = 'Error de conexión';
 const EMPTY_WORD = '';

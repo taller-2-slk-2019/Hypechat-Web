@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { Organization } from '../models/Organization';
 import * as moment from 'moment';
+import { Organization } from '../../models/Organization';
 
 
 @Component({

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ForbiddenWordService } from '../services/forbidden-word.service';
-import { ForbiddenWord } from '../models/ForbiddenWord';
+import { ForbiddenWordService } from '../../services/forbidden-word.service';
+import { ForbiddenWord } from '../../models/ForbiddenWord';
 import { ActivatedRoute } from '@angular/router';
 
 const SPACE = ' ';

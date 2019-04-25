@@ -8,10 +8,10 @@ import { AppComponent } from './app.component';
 
 import { ForbiddenWordService } from './services/forbidden-word.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AlertSuccessComponent } from './alert-success/alert-success.component';
-import { AlertErrorComponent } from './alert-error/alert-error.component';
-import { OrganizationComponent } from './organization/organization.component';
-import { MenuBarComponent } from './menu-bar/menu-bar.component';
+import { AlertSuccessComponent } from './components/alert-success/alert-success.component';
+import { AlertErrorComponent } from './components/alert-error/alert-error.component';
+import { OrganizationComponent } from './components/organization/organization.component';
+import { MenuBarComponent } from './components/menu-bar/menu-bar.component';
 import { MatButtonModule, MatToolbarModule } from '@angular/material';
 
 @NgModule({
