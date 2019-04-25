@@ -1,6 +1,6 @@
-import {UserOrganizations} from './userOrganizations';
+import { UserOrganizations } from './userOrganizations';
 
-export interface Organization {
+export class Organization {
   id: number;
   name: string;
   picture: string;

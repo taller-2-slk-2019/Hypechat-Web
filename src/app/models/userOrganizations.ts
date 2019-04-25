@@ -1,4 +1,4 @@
-export interface UserOrganizations {
+export class UserOrganizations {
   role: string;
   updatedAt: string;
   createdAt: string;

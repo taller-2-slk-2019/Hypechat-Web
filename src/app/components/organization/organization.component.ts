@@ -14,7 +14,9 @@ export class OrganizationComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-    this.organization.createdAt = moment(this.organization.createdAt).format('DD/MM/YYYY');
+  ngOnInit() { }
+
+  creationDate() {
+    return moment(this.organization.createdAt).format('DD/MM/YYYY');
   }
 }
