@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { Organization } from '../../models/Organization';
+import * as moment from 'moment';
 
 
 @Component({
@@ -14,4 +15,8 @@ export class OrganizationComponent implements OnInit {
   constructor() { }
 
   ngOnInit() { }
+
+  organizationCreationDate() {    
+    return moment(this.organization.createdAt);    
+  }
 }
