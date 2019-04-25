@@ -1,4 +1,4 @@
-export interface ForbiddenWord {
+export class ForbiddenWord {
   id: number;
   word: string;
   createdAt: string;

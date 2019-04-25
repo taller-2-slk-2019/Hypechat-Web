@@ -3,21 +3,25 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { ForbiddenWordComponent } from './forbidden-word/forbidden-word.component';
 import { ForbiddenWordService } from './services/forbidden-word.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AlertSuccessComponent } from './alert-success/alert-success.component';
-import { AlertErrorComponent } from './alert-error/alert-error.component';
+import { AlertSuccessComponent } from './components/alert-success/alert-success.component';
+import { AlertErrorComponent } from './components/alert-error/alert-error.component';
+import { OrganizationComponent } from './components/organization/organization.component';
+import { MenuBarComponent } from './components/menu-bar/menu-bar.component';
+import { MatButtonModule, MatToolbarModule } from '@angular/material';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ForbiddenWordComponent,
     AlertSuccessComponent,
-    AlertErrorComponent
+    AlertErrorComponent,
+    routingComponents,
+    OrganizationComponent,
+    MenuBarComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,7 +29,9 @@ import { AlertErrorComponent } from './alert-error/alert-error.component';
     NgbModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatToolbarModule,
+    MatButtonModule
   ],
   providers: [ForbiddenWordService],
   bootstrap: [AppComponent]

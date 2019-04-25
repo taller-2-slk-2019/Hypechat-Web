@@ -1,0 +1,22 @@
+<app-menu-bar [organizationId]="organizationId"></app-menu-bar>
+<h1 class="text-center my-5">{{ title }}</h1>
+
+<div class="d-flex justify-content-center my-3">
+  <app-alert-error [errorMessage]="errorMessage" (close)="errorMessage = ''"></app-alert-error>
+</div>
+
+<div class="mx-4">
+  <li>
+    <b><u>Cantidad total de usuarios:</u></b> {{users.length}}
+  </li>
+  <li>
+    <b><u>Cantidad de usuarios creadores:</u></b> {{creatorUser.length}}
+  </li>
+  <li>
+    <b><u>Cantidad de usuarios administradores:</u></b> {{administratorUser.length}}
+  </li>
+  <li>
+    <b><u>Cantidad de usuarios miembro:</u></b> {{memberUser.length}}
+  </li>
+</div>
+

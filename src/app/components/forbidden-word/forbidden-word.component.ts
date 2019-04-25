@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ForbiddenWordService } from '../services/forbidden-word.service';
-import { ForbiddenWord } from '../models/ForbiddenWord';
+import { ForbiddenWordService } from '../../services/forbidden-word.service';
+import { ForbiddenWord } from '../../models/ForbiddenWord';
+import { ActivatedRoute } from '@angular/router';
 
 const SPACE = ' ';
 const EMPTY_WORD = '';
@@ -16,24 +17,27 @@ const DELETE_WORD_ERROR = 'No se pudo eliminar la palabra';
   styleUrls: ['./forbidden-word.component.css']
 })
 export class ForbiddenWordComponent implements OnInit {
+  organizationId: string;
   title = 'Palabras Prohibidas';
   words: Array<ForbiddenWord> = [];
   newWord = EMPTY_WORD;
   successMessage = EMPTY_WORD;
   errorMessage = EMPTY_WORD;
 
-  constructor(private forbiddenWordService: ForbiddenWordService) { }
+  constructor(private route: ActivatedRoute, private forbiddenWordService: ForbiddenWordService) { }
 
   ngOnInit() {
-    this.forbiddenWordService.getForbiddenWords()
+    this.organizationId = this.route.snapshot.paramMap.get('id');
+
+    this.forbiddenWordService.getForbiddenWords(this.organizationId)
       .subscribe(data => this.words = data,
-                  error =>  this.errorMessage = CONNECTION_ERROR
+                 error => this.errorMessage = CONNECTION_ERROR
                 );
   }
 
   addWord() {
     if (this.words.filter(word => word.word === this.newWord).length === 0) {
-      this.forbiddenWordService.addForbiddenWord(this.newWord)
+      this.forbiddenWordService.addForbiddenWord(this.newWord, this.organizationId)
         .subscribe(data => {
           this.words.push(data);
           this.successMessage = SUCCESSFULLY_ADDED_WORD;
