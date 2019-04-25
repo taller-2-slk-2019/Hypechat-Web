@@ -1,4 +1,4 @@
-import { UserOrganizations } from './userOrganizations';
+import { UserOrganizations } from './UserOrganizations';
 
 export class User {
   id: number;

@@ -1,4 +1,4 @@
-<ngb-panel class="card  my-5" style="background-color: white; border-color: black; word-break: break-word">
+<ngb-panel class="card my-5" style="background-color: white; border-color: black; word-break: break-word">
   <div class="card-header font-weight-bold d-flex justify-content-between"
        style="background-color: blueviolet; color: white; border-color: black">
     <h2>{{organization.name}}</h2>
@@ -17,6 +17,6 @@
     <b><u>Mensaje de bienvenida:</u></b> {{organization.welcome}}
   </li>
   <li class="card-text mx-3 mb-3">
-    <b><u>Fecha de creación:</u></b> {{creationDate()}}
+    <b><u>Fecha de creación:</u></b> {{organization.creationDate.format('DD/MM/YYYY')}}
   </li>
 </ngb-panel>

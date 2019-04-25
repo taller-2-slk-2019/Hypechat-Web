@@ -1,4 +1,5 @@
-import { UserOrganizations } from './userOrganizations';
+import { UserOrganizations } from './UserOrganizations';
+import * as moment from 'moment';
 
 export class Organization {
   id: number;
@@ -11,4 +12,8 @@ export class Organization {
   createdAt: string;
   updatedAt: string;
   userOrganizations: UserOrganizations;
+
+  get creationDate() {
+    return moment(this.createdAt);
+  }
 }
