@@ -5,7 +5,10 @@ import {ActivatedRoute} from '@angular/router';
 import {OrganizationService} from '../../services/organization.service';
 
 const CONNECTION_ERROR = 'Error de conexión';
-
+const ROLES = { creator: 'Creador',
+  administrator: 'Administrador',
+  member: 'Miembro'
+};
 
 @Component({
   selector: 'app-organization-users',
@@ -21,8 +24,8 @@ export class OrganizationUsersComponent implements OnInit {
   errorMessage = '';
   email = '';
 
-    constructor(private route: ActivatedRoute, private userService: UserService,
-                private organizationService: OrganizationService) { }
+  constructor(private route: ActivatedRoute, private userService: UserService,
+              private organizationService: OrganizationService) { }
 
   ngOnInit() {
     this.organizationId = this.route.snapshot.paramMap.get('id');
@@ -37,7 +40,6 @@ export class OrganizationUsersComponent implements OnInit {
   isInvalid() {
     let result = this.email.includes(' ');
     result = result || !this.email.includes('@');
-    result = result || !this.email.includes('.com');
     result = result && this.email !== '';
     return result;
   }
@@ -61,5 +63,14 @@ export class OrganizationUsersComponent implements OnInit {
         this.successMessage = 'Se eliminó al usuario de la organización';
       },
       error =>  this.errorMessage = 'No se pudo eliminar al usuario');
+  }
+
+  showRole(user: User) {
+    return ROLES[user.userOrganizations.role];
+  }
+
+  changeRole(user: User, newRole: string) {
+    // TODO change role in the server
+    user.userOrganizations.role = newRole;
   }
 }
