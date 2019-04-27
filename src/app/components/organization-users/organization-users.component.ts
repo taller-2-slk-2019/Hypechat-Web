@@ -17,7 +17,7 @@ const ROLES = { creator: 'Creador',
 })
 
 export class OrganizationUsersComponent implements OnInit {
-  title = 'Estadísticas';
+  title = 'Usuarios';
   organizationId: string;
   users: Array<User> = [];
   successMessage = '';

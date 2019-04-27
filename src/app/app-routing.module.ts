@@ -5,9 +5,11 @@ import { ForbiddenWordComponent } from './components/forbidden-word/forbidden-wo
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import { OrganizationUsersComponent } from './components/organization-users/organization-users.component';
+import {ChannelListComponent} from './components/channel-list/channel-list.component';
 
 const routes: Routes = [
   { path: '', component: OrganizationListComponent },
+  { path: 'organization/:id/channels', component: ChannelListComponent },
   { path: 'organization/:id/users', component: OrganizationUsersComponent },
   { path: 'organization/:id/statistics', component: StatisticsComponent },
   { path: 'organization/:id/forbiddenWords', component: ForbiddenWordComponent },
@@ -20,6 +22,7 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 export const routingComponents = [OrganizationListComponent,
+                                  ChannelListComponent,
                                   OrganizationUsersComponent,
                                   StatisticsComponent,
                                   ForbiddenWordComponent,

@@ -13,6 +13,7 @@ import { AlertErrorComponent } from './components/alert-error/alert-error.compon
 import { OrganizationComponent } from './components/organization/organization.component';
 import { MenuBarComponent } from './components/menu-bar/menu-bar.component';
 import { MatButtonModule, MatToolbarModule } from '@angular/material';
+import { ChannelComponent } from './components/channel/channel.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { MatButtonModule, MatToolbarModule } from '@angular/material';
     routingComponents,
     OrganizationComponent,
     MenuBarComponent,
+    ChannelComponent
   ],
   imports: [
     BrowserModule,

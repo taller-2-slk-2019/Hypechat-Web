@@ -1,0 +1,19 @@
+<app-menu-bar [organizationId]="organizationId"></app-menu-bar>
+
+<h1 class="text-center mt-5">{{ title }}</h1>
+
+<div class="d-flex justify-content-center my-3">
+  <app-alert-error [errorMessage]="errorMessage" (close)="errorMessage = ''"></app-alert-error>
+</div>
+
+<div *ngIf="channels.length == 0" class="d-flex justify-content-center my-5">
+  <p> La organización no presenta canales </p>
+</div>
+
+<div class="d-flex justify-content-center my-3">
+  <div class="form-group w-50">
+    <div *ngFor="let channel of channels">
+      <app-channel [channel]="channel"></app-channel>
+    </div>
+  </div>
+</div>

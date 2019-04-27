@@ -1,0 +1,23 @@
+<ngb-panel class="card my-5" style="background-color: white; border-color: black; word-break: break-word">
+  <div class="card-header font-weight-bold d-flex justify-content-between"
+       style="background-color: blueviolet; color: white; border-color: black">
+    <div class="d-flex justify-content-between">
+      <i class="fas fa-lock-open mr-3" *ngIf="channel.isPublic"></i>
+      <i class="fas fa-lock  mr-3" *ngIf="!channel.isPublic"></i>
+      <h2>{{channel.name}}</h2>
+    </div>
+    <button class="btn btn-info right border-0"
+            style="background-color: blueviolet">
+      <i class="fas fa-edit"></i>
+    </button>
+  </div>
+  <li class="card-text mx-3 my-3">
+    <b><u>Descripción:</u></b> {{channel.description}}
+  </li>
+  <li class="card-text mx-3 mb-3">
+    <b><u>Mensaje de bienvenida:</u></b> {{channel.welcome}}
+  </li>
+  <li class="card-text mx-3 mb-3">
+    <b><u>Fecha de creación:</u></b> {{channelCreationDate().format('DD/MM/YYYY')}}
+  </li>
+</ngb-panel>
