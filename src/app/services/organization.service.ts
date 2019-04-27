@@ -19,4 +19,19 @@ export class OrganizationService {
     const params = new HttpParams().set(QUERY_PARAMETER, userToken);
     return this.serverService.get<Organization[]>(this.url, params);
   }
+
+  addUser(organizationId: string, userEmail: string): Observable<any> {
+    const emails = [];
+    emails.push(userEmail)
+    const data = {
+      userEmails: emails
+    };
+    const url = `${this.url}/${organizationId}/invitations`;
+    return this.serverService.post(url, data);
+  }
+
+  deleteUser(organizationId: string, userId: number) {
+    const url = `${this.url}/${organizationId}/users/${userId}`;
+    return this.serverService.delete(url);
+  }
 }
