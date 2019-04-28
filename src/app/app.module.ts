@@ -14,6 +14,7 @@ import { OrganizationComponent } from './components/organization/organization.co
 import { MenuBarComponent } from './components/menu-bar/menu-bar.component';
 import { MatButtonModule, MatToolbarModule } from '@angular/material';
 import { BaseComponent } from './components/base/base.component';
+import { UserComponent } from './components/user/user.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { BaseComponent } from './components/base/base.component';
     OrganizationComponent,
     MenuBarComponent,
     BaseComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,

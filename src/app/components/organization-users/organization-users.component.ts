@@ -64,13 +64,4 @@ export class OrganizationUsersComponent extends BaseComponent implements OnInit 
       },
       error =>  this.setError('No se pudo eliminar al usuario'));
   }
-
-  showRole(user: User) {
-    return ROLES[user.userOrganizations.role];
-  }
-
-  changeRole(user: User, newRole: string) {
-    // TODO change role in the server
-    user.userOrganizations.role = newRole;
-  }
 }

@@ -30,24 +30,8 @@
 
 <div class="d-flex justify-content-center">
   <ul class="list-group w-50">
-    <li *ngFor="let user of users" class="list-group-item d-flex justify-content-between">
-      <img src="{{user.picture}}" width="50" height="50" class="rounded-circle">
-      <span class="mr-5" style="width: 15em;word-break: break-word">{{user.name}}</span>
-      <div class="d-flex justify-content-between">
-        <div class="dropdown mx-5">
-          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
-                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 10em">
-            {{showRole(user)}}
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" (click)="changeRole(user, 'creator')">Creador</a>
-            <a class="dropdown-item" (click)="changeRole(user, 'moderator')">Moderador</a>
-            <a class="dropdown-item" (click)="changeRole(user, 'member')">Miembro</a>
-          </div>
-        </div>
-        <button class="btn btn-danger" (click)="deleteUser(user)"><i class="fas fa-trash"></i></button>
-      </div>
+    <li *ngFor="let user of users" class="list-group-item">
+      <app-user [user]="user" (event)="deleteUser($event)"></app-user>
     </li>
   </ul>
 </div>
-
