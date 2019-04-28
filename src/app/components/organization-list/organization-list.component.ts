@@ -13,7 +13,6 @@ const EMPTY_WORD = '';
 
 export class OrganizationListComponent implements OnInit {
   title = 'Organizaciones';
-  userToken = 'gAE4p7b1bRc4CZ77aExzgTFcv1O2'; // TODO harcoded token
   organizations: Array<Organization> = [];
   successMessage = EMPTY_WORD;
   errorMessage = EMPTY_WORD;
@@ -21,7 +20,7 @@ export class OrganizationListComponent implements OnInit {
   constructor(private organizationService: OrganizationService) { }
 
   ngOnInit() {
-    this.organizationService.getOrganizations(this.userToken)
+    this.organizationService.getOrganizations()
       .subscribe(data => this.organizations = data,
         error =>  this.errorMessage = CONNECTION_ERROR
       );

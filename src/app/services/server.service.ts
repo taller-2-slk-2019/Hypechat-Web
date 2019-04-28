@@ -30,12 +30,12 @@ export class ServerService {
   }
 
   private getHeaders(params = null) {
-    if (!params){
+    if (!params) {
       params = new HttpParams();
     }
 
-    params = params.set('adminToken', 'uS3Y91RLpnpmTa7L83m6'); //TODO harcoded token, implement login
+    params = params.set('adminToken', 'uS3Y91RLpnpmTa7L83m6'); // TODO harcoded token, implement login
 
-    return { params: params }
-  } 
+    return { params: params };
+  }
 }
