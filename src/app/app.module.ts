@@ -14,6 +14,7 @@ import { OrganizationComponent } from './components/organization/organization.co
 import { MenuBarComponent } from './components/menu-bar/menu-bar.component';
 import { MatButtonModule, MatToolbarModule } from '@angular/material';
 import { ChannelComponent } from './components/channel/channel.component';
+import { TabsModule } from 'ngx-bootstrap';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ChannelComponent } from './components/channel/channel.component';
     FormsModule,
     ReactiveFormsModule,
     MatToolbarModule,
-    MatButtonModule
+    MatButtonModule,
+    TabsModule
   ],
   providers: [ForbiddenWordService],
   bootstrap: [AppComponent]

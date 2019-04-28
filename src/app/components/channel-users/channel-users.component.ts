@@ -12,7 +12,8 @@ import {User} from '../../models/User';
 export class ChannelUsersComponent implements OnInit {
   title = 'Usuarios';
   organizationId: string;
-  users: Array<User> = [];
+  channelUsers: Array<User> = [];
+  organizationUsers: Array<User> = [];
   channelId: string;
   successMessage = '';
   errorMessage = '';
@@ -23,13 +24,36 @@ export class ChannelUsersComponent implements OnInit {
   ngOnInit() {
     this.organizationId = this.route.snapshot.paramMap.get('id');
     this.channelId = this.route.snapshot.paramMap.get('channelId');
-    this.channelService.getUsers(this.channelId)
+    this.userService.getOrganizationUsers(this.organizationId)
       .subscribe(data => {
-        this.users = data;
-      },
-      error =>  this.errorMessage = 'Error de conexión'
-    );
+          this.organizationUsers = data;
+          this.initChannelUsers();
+        },
+        error =>  this.errorMessage = 'Error de conexión'
+      );
   }
 
-  deleteUser(user: User) { }
+  deleteUser(user: User) {
+    this.organizationUsers.push(user);
+    this.channelUsers = this.channelUsers.filter(usr => usr.id !== user.id);
+  }
+
+  addUser(user: User) {
+    this.channelUsers.push(user);
+    this.organizationUsers = this.organizationUsers.filter(usr => usr.id !== user.id);
+  }
+
+  private initChannelUsers() {
+    this.channelService.getUsers(this.channelId)
+      .subscribe(data => {
+          this.channelUsers = data;
+          this.organizationUsers = this.organizationUsers.filter(user => !this.channelContainsUser(user));
+        },
+        error =>  this.errorMessage = 'Error de conexión'
+      );
+  }
+
+  private channelContainsUser(user: User) {
+    return this.channelUsers.filter(usr => usr.id === user.id).length === 1;
+  }
 }

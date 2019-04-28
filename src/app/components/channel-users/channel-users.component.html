@@ -6,16 +6,37 @@
   <app-alert-error [errorMessage]="errorMessage" (close)="errorMessage = ''"></app-alert-error>
 </div>
 
-<div *ngIf="users.length == 0" class="d-flex justify-content-center my-5">
-  <p> El canal no tiene usuarios </p>
-</div>
-
-<div class="d-flex justify-content-center">
-  <ul class="list-group w-50">
-    <li *ngFor="let user of users" class="list-group-item d-flex justify-content-between">
-      <img src="{{user.picture}}" width="50" height="50" class="rounded-circle">
-      <span class="mr-5" style="width: 15em;word-break: break-word">{{user.name}}</span>
-      <button class="btn btn-danger" (click)="deleteUser(user)"><i class="fas fa-trash"></i></button>
-    </li>
-  </ul>
-</div>
+<ngb-tabset type="pills" justify="center">
+  <ngb-tab title="Eliminar Usuarios">
+    <ng-template ngbTabContent>
+      <div *ngIf="channelUsers.length == 0" class="d-flex justify-content-center my-5">
+        <p> El canal no tiene usuarios </p>
+      </div>
+      <div class="d-flex justify-content-center my-4">
+        <ul class="list-group w-50">
+          <li *ngFor="let user of channelUsers" class="list-group-item d-flex justify-content-between">
+            <img src="{{user.picture}}" width="50" height="50" class="rounded-circle">
+            <span class="mr-5" style="width: 15em;word-break: break-word">{{user.name}}</span>
+            <button class="btn btn-danger" (click)="deleteUser(user)"><i class="fas fa-trash"></i></button>
+          </li>
+        </ul>
+      </div>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab title="Agregar Usuarios">
+    <ng-template ngbTabContent>
+      <div *ngIf="organizationUsers.length == 0" class="d-flex justify-content-center my-5">
+        <p> Todos los usuarios pertenecen al canal </p>
+      </div>
+      <div class="d-flex justify-content-center my-4">
+        <ul class="list-group w-50">
+          <li *ngFor="let user of organizationUsers" class="list-group-item d-flex justify-content-between">
+            <img src="{{user.picture}}" width="50" height="50" class="rounded-circle">
+            <span class="mr-5" style="width: 15em;word-break: break-word">{{user.name}}</span>
+            <button class="btn btn-primary" (click)="addUser(user)"><i class="fas fa-plus"></i></button>
+          </li>
+        </ul>
+      </div>
+    </ng-template>
+  </ngb-tab>
+</ngb-tabset>
