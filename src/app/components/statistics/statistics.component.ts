@@ -2,15 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {UserService} from '../../services/user.service';
 import {User} from '../../models/User';
-
-const CONNECTION_ERROR = 'Error de conexión';
+import {BaseComponent} from '../base/base.component';
 
 @Component({
   selector: 'app-statistics',
   templateUrl: './statistics.component.html',
   styleUrls: ['./statistics.component.css']
 })
-export class StatisticsComponent implements OnInit {
+export class StatisticsComponent extends BaseComponent implements OnInit {
   title = 'Estadísticas';
   organizationId: string;
   users: Array<User> = [];
@@ -19,7 +18,9 @@ export class StatisticsComponent implements OnInit {
   administratorUser: Array<User> = [];
   memberUser: Array<User> = [];
 
-  constructor(private route: ActivatedRoute, private userService: UserService) { }
+  constructor(private route: ActivatedRoute, private userService: UserService) {
+    super();
+  }
 
   ngOnInit() {
     this.organizationId = this.route.snapshot.paramMap.get('id');
@@ -32,7 +33,7 @@ export class StatisticsComponent implements OnInit {
       this.administratorUser = this.users.filter(user => user.userOrganizations.role === 'administrator');
       this.memberUser = this.users.filter(user => user.userOrganizations.role === 'member');
       },
-      error =>  this.errorMessage = CONNECTION_ERROR
+      error =>  this.setError(this.connectionError)
     );
   }
 }
