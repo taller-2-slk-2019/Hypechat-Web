@@ -15,9 +15,8 @@ export class OrganizationService {
 
   constructor(private serverService: ServerService) { }
 
-  getOrganizations(userToken: string): Observable<any> {
-    const params = new HttpParams().set(QUERY_PARAMETER, userToken);
-    return this.serverService.get<Organization[]>(this.url, params);
+  getOrganizations(): Observable<any> {
+    return this.serverService.get<Organization[]>(this.url);
   }
 
   addUser(organizationId: string, userEmail: string): Observable<any> {

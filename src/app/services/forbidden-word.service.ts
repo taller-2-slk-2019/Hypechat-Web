@@ -24,7 +24,7 @@ export class ForbiddenWordService {
       word: newWord,
       organizationId: id
     };
-    return this.serverService.post(this.url, data);
+    return this.serverService.post<ForbiddenWord>(this.url, data);
   }
 
   deleteForbiddenWord(deleteWord: number) {

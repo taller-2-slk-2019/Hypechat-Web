@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Organization} from '../../models/Organization';
 import {OrganizationService} from '../../services/organization.service';
-
-const CONNECTION_ERROR = 'Error de conexión';
-const EMPTY_WORD = '';
+import {BaseComponent} from '../base/base.component';
 
 @Component({
   selector: 'app-organization-list',
@@ -11,19 +9,18 @@ const EMPTY_WORD = '';
   styleUrls: ['./organization-list.component.css']
 })
 
-export class OrganizationListComponent implements OnInit {
+export class OrganizationListComponent extends BaseComponent implements OnInit {
   title = 'Organizaciones';
-  userToken = 'gAE4p7b1bRc4CZ77aExzgTFcv1O2'; // TODO harcoded token
   organizations: Array<Organization> = [];
-  successMessage = EMPTY_WORD;
-  errorMessage = EMPTY_WORD;
 
-  constructor(private organizationService: OrganizationService) { }
+  constructor(private organizationService: OrganizationService) {
+    super();
+  }
 
   ngOnInit() {
-    this.organizationService.getOrganizations(this.userToken)
+    this.organizationService.getOrganizations()
       .subscribe(data => this.organizations = data,
-        error =>  this.errorMessage = CONNECTION_ERROR
+        error =>  this.setError(this.connectionError)
       );
   }
 
