@@ -1,15 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from '../../services/user.service';
 import {User} from '../../models/User';
-import {ActivatedRoute} from '@angular/router';
-import {OrganizationService} from '../../services/organization.service';
-import {BaseComponent} from '../base/base.component';
-import {RoleEvent} from '../../models/RoleEvent';
-
-const ROLES = { creator: 'Creador',
-  moderator: 'Moderador',
-  member: 'Miembro'
-};
+import { ActivatedRoute } from '@angular/router';
+import { OrganizationService } from '../../services/organization.service';
+import { BaseComponent } from '../base/base.component';
+import { RoleEvent } from '../../models/RoleEvent';
 
 @Component({
   selector: 'app-organization-users',

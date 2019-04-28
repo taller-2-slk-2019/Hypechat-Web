@@ -17,8 +17,7 @@ export class OrganizationService {
   }
 
   addUser(organizationId: string, userEmail: string): Observable<any> {
-    const emails = [];
-    emails.push(userEmail)
+    const emails = [userEmail];
     const data = {
       userEmails: emails
     };
