@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpParams } from '@angular/common/http';
 import { ServerService } from './server.service';
 import { Observable } from 'rxjs';
 import { Organization } from '../models/Organization';
-
-const QUERY_PARAMETER = 'userToken';
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +17,7 @@ export class OrganizationService {
   }
 
   addUser(organizationId: string, userEmail: string): Observable<any> {
-    const emails = [];
-    emails.push(userEmail)
+    const emails = [userEmail];
     const data = {
       userEmails: emails
     };
@@ -32,5 +28,13 @@ export class OrganizationService {
   deleteUser(organizationId: string, userId: number) {
     const url = `${this.url}/${organizationId}/users/${userId}`;
     return this.serverService.delete(url);
+  }
+
+  changeRole(userId: string, organizationId: string, newRole: string) {
+    const data = {
+      role: newRole
+    };
+    const url = `${this.url}/${organizationId}/users/${userId}`;
+    return this.serverService.put(url, data);
   }
 }

@@ -3,23 +3,24 @@ import {ActivatedRoute} from '@angular/router';
 import {UserService} from '../../services/user.service';
 import {ChannelService} from '../../services/channel.service';
 import {User} from '../../models/User';
+import {BaseComponent} from '../base/base.component';
 
 @Component({
   selector: 'app-channel-users',
   templateUrl: './channel-users.component.html',
   styleUrls: ['./channel-users.component.css']
 })
-export class ChannelUsersComponent implements OnInit {
+export class ChannelUsersComponent extends BaseComponent implements OnInit {
   title = 'Usuarios';
   organizationId: string;
   channelUsers: Array<User> = [];
   organizationUsers: Array<User> = [];
   channelId: string;
-  successMessage = '';
-  errorMessage = '';
 
   constructor(private route: ActivatedRoute, private userService: UserService,
-              private channelService: ChannelService) { }
+              private channelService: ChannelService) {
+    super();
+  }
 
   ngOnInit() {
     this.organizationId = this.route.snapshot.paramMap.get('id');
@@ -29,7 +30,7 @@ export class ChannelUsersComponent implements OnInit {
           this.organizationUsers = data;
           this.initChannelUsers();
         },
-        error =>  this.errorMessage = 'Error de conexión'
+        error =>  this.setError(this.connectionError)
       );
   }
 
@@ -38,8 +39,9 @@ export class ChannelUsersComponent implements OnInit {
       .subscribe(data => {
           this.channelUsers.push(user);
           this.organizationUsers = this.organizationUsers.filter(usr => usr.id !== user.id);
+          this.setSuccess(`Se agregó al usuario ${user.name} al canal`);
       },
-      error =>  this.errorMessage = 'No se pudo agregar al usuario'
+      error =>  this.setError('No se pudo agregar al usuario')
     );
   }
 
@@ -48,8 +50,9 @@ export class ChannelUsersComponent implements OnInit {
       .subscribe(data => {
           this.organizationUsers.push(user);
           this.channelUsers = this.channelUsers.filter(usr => usr.id !== user.id);
+          this.setSuccess(`Se eliminó al usuario ${user.name} del canal`);
         },
-        error =>  this.errorMessage = 'No se pudo eliminar al usuario'
+        error =>  this.setError('No se pudo eliminar al usuario')
       );
   }
 
@@ -59,7 +62,7 @@ export class ChannelUsersComponent implements OnInit {
           this.channelUsers = data;
           this.organizationUsers = this.organizationUsers.filter(user => !this.channelContainsUser(user));
         },
-        error =>  this.errorMessage = 'Error de conexión'
+        error =>  this.setError(this.connectionError)
       );
   }
 

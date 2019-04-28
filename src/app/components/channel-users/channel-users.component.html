@@ -15,8 +15,10 @@
       <div class="d-flex justify-content-center my-4">
         <ul class="list-group w-50">
           <li *ngFor="let user of channelUsers" class="list-group-item d-flex justify-content-between">
-            <img src="{{user.picture}}" width="50" height="50" class="rounded-circle">
-            <span class="mr-5" style="width: 15em;word-break: break-word">{{user.name}}</span>
+            <div class="ml-3">
+              <img src="{{user.picture}}" width="50" height="50" class="rounded-circle mr-3">
+              <span class="mr-5" style="width: 15em;word-break: break-word">{{user.name}}</span>
+            </div>
             <button class="btn btn-danger" (click)="deleteUser(user)"><i class="fas fa-trash"></i></button>
           </li>
         </ul>
@@ -31,8 +33,10 @@
       <div class="d-flex justify-content-center my-4">
         <ul class="list-group w-50">
           <li *ngFor="let user of organizationUsers" class="list-group-item d-flex justify-content-between">
-            <img src="{{user.picture}}" width="50" height="50" class="rounded-circle">
-            <span class="mr-5" style="width: 15em;word-break: break-word">{{user.name}}</span>
+            <div class="ml-3">
+              <img src="{{user.picture}}" width="50" height="50" class="rounded-circle mr-3">
+              <span class="mr-5" style="width: 15em;word-break: break-word">{{user.name}}</span>
+            </div>
             <button class="btn btn-primary" (click)="addUser(user)"><i class="fas fa-plus"></i></button>
           </li>
         </ul>

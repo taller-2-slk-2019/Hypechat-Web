@@ -16,6 +16,7 @@ import { MatButtonModule, MatToolbarModule } from '@angular/material';
 import { ChannelComponent } from './components/channel/channel.component';
 import { TabsModule } from 'ngx-bootstrap';
 import { BaseComponent } from './components/base/base.component';
+import { UserComponent } from './components/user/user.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { BaseComponent } from './components/base/base.component';
     MenuBarComponent,
     ChannelComponent,
     BaseComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,

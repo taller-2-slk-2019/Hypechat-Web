@@ -1,14 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from '../../services/user.service';
-import {User} from '../../models/User';
-import {ActivatedRoute} from '@angular/router';
-import {OrganizationService} from '../../services/organization.service';
-
-const CONNECTION_ERROR = 'Error de conexión';
-const ROLES = { creator: 'Creador',
-  administrator: 'Administrador',
-  member: 'Miembro'
-};
+import { UserService } from '../../services/user.service';
+import { User } from '../../models/User';
+import { ActivatedRoute } from '@angular/router';
+import { OrganizationService } from '../../services/organization.service';
+import { BaseComponent } from '../base/base.component';
+import { RoleEvent } from '../../models/RoleEvent';
 
 @Component({
   selector: 'app-organization-users',
@@ -16,16 +12,16 @@ const ROLES = { creator: 'Creador',
   styleUrls: ['./organization-users.component.css']
 })
 
-export class OrganizationUsersComponent implements OnInit {
+export class OrganizationUsersComponent extends BaseComponent implements OnInit {
   title = 'Usuarios';
   organizationId: string;
   users: Array<User> = [];
-  successMessage = '';
-  errorMessage = '';
   email = '';
 
   constructor(private route: ActivatedRoute, private userService: UserService,
-              private organizationService: OrganizationService) { }
+              private organizationService: OrganizationService) {
+    super();
+  }
 
   ngOnInit() {
     this.organizationId = this.route.snapshot.paramMap.get('id');
@@ -33,7 +29,7 @@ export class OrganizationUsersComponent implements OnInit {
     subscribe(data => {
         this.users = data;
       },
-      error =>  this.errorMessage = CONNECTION_ERROR
+      error =>  this.setError(this.connectionError)
     );
   }
 
@@ -48,29 +44,35 @@ export class OrganizationUsersComponent implements OnInit {
     this.organizationService.addUser(this.organizationId, this.email)
       .subscribe(data => {
         if (data.length === 0) {
-          this.successMessage = 'El usuario se invitó exitosamente';
+          this.setSuccess('El usuario se invitó exitosamente');
         } else {
-          this.errorMessage = 'No se pudo invitar al usuario';
+          this.setError('No se pudo invitar al usuario');
         }
       },
-      error =>  this.errorMessage = 'No se pudo invitar al usuario');
+      error =>  this.setError('No se pudo invitar al usuario'));
   }
 
   deleteUser(deletedUser: User) {
       this.organizationService.deleteUser(this.organizationId, deletedUser.id)
         .subscribe(data => {
         this.users = this.users.filter(user => user.id !== deletedUser.id);
-        this.successMessage = 'Se eliminó al usuario de la organización';
+        this.setSuccess('Se eliminó al usuario de la organización');
       },
-      error =>  this.errorMessage = 'No se pudo eliminar al usuario');
+      error =>  this.setError('No se pudo eliminar al usuario'));
   }
 
-  showRole(user: User) {
-    return ROLES[user.userOrganizations.role];
-  }
-
-  changeRole(user: User, newRole: string) {
+  changeRole(roleEvent: RoleEvent) {
     // TODO change role in the server
-    user.userOrganizations.role = newRole;
+    const newRole = roleEvent.newRole;
+    /*
+    this.organizationService.changeRole(roleEvent.user.id.toString(), this.organizationId, newRole)
+      .subscribe( data => {
+          this.setSuccess('Se modifico el rol del usuario');
+          roleEvent.user.userOrganizations.role = newRole;
+        },
+        error => this.setError('No se pudo modificar el rol')
+      );
+     */
+    roleEvent.user.userOrganizations.role = newRole;
   }
 }
