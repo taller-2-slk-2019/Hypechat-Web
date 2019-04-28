@@ -23,4 +23,17 @@ export class ChannelService {
     const url = `${this.url}/${channelId}/users`;
     return this.serverService.get<User[]>(url);
   }
+
+  addUser(channelId: string, user: User) {
+    const url = `${this.url}/${channelId}/users`;
+    const data = {
+      userId: user.id
+    };
+    return this.serverService.post(url, data);
+  }
+
+  deleteUser(channelId: string, user: User) {
+    const url = `${this.url}/${channelId}/users/${user.id}`;
+    return this.serverService.delete(url);
+  }
 }

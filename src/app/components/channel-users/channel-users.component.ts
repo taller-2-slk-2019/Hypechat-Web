@@ -33,14 +33,24 @@ export class ChannelUsersComponent implements OnInit {
       );
   }
 
-  deleteUser(user: User) {
-    this.organizationUsers.push(user);
-    this.channelUsers = this.channelUsers.filter(usr => usr.id !== user.id);
+  addUser(user: User) {
+    this.channelService.addUser(this.channelId, user)
+      .subscribe(data => {
+          this.channelUsers.push(user);
+          this.organizationUsers = this.organizationUsers.filter(usr => usr.id !== user.id);
+      },
+      error =>  this.errorMessage = 'No se pudo agregar al usuario'
+    );
   }
 
-  addUser(user: User) {
-    this.channelUsers.push(user);
-    this.organizationUsers = this.organizationUsers.filter(usr => usr.id !== user.id);
+  deleteUser(user: User) {
+    this.channelService.deleteUser(this.channelId, user)
+      .subscribe(data => {
+          this.organizationUsers.push(user);
+          this.channelUsers = this.channelUsers.filter(usr => usr.id !== user.id);
+        },
+        error =>  this.errorMessage = 'No se pudo eliminar al usuario'
+      );
   }
 
   private initChannelUsers() {
