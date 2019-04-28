@@ -4,6 +4,7 @@ import {User} from '../../models/User';
 import {ActivatedRoute} from '@angular/router';
 import {OrganizationService} from '../../services/organization.service';
 import {BaseComponent} from '../base/base.component';
+import {RoleEvent} from '../../models/RoleEvent';
 
 const ROLES = { creator: 'Creador',
   moderator: 'Moderador',
@@ -63,5 +64,20 @@ export class OrganizationUsersComponent extends BaseComponent implements OnInit 
         this.setSuccess('Se eliminó al usuario de la organización');
       },
       error =>  this.setError('No se pudo eliminar al usuario'));
+  }
+
+  changeRole(roleEvent: RoleEvent) {
+    // TODO change role in the server
+    const newRole = roleEvent.newRole;
+    /*
+    this.organizationService.changeRole(roleEvent.user.id.toString(), this.organizationId, newRole)
+      .subscribe( data => {
+          this.setSuccess('Se modifico el rol del usuario');
+          roleEvent.user.userOrganizations.role = newRole;
+        },
+        error => this.setError('No se pudo modificar el rol')
+      );
+     */
+    roleEvent.user.userOrganizations.role = newRole;
   }
 }

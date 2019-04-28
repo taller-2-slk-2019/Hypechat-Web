@@ -1,5 +1,6 @@
 import { Component, Input, EventEmitter, OnInit, Output } from '@angular/core';
 import { User } from '../../models/User';
+import {RoleEvent} from '../../models/RoleEvent';
 
 const ROLES = { creator: 'Creador',
   moderator: 'Moderador',
@@ -14,6 +15,7 @@ const ROLES = { creator: 'Creador',
 export class UserComponent implements OnInit {
   @Input() user: User;
   @Output() event = new EventEmitter<User>();
+  @Output() roleEvent = new EventEmitter<RoleEvent>();
 
   constructor() { }
 
@@ -24,12 +26,15 @@ export class UserComponent implements OnInit {
     return ROLES[user.userOrganizations.role];
   }
 
-  changeRole(newRole: string) {
-    // TODO change role in the server
-    this.user.userOrganizations.role = newRole;
-  }
-
   emitEvent() {
     this.event.emit(this.user);
+  }
+
+  emitRoleEvent(role: string) {
+    const roleEvent = {
+      user: this.user,
+      newRole: role
+    };
+    this.roleEvent.emit(roleEvent);
   }
 }

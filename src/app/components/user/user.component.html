@@ -8,9 +8,9 @@
         {{showRole(user)}}
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" (click)="changeRole('creator')">Creador</a>
-        <a class="dropdown-item" (click)="changeRole('moderator')">Moderador</a>
-        <a class="dropdown-item" (click)="changeRole('member')">Miembro</a>
+        <a class="dropdown-item" (click)="emitRoleEvent('creator')">Creador</a>
+        <a class="dropdown-item" (click)="emitRoleEvent('moderator')">Moderador</a>
+        <a class="dropdown-item" (click)="emitRoleEvent('member')">Miembro</a>
       </div>
     </div>
     <button class="btn btn-danger" (click)="emitEvent()"><i class="fas fa-trash"></i></button>

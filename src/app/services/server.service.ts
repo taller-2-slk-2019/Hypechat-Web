@@ -25,6 +25,10 @@ export class ServerService {
     return this.http.delete(this.baseUrl + extension, this.getHeaders()).pipe(catchError(this.handleError));
   }
 
+  put<T>(extension, data, params = null) {
+    return this.http.put<T>(this.baseUrl + extension, data, this.getHeaders(params)).pipe(catchError(this.handleError));
+  }
+
   handleError(error: HttpErrorResponse) {
     return throwError(error.message || 'Error');
   }
