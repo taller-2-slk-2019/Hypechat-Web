@@ -6,7 +6,7 @@ import {OrganizationService} from '../../services/organization.service';
 
 const CONNECTION_ERROR = 'Error de conexión';
 const ROLES = { creator: 'Creador',
-  administrator: 'Administrador',
+  moderator: 'Moderador',
   member: 'Miembro'
 };
 
