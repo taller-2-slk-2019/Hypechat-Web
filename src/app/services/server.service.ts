@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { ForbiddenWord } from '../models/ForbiddenWord';
 import { catchError } from 'rxjs/operators';
@@ -13,7 +13,7 @@ export class ServerService {
 
   constructor(private http: HttpClient) { }
 
-  get<T>(extension, params = {}) {
+  get<T>(extension, params = null) {
     return this.http.get<T>(this.baseUrl + extension, this.getHeaders(params)).pipe(catchError(this.handleError));
   }
 
@@ -30,12 +30,12 @@ export class ServerService {
   }
 
   private getHeaders(params = null) {
-    let headers = new HttpHeaders().set('adminToken', 'uS3Y91RLpnpmTa7L83m6'); //TODO harcoded token, implement login
-
-    let result: any = {headers: headers};
-    if (params){
-      result.params = params;
+    if (!params){
+      params = new HttpParams();
     }
-    return result;
+
+    params = params.set('adminToken', 'uS3Y91RLpnpmTa7L83m6'); //TODO harcoded token, implement login
+
+    return { params: params }
   } 
 }
