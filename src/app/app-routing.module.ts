@@ -6,9 +6,11 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import { OrganizationUsersComponent } from './components/organization-users/organization-users.component';
 import {ChannelListComponent} from './components/channel-list/channel-list.component';
+import {ChannelUsersComponent} from './components/channel-users/channel-users.component';
 
 const routes: Routes = [
   { path: '', component: OrganizationListComponent },
+  { path: 'organization/:id/channels/:channelId', component: ChannelUsersComponent },
   { path: 'organization/:id/channels', component: ChannelListComponent },
   { path: 'organization/:id/users', component: OrganizationUsersComponent },
   { path: 'organization/:id/statistics', component: StatisticsComponent },
@@ -23,6 +25,7 @@ const routes: Routes = [
 export class AppRoutingModule { }
 export const routingComponents = [OrganizationListComponent,
                                   ChannelListComponent,
+                                  ChannelUsersComponent,
                                   OrganizationUsersComponent,
                                   StatisticsComponent,
                                   ForbiddenWordComponent,

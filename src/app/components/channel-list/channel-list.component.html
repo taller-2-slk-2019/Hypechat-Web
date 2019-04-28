@@ -13,7 +13,7 @@
 <div class="d-flex justify-content-center my-3">
   <div class="form-group w-50">
     <div *ngFor="let channel of channels">
-      <app-channel [channel]="channel"></app-channel>
+      <app-channel [channel]="channel" [organizationId]="organizationId"></app-channel>
     </div>
   </div>
 </div>

@@ -3,6 +3,7 @@ import {ServerService} from './server.service';
 import {Observable} from 'rxjs';
 import {HttpParams} from '@angular/common/http';
 import {Channel} from '../models/Channel';
+import {User} from '../models/User';
 
 @Injectable({
   providedIn: 'root'
@@ -16,5 +17,10 @@ export class ChannelService {
     const params = new HttpParams().set('organizationId', organizationId)
       .set('userToken', 'gAE4p7b1bRc4CZ77aExzgTFcv1O2');
     return this.serverService.get<Channel[]>(this.url, params); // TODO Change it for the new end point
+  }
+
+  getUsers(channelId: string): Observable<any> {
+    const url = `${this.url}/${channelId}/users`;
+    return this.serverService.get<User[]>(url);
   }
 }

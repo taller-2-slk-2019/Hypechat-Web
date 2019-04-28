@@ -6,10 +6,16 @@
       <i class="fas fa-lock  mr-3" *ngIf="!channel.isPublic"></i>
       <h2>{{channel.name}}</h2>
     </div>
-    <button class="btn btn-info right border-0"
-            style="background-color: blueviolet">
-      <i class="fas fa-edit"></i>
-    </button>
+    <div>
+      <button class="btn btn-info right border-0"
+              style="background-color: blueviolet" routerLink="/organization/{{organizationId}}/channels/{{channel.id}}">
+        <i class="fas fa-edit"></i>
+      </button>
+      <button class="btn btn-danger right border-0"
+              style="background-color: blueviolet">
+        <i class="fas fa-trash"></i>
+      </button>
+    </div>
   </div>
   <li class="card-text mx-3 my-3">
     <b><u>Descripción:</u></b> {{channel.description}}
