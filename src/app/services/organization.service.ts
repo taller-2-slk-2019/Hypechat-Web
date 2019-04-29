@@ -30,6 +30,11 @@ export class OrganizationService {
     return this.serverService.delete(url);
   }
 
+  deleteOrganization(organizationId: string) {
+    const url = `${this.url}/${organizationId}`;
+    return this.serverService.delete(url);
+  }
+
   changeRole(userId: string, organizationId: string, newRole: string) {
     const data = {
       role: newRole

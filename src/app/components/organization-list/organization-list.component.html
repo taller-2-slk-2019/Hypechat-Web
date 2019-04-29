@@ -14,7 +14,7 @@
 <div class="d-flex justify-content-center my-3">
   <div class="form-group w-50">
     <div *ngFor="let organization of organizations">
-      <app-organization [organization]="organization"></app-organization>
+      <app-organization [organization]="organization" (delete)="deleteOrganization($event)"></app-organization>
     </div>
   </div>
 </div>

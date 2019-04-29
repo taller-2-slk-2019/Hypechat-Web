@@ -24,4 +24,13 @@ export class OrganizationListComponent extends BaseComponent implements OnInit {
       );
   }
 
+  deleteOrganization(organization: Organization) {
+    // TODO add pop up asking if you are sure
+    this.organizationService.deleteOrganization(organization.id.toString())
+      .subscribe(data => {
+        this.setSuccess(`La organización "${organization.name}" fue eliminada`);
+        this.organizations = this.organizations.filter(org => org.id !== organization.id);
+      },
+        error => this.setError('No se pudo eliminar la organización'));
+  }
 }

@@ -44,7 +44,7 @@ export class OrganizationUsersComponent extends BaseComponent implements OnInit 
     this.organizationService.addUser(this.organizationId, this.email)
       .subscribe(data => {
         if (data.length === 0) {
-          this.setSuccess('El usuario se invitó exitosamente');
+          this.setSuccess('El usuario fue invitado a la organización');
         } else {
           this.setError('No se pudo invitar al usuario');
         }
@@ -56,7 +56,7 @@ export class OrganizationUsersComponent extends BaseComponent implements OnInit 
       this.organizationService.deleteUser(this.organizationId, deletedUser.id)
         .subscribe(data => {
         this.users = this.users.filter(user => user.id !== deletedUser.id);
-        this.setSuccess('Se eliminó al usuario de la organización');
+        this.setSuccess(`Se eliminó al usuario "${deletedUser.name}" de la organización`);
       },
       error =>  this.setError('No se pudo eliminar al usuario'));
   }
