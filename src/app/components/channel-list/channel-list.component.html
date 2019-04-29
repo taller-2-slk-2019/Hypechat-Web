@@ -3,6 +3,7 @@
 <h1 class="text-center mt-5">{{ title }}</h1>
 
 <div class="d-flex justify-content-center my-3">
+  <app-alert-success [successMessage]="successMessage" (close)="successMessage = ''"></app-alert-success>
   <app-alert-error [errorMessage]="errorMessage" (close)="errorMessage = ''"></app-alert-error>
 </div>
 
@@ -13,7 +14,7 @@
 <div class="d-flex justify-content-center my-3">
   <div class="form-group w-50">
     <div *ngFor="let channel of channels">
-      <app-channel [channel]="channel" [organizationId]="organizationId"></app-channel>
+      <app-channel [channel]="channel" [organizationId]="organizationId" (delete)="deleteChannel($event)"></app-channel>
     </div>
   </div>
 </div>

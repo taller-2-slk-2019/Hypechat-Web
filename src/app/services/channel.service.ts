@@ -36,4 +36,9 @@ export class ChannelService {
     const url = `${this.url}/${channelId}/users/${user.id}`;
     return this.serverService.delete(url);
   }
+
+  deleteChannel(channelId: string) {
+    const url = `${this.url}/${channelId}`;
+    return this.serverService.delete(url);
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Channel } from '../../models/Channel';
 import * as moment from 'moment';
 
@@ -8,9 +8,9 @@ import * as moment from 'moment';
   styleUrls: ['./channel.component.css']
 })
 export class ChannelComponent implements OnInit {
-
   @Input() channel: Channel;
   @Input() organizationId: string;
+  @Output() delete = new EventEmitter<Channel>();
 
   constructor() { }
 
@@ -19,5 +19,9 @@ export class ChannelComponent implements OnInit {
 
   channelCreationDate() {
     return moment(this.channel.createdAt);
+  }
+
+  deleteChannel() {
+    this.delete.emit(this.channel);
   }
 }
