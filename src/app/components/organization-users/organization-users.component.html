@@ -1,0 +1,37 @@
+<app-menu-bar [organizationId]="organizationId"></app-menu-bar>
+<h1 class="text-center my-5">{{ title }}</h1>
+
+<div class="d-flex justify-content-center">
+  <div class="w-50">
+    <input type="text" class="form-control"
+           placeholder="Email del usuario" maxlength="50"
+           [ngClass]="{ 'is-invalid': isInvalid() }"
+           [(ngModel)]="email"/>
+
+    <div *ngIf="isInvalid()" class="text-danger">
+      <small class="error">Debe ingresar un email</small>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary h-100 ml-4" (click)="addUser()"
+          [disabled]="isInvalid() || !email">
+    <i class="fas fa-plus"></i>
+  </button>
+</div>
+
+<div class="d-flex justify-content-center my-3">
+  <app-alert-success [successMessage]="successMessage" (close)="successMessage = ''"></app-alert-success>
+  <app-alert-error [errorMessage]="errorMessage" (close)="errorMessage = ''"></app-alert-error>
+</div>
+
+<div *ngIf="users.length == 0" class="d-flex justify-content-center my-5">
+  <p> La organización no tiene usuarios </p>
+</div>
+
+<div class="d-flex justify-content-center">
+  <ul class="list-group w-50">
+    <li *ngFor="let user of users" class="list-group-item">
+      <app-user [user]="user" (roleEvent)="changeRole($event)" (event)="deleteUser($event)"></app-user>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,18 @@
+<div class="d-flex justify-content-between" style="align-items: center">
+  <img src="{{user.picture}}" width="50" height="50" class="rounded-circle mr-2">
+  <span class="mr-5 ml-3" style="width: 15em;word-break: break-word">{{user.name}}</span>
+  <div class="d-flex justify-content-between">
+    <div class="dropdown mx-5">
+      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 10em">
+        {{showRole(user)}}
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" (click)="emitRoleEvent('creator')">Creador</a>
+        <a class="dropdown-item" (click)="emitRoleEvent('moderator')">Moderador</a>
+        <a class="dropdown-item" (click)="emitRoleEvent('member')">Miembro</a>
+      </div>
+    </div>
+    <button class="btn btn-danger" (click)="emitEvent()"><i class="fas fa-trash"></i></button>
+  </div>
+</div>

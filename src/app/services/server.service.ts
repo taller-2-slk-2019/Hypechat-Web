@@ -14,22 +14,26 @@ export class ServerService {
   constructor(private http: HttpClient) { }
 
   get<T>(extension, params = null) {
-    return this.http.get<T>(this.baseUrl + extension, this.getHeaders(params)).pipe(catchError(this.handleError));
+    return this.http.get<T>(this.baseUrl + extension, this.getParams(params)).pipe(catchError(this.handleError));
   }
 
   post<T>(extension, data = {}) {
-    return this.http.post<T>(this.baseUrl + extension, data, this.getHeaders()).pipe(catchError(this.handleError));
+    return this.http.post<T>(this.baseUrl + extension, data, this.getParams()).pipe(catchError(this.handleError));
   }
 
   delete(extension) {
-    return this.http.delete(this.baseUrl + extension, this.getHeaders()).pipe(catchError(this.handleError));
+    return this.http.delete(this.baseUrl + extension, this.getParams()).pipe(catchError(this.handleError));
+  }
+
+  put<T>(extension, data, params = null) {
+    return this.http.put<T>(this.baseUrl + extension, data, this.getParams(params)).pipe(catchError(this.handleError));
   }
 
   handleError(error: HttpErrorResponse) {
     return throwError(error.message || 'Error');
   }
 
-  private getHeaders(params = null) {
+  private getParams(params = null) {
     if (!params) {
       params = new HttpParams();
     }
