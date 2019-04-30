@@ -14,9 +14,8 @@ export class ChannelService {
   constructor(private serverService: ServerService) { }
 
   getChannels(organizationId: string): Observable<any> {
-    const params = new HttpParams().set('organizationId', organizationId)
-      .set('userToken', 'gAE4p7b1bRc4CZ77aExzgTFcv1O2');
-    return this.serverService.get<Channel[]>(this.url, params); // TODO Change it for the new end point
+    const params = new HttpParams().set('organizationId', organizationId);
+    return this.serverService.get<Channel[]>(this.url, params);
   }
 
   getUsers(channelId: string): Observable<any> {
@@ -40,5 +39,10 @@ export class ChannelService {
   deleteChannel(channelId: string) {
     const url = `${this.url}/${channelId}`;
     return this.serverService.delete(url);
+  }
+
+  createChannel(data): Observable<any> {
+    const params = new HttpParams().set('userToken', 'gAE4p7b1bRc4CZ77aExzgTFcv1O2'); // TODO change it for the new end point
+    return this.serverService.post(this.url, data, params);
   }
 }

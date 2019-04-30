@@ -1,7 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {BaseComponent} from '../../components/base/base.component';
-import {Channel} from '../../models/Channel';
 import {ActivatedRoute} from '@angular/router';
+import {ChannelService} from '../../services/channel.service';
 
 @Component({
   selector: 'app-channel-create',
@@ -11,19 +11,18 @@ import {ActivatedRoute} from '@angular/router';
 export class ChannelCreateComponent extends BaseComponent implements OnInit {
   title = 'Crear Canal';
   organizationId: string;
-  name = '';
-  description = '';
-  welcome = '';
-  type = 'Public';
-  aux: string;
-  aux2: number;
+  name: string;
+  description: string;
+  welcome: string;
+  type: string;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private channelService: ChannelService) {
     super();
   }
 
   ngOnInit() {
     this.organizationId = this.route.snapshot.paramMap.get('id');
+    this.reset();
   }
 
   isInvalid() {
@@ -34,11 +33,26 @@ export class ChannelCreateComponent extends BaseComponent implements OnInit {
   }
 
   createChannel() {
-    const data = {
+    const channel = {
       name: this.name,
+      description: this.description,
       isPublic: this.type === 'Public',
       welcome: this.welcome,
       organizationId: +this.organizationId
     };
+    this.channelService.createChannel(channel).subscribe(
+      data => {
+        this.setSuccess(`El canal "${data.name}" fue creado`);
+        this.reset();
+      },
+      error => this.setError('No se pudo crear el canal')
+    );
+  }
+
+  reset() {
+    this.name = '';
+    this.description = '';
+    this.welcome = '';
+    this.type = 'Public';
   }
 }
