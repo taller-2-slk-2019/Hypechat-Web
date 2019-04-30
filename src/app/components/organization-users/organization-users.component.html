@@ -31,7 +31,8 @@
 <div class="d-flex justify-content-center">
   <ul class="list-group w-50">
     <div *ngFor="let user of users">
-      <app-user [user]="user" (roleEvent)="changeRole($event)" (event)="deleteUser($event)"></app-user>
+      <app-user [user]="user" [showDropdown]="true"
+                (roleEvent)="changeRole($event)" (event)="deleteUser($event)"></app-user>
     </div>
   </ul>
 </div>
