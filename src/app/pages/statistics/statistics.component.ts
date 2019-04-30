@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import {BaseComponent} from '../../components/base/base.component';
 import {OrganizationService} from '../../services/organization.service';
 import {OrganizationStatistics} from '../../models/OrganizationStatistics';
+import {UserRoleHelper} from '../../helpers/UserRoleHelper';
+import {MessageTypeHelper} from '../../helpers/MessageTypeHelper';
 
 @Component({
   selector: 'app-statistics',
@@ -34,10 +36,10 @@ export class StatisticsComponent extends BaseComponent implements OnInit {
   }
 
   getUserRoles() {
-    return this.stats.usersCount.map(role => role.role);
+    return this.stats.usersCount.map(role => UserRoleHelper.translate(role.role));
   }
 
   getMessageTypes() {
-    return this.stats.messagesCount.map(type => type.type);
+    return this.stats.messagesCount.map(type => MessageTypeHelper.translate(type.type));
   }
 }
