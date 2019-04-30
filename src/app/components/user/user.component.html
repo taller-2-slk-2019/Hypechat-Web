@@ -4,7 +4,7 @@
     <span class="mx-2" style="width: 9em; word-break: break-word"><b>{{user.name}}</b></span>
   </div>
   <div class="d-flex float-right ml-3 my-2">
-    <div class="dropdown ml-3" *ngIf="showDropdown">
+    <div class="dropdown ml-3" *ngIf="showRoles">
       <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 10em">
         {{showRole(user)}}

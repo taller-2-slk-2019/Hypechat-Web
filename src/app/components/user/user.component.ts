@@ -14,7 +14,7 @@ const ROLES = { creator: 'Creador',
 })
 export class UserComponent implements OnInit {
   @Input() user: User;
-  @Input() showDropdown = false;
+  @Input() showRoles = false;
   @Input() isDelete = true;
   @Output() event = new EventEmitter<User>();
   @Output() roleEvent = new EventEmitter<RoleEvent>();
