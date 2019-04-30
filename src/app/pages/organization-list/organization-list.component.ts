@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Organization} from '../../models/Organization';
 import {OrganizationService} from '../../services/organization.service';
-import {BaseComponent} from '../base/base.component';
+import {BaseComponent} from '../../components/base/base.component';
 
 @Component({
   selector: 'app-organization-list',

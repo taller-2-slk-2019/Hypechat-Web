@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {UserService} from '../../services/user.service';
 import {User} from '../../models/User';
-import {BaseComponent} from '../base/base.component';
+import {BaseComponent} from '../../components/base/base.component';
 
 @Component({
   selector: 'app-statistics',

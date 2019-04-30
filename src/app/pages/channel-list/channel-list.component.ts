@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Channel } from '../../models/Channel';
 import { ChannelService } from '../../services/channel.service';
 import { ActivatedRoute } from '@angular/router';
-import { BaseComponent } from '../base/base.component';
+import { BaseComponent } from '../../components/base/base.component';
 
 @Component({
   selector: 'app-channel-list',

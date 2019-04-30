@@ -3,7 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import {UserService} from '../../services/user.service';
 import {ChannelService} from '../../services/channel.service';
 import {User} from '../../models/User';
-import {BaseComponent} from '../base/base.component';
+import {BaseComponent} from '../../components/base/base.component';
 
 @Component({
   selector: 'app-channel-users',
@@ -39,7 +39,7 @@ export class ChannelUsersComponent extends BaseComponent implements OnInit {
       .subscribe(data => {
           this.channelUsers.push(user);
           this.organizationUsers = this.organizationUsers.filter(usr => usr.id !== user.id);
-          this.setSuccess(`Se agregó al usuario ${user.name} al canal`);
+          this.setSuccess(`Se agregó al usuario "${user.name}" al canal`);
       },
       error =>  this.setError('No se pudo agregar al usuario')
     );
@@ -50,7 +50,7 @@ export class ChannelUsersComponent extends BaseComponent implements OnInit {
       .subscribe(data => {
           this.organizationUsers.push(user);
           this.channelUsers = this.channelUsers.filter(usr => usr.id !== user.id);
-          this.setSuccess(`Se eliminó al usuario ${user.name} del canal`);
+          this.setSuccess(`Se eliminó al usuario "${user.name}" del canal`);
         },
         error =>  this.setError('No se pudo eliminar al usuario')
       );
