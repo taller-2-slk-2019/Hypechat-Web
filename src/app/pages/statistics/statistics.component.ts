@@ -13,6 +13,8 @@ export class StatisticsComponent extends BaseComponent implements OnInit {
   title = 'Estadísticas';
   organizationId: string;
   stats: OrganizationStatistics;
+  userRoles: string[];
+  messageTypes: string[];
 
 
   constructor(private route: ActivatedRoute, private organizationService: OrganizationService) {
@@ -24,6 +26,8 @@ export class StatisticsComponent extends BaseComponent implements OnInit {
     this.organizationService.getStatistics(this.organizationId)
       .subscribe(data => {
           this.stats = data;
+          this.userRoles = this.getUserRoles();
+          this.messageTypes = this.getMessageTypes();
         },
         error =>  this.setError(this.connectionError)
       );
