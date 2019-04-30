@@ -17,8 +17,8 @@ export class ServerService {
     return this.http.get<T>(this.baseUrl + extension, this.getParams(params)).pipe(catchError(this.handleError));
   }
 
-  post<T>(extension, data = {}) {
-    return this.http.post<T>(this.baseUrl + extension, data, this.getParams()).pipe(catchError(this.handleError));
+  post<T>(extension, data = {}, params = null) {
+    return this.http.post<T>(this.baseUrl + extension, data, this.getParams(params)).pipe(catchError(this.handleError));
   }
 
   delete(extension) {
