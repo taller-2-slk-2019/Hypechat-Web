@@ -15,7 +15,7 @@
       <div class="d-flex justify-content-center my-4">
         <ul class="list-group w-50">
           <div *ngFor="let user of channelUsers">
-            <app-user [user]="user" (event)="deleteUser($event)"></app-user>
+            <app-user [user]="user" (click)="deleteUser($event)"></app-user>
           </div>
         </ul>
       </div>
@@ -29,7 +29,7 @@
       <div class="d-flex justify-content-center my-4">
         <ul class="list-group w-50">
           <div *ngFor="let user of organizationUsers">
-            <app-user [user]="user" [isDelete]="false" (event)="addUser($event)"></app-user>
+            <app-user [user]="user" [isDelete]="false" (click)="addUser($event)"></app-user>
           </div>
         </ul>
       </div>

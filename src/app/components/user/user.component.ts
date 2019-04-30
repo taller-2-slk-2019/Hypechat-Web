@@ -16,8 +16,8 @@ export class UserComponent implements OnInit {
   @Input() user: User;
   @Input() showRoles = false;
   @Input() isDelete = true;
-  @Output() event = new EventEmitter<User>();
-  @Output() roleEvent = new EventEmitter<RoleEvent>();
+  @Output() click = new EventEmitter<User>();
+  @Output() roleChange = new EventEmitter<RoleEvent>();
 
   constructor() { }
 
@@ -29,7 +29,7 @@ export class UserComponent implements OnInit {
   }
 
   emitEvent() {
-    this.event.emit(this.user);
+    this.click.emit(this.user);
   }
 
   emitRoleEvent(role: string) {
@@ -37,6 +37,6 @@ export class UserComponent implements OnInit {
       user: this.user,
       newRole: role
     };
-    this.roleEvent.emit(roleEvent);
+    this.roleChange.emit(roleEvent);
   }
 }

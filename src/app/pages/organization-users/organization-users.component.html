@@ -32,7 +32,7 @@
   <ul class="list-group w-50">
     <div *ngFor="let user of users">
       <app-user [user]="user" [showRoles]="true"
-                (roleEvent)="changeRole($event)" (event)="deleteUser($event)"></app-user>
+                (roleChange)="changeRole($event)" (click)="deleteUser($event)"></app-user>
     </div>
   </ul>
 </div>

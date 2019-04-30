@@ -6,4 +6,5 @@ export class Channel {
   welcome: string;
   createdAt: string;
   updatedAt: string;
+  organizationId: number;
 }
