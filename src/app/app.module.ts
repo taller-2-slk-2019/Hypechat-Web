@@ -19,6 +19,7 @@ import { UserComponent } from './components/user/user.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChannelCreateComponent } from './pages/channel-create/channel-create.component';
+import { OrganizationCreateComponent } from './pages/organization-create/organization-create.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { ChannelCreateComponent } from './pages/channel-create/channel-create.co
     UserComponent,
     ConfirmDialogComponent,
     ChannelCreateComponent,
+    OrganizationCreateComponent,
   ],
   imports: [
     BrowserModule,

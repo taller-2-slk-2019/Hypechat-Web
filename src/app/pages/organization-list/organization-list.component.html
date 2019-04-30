@@ -2,6 +2,12 @@
 
 <h1 class="text-center mt-5">{{ title }}</h1>
 
+<div class="d-flex justify-content-center mt-5">
+  <button class="btn btn-primary" routerLink="/organization/create">
+    <i class="fas fa-plus"></i>
+  </button>
+</div>
+
 <div class="d-flex justify-content-center my-3">
   <app-alert-success [successMessage]="successMessage" (close)="successMessage = ''"></app-alert-success>
   <app-alert-error [errorMessage]="errorMessage" (close)="errorMessage = ''"></app-alert-error>

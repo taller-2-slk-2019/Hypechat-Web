@@ -5,12 +5,14 @@ import { ForbiddenWordComponent } from './pages/forbidden-word/forbidden-word.co
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { StatisticsComponent } from './pages/statistics/statistics.component';
 import { OrganizationUsersComponent } from './pages/organization-users/organization-users.component';
-import {ChannelListComponent} from './pages/channel-list/channel-list.component';
-import {ChannelUsersComponent} from './pages/channel-users/channel-users.component';
-import {ChannelCreateComponent} from './pages/channel-create/channel-create.component';
+import { ChannelListComponent } from './pages/channel-list/channel-list.component';
+import { ChannelUsersComponent } from './pages/channel-users/channel-users.component';
+import { ChannelCreateComponent } from './pages/channel-create/channel-create.component';
+import { OrganizationCreateComponent } from './pages/organization-create/organization-create.component';
 
 const routes: Routes = [
   { path: '', component: OrganizationListComponent },
+  { path: 'organization/create', component: OrganizationCreateComponent },
   { path: 'organization/:id/channels/create', component: ChannelCreateComponent },
   { path: 'organization/:id/channels/:channelId', component: ChannelUsersComponent },
   { path: 'organization/:id/channels', component: ChannelListComponent },

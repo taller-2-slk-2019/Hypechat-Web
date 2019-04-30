@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {BaseComponent} from '../../components/base/base.component';
-import {ActivatedRoute} from '@angular/router';
-import {ChannelService} from '../../services/channel.service';
+import { Component, OnInit } from '@angular/core';
+import { BaseComponent } from '../../components/base/base.component';
+import { ActivatedRoute } from '@angular/router';
+import { ChannelService } from '../../services/channel.service';
 
 @Component({
   selector: 'app-channel-create',

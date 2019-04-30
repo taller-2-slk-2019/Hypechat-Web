@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ServerService } from './server.service';
 import { Observable } from 'rxjs';
 import { Organization } from '../models/Organization';
+import {HttpParams} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -41,5 +42,10 @@ export class OrganizationService {
     };
     const url = `${this.url}/${organizationId}/users/${userId}`;
     return this.serverService.put(url, data);
+  }
+
+  createOrganization(data): Observable<any> {
+    const params = new HttpParams().set('userToken', 'gAE4p7b1bRc4CZ77aExzgTFcv1O2'); // TODO change it for the new end point
+    return this.serverService.post(this.url, data, params);
   }
 }
