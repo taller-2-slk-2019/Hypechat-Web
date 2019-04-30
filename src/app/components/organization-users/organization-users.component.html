@@ -30,8 +30,8 @@
 
 <div class="d-flex justify-content-center">
   <ul class="list-group w-50">
-    <li *ngFor="let user of users" class="list-group-item">
+    <div *ngFor="let user of users">
       <app-user [user]="user" (roleEvent)="changeRole($event)" (event)="deleteUser($event)"></app-user>
-    </li>
+    </div>
   </ul>
 </div>

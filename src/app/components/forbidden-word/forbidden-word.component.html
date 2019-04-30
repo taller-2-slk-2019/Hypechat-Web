@@ -31,7 +31,7 @@
 <div class="d-flex justify-content-center">
   <ul class="list-group w-50">
     <li *ngFor="let word of words" class="list-group-item d-flex justify-content-between">
-      <span>{{word.word}}</span>
+      <span style="width: 80%;word-break: break-word">{{word.word}}</span>
       <button class="btn btn-danger" (click)="deleteWord(word)"><i class="fas fa-trash"></i></button>
     </li>
   </ul>

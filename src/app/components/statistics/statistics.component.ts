@@ -10,7 +10,7 @@ import {BaseComponent} from '../base/base.component';
   styleUrls: ['./statistics.component.css']
 })
 export class StatisticsComponent extends BaseComponent implements OnInit {
-  title = 'Usuarios';
+  title = 'Estadísticas';
   organizationId: string;
   users: Array<User> = [];
   errorMessage = '';
