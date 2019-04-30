@@ -13,7 +13,7 @@ import { RoleEvent } from '../../models/RoleEvent';
 })
 
 export class OrganizationUsersComponent extends BaseComponent implements OnInit {
-  title = 'Estadísticas';
+  title = 'Usuarios';
   organizationId: string;
   users: Array<User> = [];
   email = '';
