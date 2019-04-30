@@ -1,0 +1,46 @@
+<app-menu-bar [organizationId]="organizationId"></app-menu-bar>
+
+<h1 class="text-center mt-5">{{ title }}</h1>
+
+<div class="d-flex justify-content-center my-3">
+  <app-alert-success [successMessage]="successMessage" (close)="successMessage = ''"></app-alert-success>
+  <app-alert-error [errorMessage]="errorMessage" (close)="errorMessage = ''"></app-alert-error>
+</div>
+
+<div class="d-flex justify-content-center">
+  <div class="w-75">
+    <div class="form-group">
+
+      <label class="mt-3"><b>Tipo de canal</b></label>
+      <div class="form-control d-flex">
+        <label class="radio-inline mr-3">
+          <input type="radio" value="Public" name="channel-type" [(ngModel)]="type">
+          Público
+        </label>
+        <label class="radio-inline">
+          <input type="radio" value="Private" name="channel-type" [(ngModel)]="type">
+          Privado
+        </label>
+      </div>
+
+      <label class="mt-3"><b>Nombre del canal</b></label>
+      <input type="text" class="form-control"
+             placeholder="Nombre del canal" maxlength="50"
+             [(ngModel)]="name"/>
+
+      <label class="mt-3"><b>Descripción del canal</b></label>
+      <input type="text" class="form-control"
+             placeholder="Descripción del canal" maxlength="50"
+             [(ngModel)]="description"/>
+
+      <label class="mt-3"><b>Mensaje de bienvenida del canal</b></label>
+      <input type="text" class="form-control"
+             placeholder="Mensaje de bienvenida" maxlength="50"
+             [(ngModel)]="welcome"/>
+    </div>
+  </div>
+</div>
+
+<div class="d-flex justify-content-center mt-3">
+  <button class="btn btn-primary" [disabled]="isInvalid()">Crear</button>
+</div>
