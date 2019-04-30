@@ -30,17 +30,6 @@ export class ChannelListComponent extends BaseComponent implements OnInit {
   }
 
   deleteChannel(channel: Channel) {
-    // TODO add pop up asking if you are sure
-    /*
-    this.channelService.deleteChannel(channel.id.toString())
-      .subscribe(data => {
-        this.setSuccess(`El canal "${channel.name}" fue eliminado`);
-        this.channels = this.channels.filter(chl => chl.id !== channel.id);
-      },
-        error => this.setError('No se pudo eliminar el canal'));
-
-    */
-
     this.dialogService.openConfirmDialog('¿Seguro que desea borrar el canal?')
       .afterClosed().subscribe(response => {
         if (response) {
