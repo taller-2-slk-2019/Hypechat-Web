@@ -12,10 +12,12 @@ import { AlertSuccessComponent } from './components/alert-success/alert-success.
 import { AlertErrorComponent } from './components/alert-error/alert-error.component';
 import { OrganizationComponent } from './components/organization/organization.component';
 import { MenuBarComponent } from './components/menu-bar/menu-bar.component';
-import { MatButtonModule, MatToolbarModule } from '@angular/material';
+import { MatButtonModule, MatToolbarModule, MatDialogModule } from '@angular/material';
 import { ChannelComponent } from './components/channel/channel.component';
 import { TabsModule } from 'ngx-bootstrap';
 import { UserComponent } from './components/user/user.component';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,7 @@ import { UserComponent } from './components/user/user.component';
     MenuBarComponent,
     ChannelComponent,
     UserComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,9 +40,12 @@ import { UserComponent } from './components/user/user.component';
     ReactiveFormsModule,
     MatToolbarModule,
     MatButtonModule,
+    MatDialogModule,
+    BrowserAnimationsModule,
     TabsModule
   ],
   providers: [ForbiddenWordService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ConfirmDialogComponent]
 })
 export class AppModule { }
