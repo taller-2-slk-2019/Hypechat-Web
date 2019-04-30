@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BaseComponent } from '../../components/base/base.component';
 import {OrganizationService} from '../../services/organization.service';
+import {Organization} from '../../models/Organization';
 
 @Component({
   selector: 'app-organization-create',
@@ -35,22 +36,21 @@ export class OrganizationCreateComponent extends BaseComponent implements OnInit
   }
 
   isInvalid() {
-    let valid = this.name === '';
-    valid = valid || this.picture === '';
-    valid = valid || this.description === '';
-    valid = valid || this.welcome === '';
-    return valid;
+    let invalid = this.name === '';
+    invalid = invalid || this.picture === '';
+    invalid = invalid || this.description === '';
+    invalid = invalid || this.welcome === '';
+    return invalid;
   }
 
   createOrganization() {
-    const organization = {
-      name: this.name,
-      picture: this.picture,
-      latitude: this.latitude,
-      longitude: this.longitude,
-      description: this.description,
-      welcome: this.welcome,
-    };
+    const organization = new Organization();
+    organization.name = this.name;
+    organization.picture = this.picture;
+    organization.latitude = this.latitude;
+    organization.longitude = this.longitude;
+    organization.description = this.description;
+    organization.welcome = this.welcome;
     this.organizationService.createOrganization(organization).subscribe(
       data => {
         this.setSuccess(`La organización "${data.name}" fue creada`);
