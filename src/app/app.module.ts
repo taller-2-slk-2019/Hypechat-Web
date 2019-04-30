@@ -18,6 +18,8 @@ import { TabsModule } from 'ngx-bootstrap';
 import { UserComponent } from './components/user/user.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ChartsModule } from 'ng2-charts';
+import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ChannelComponent,
     UserComponent,
     ConfirmDialogComponent,
+    PieChartComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,6 +45,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatButtonModule,
     MatDialogModule,
     BrowserAnimationsModule,
+    ChartsModule,
     TabsModule
   ],
   providers: [ForbiddenWordService],
