@@ -1,11 +1,8 @@
 import { Component, Input, EventEmitter, OnInit, Output } from '@angular/core';
 import { User } from '../../models/User';
 import {RoleEvent} from '../../models/RoleEvent';
+import {UserRoleHelper} from '../../helpers/UserRoleHelper';
 
-const ROLES = { creator: 'Creador',
-  moderator: 'Moderador',
-  member: 'Miembro'
-};
 
 @Component({
   selector: 'app-user',
@@ -14,20 +11,29 @@ const ROLES = { creator: 'Creador',
 })
 export class UserComponent implements OnInit {
   @Input() user: User;
-  @Output() event = new EventEmitter<User>();
-  @Output() roleEvent = new EventEmitter<RoleEvent>();
+  @Input() showRoles = false;
+  @Input() isDelete = true;
+  @Output() click = new EventEmitter<User>();
+  @Output() roleChange = new EventEmitter<RoleEvent>();
+
+  allRoles: any;
 
   constructor() { }
 
   ngOnInit() {
+    this.allRoles = UserRoleHelper.getRoles();
   }
 
   showRole(user: User) {
-    return ROLES[user.userOrganizations.role];
+    return this.getRole(user.userOrganizations.role);
+  }
+
+  getRole(role: string) {
+    return UserRoleHelper.translate(role);
   }
 
   emitEvent() {
-    this.event.emit(this.user);
+    this.click.emit(this.user);
   }
 
   emitRoleEvent(role: string) {
@@ -35,6 +41,6 @@ export class UserComponent implements OnInit {
       user: this.user,
       newRole: role
     };
-    this.roleEvent.emit(roleEvent);
+    this.roleChange.emit(roleEvent);
   }
 }

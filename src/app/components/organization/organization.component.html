@@ -2,13 +2,19 @@
   <div class="card-header font-weight-bold d-flex justify-content-between"
        style="background-color: blueviolet; color: white; border-color: black">
     <h2>{{organization.name}}</h2>
-    <button class="btn btn-info right border-0"
-            style="background-color: blueviolet" routerLink="organization/{{organization.id}}/forbiddenWords">
-      <i class="fas fa-edit"></i>
-    </button>
+    <div>
+      <button class="btn btn-info right border-0"
+              style="background-color: blueviolet" routerLink="organization/{{organization.id}}/forbiddenWords">
+        <i class="fas fa-edit"></i>
+      </button>
+      <button class="btn btn-danger right border-0"
+              style="background-color: blueviolet" (click)="deleteOrganization()">
+        <i class="fas fa-trash"></i>
+      </button>
+    </div>
   </div>
   <div class="card-img d-flex justify-content-around my-3">
-    <img src="{{organization.picture}}" width="100" height="100" class="rounded-circle">
+    <img src="{{organization.picture}}" onerror="this.src='../../../assets/default_organization.png'" width="100" height="100" class="rounded-circle">
   </div>
   <li class="card-text mx-3 mb-3">
     <b><u>Descripción:</u></b> {{organization.description}}

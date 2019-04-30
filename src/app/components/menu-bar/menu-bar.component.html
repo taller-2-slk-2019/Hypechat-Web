@@ -1,8 +1,11 @@
 <mat-toolbar style="background-color: blueviolet; color: white">
   <img src="../../../assets/favicon.png" class="mr-2">
   <h1 class="mr-4"><b>Hypechat</b></h1>
+  <button mat-button routerLink="" *ngIf="showOrganizations"><b>Organizaciones</b></button>
   <ng-container *ngIf="organizationId">
-    <button mat-button routerLink=""><b>Organizaciones</b></button>
+    <button mat-button routerLink="/organization/{{organizationId}}/channels">
+      <b>Canales</b>
+    </button>
     <button mat-button routerLink="/organization/{{organizationId}}/users">
       <b>Usuarios</b>
     </button>

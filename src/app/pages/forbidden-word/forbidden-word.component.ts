@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ForbiddenWordService } from '../../services/forbidden-word.service';
 import { ForbiddenWord } from '../../models/ForbiddenWord';
 import { ActivatedRoute } from '@angular/router';
-import { BaseComponent } from '../base/base.component';
+import { BaseComponent } from '../../components/base/base.component';
 
 const SPACE = ' ';
 const EMPTY_WORD = '';

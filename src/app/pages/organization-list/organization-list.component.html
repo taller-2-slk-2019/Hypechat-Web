@@ -1,6 +1,8 @@
-<app-menu-bar></app-menu-bar>
+<app-menu-bar [showOrganizations]="false"></app-menu-bar>
 
 <h1 class="text-center mt-5">{{ title }}</h1>
+
+<!--TODO add create button -->
 
 <div class="d-flex justify-content-center my-3">
   <app-alert-success [successMessage]="successMessage" (close)="successMessage = ''"></app-alert-success>
@@ -8,13 +10,13 @@
 </div>
 
 <div *ngIf="organizations.length == 0" class="d-flex justify-content-center my-5">
-  <p> Usted no pertenece a ninguna organización </p>
+  <p> No hay organizaciones </p>
 </div>
 
 <div class="d-flex justify-content-center my-3">
   <div class="form-group w-50">
     <div *ngFor="let organization of organizations">
-      <app-organization [organization]="organization"></app-organization>
+      <app-organization [organization]="organization" (delete)="deleteOrganization($event)"></app-organization>
     </div>
   </div>
 </div>

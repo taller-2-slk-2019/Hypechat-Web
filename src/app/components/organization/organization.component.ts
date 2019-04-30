@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { Organization } from '../../models/Organization';
 import * as moment from 'moment';
 
@@ -9,14 +9,18 @@ import * as moment from 'moment';
   styleUrls: ['./organization.component.css']
 })
 export class OrganizationComponent implements OnInit {
-
   @Input() organization: Organization;
+  @Output() delete = new EventEmitter<Organization>();
 
   constructor() { }
 
   ngOnInit() { }
 
-  organizationCreationDate() {    
-    return moment(this.organization.createdAt);    
+  organizationCreationDate() {
+    return moment(this.organization.createdAt);
+  }
+
+  deleteOrganization() {
+    this.delete.emit(this.organization);
   }
 }
