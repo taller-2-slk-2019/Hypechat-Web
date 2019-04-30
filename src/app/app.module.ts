@@ -20,6 +20,8 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChannelCreateComponent } from './pages/channel-create/channel-create.component';
 import { OrganizationCreateComponent } from './pages/organization-create/organization-create.component';
+import { ChartsModule } from 'ng2-charts';
+import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import { OrganizationCreateComponent } from './pages/organization-create/organiz
     ChannelComponent,
     UserComponent,
     ConfirmDialogComponent,
+    PieChartComponent,
     ChannelCreateComponent,
     OrganizationCreateComponent,
   ],
@@ -46,6 +49,7 @@ import { OrganizationCreateComponent } from './pages/organization-create/organiz
     MatButtonModule,
     MatDialogModule,
     BrowserAnimationsModule,
+    ChartsModule,
     TabsModule,
     MatRadioModule
   ],

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ServerService } from './server.service';
 import { Observable } from 'rxjs';
 import { Organization } from '../models/Organization';
+import {OrganizationStatistics} from '../models/OrganizationStatistics';
 import {HttpParams} from '@angular/common/http';
 
 @Injectable({
@@ -17,10 +18,14 @@ export class OrganizationService {
     return this.serverService.get<Organization[]>(this.url);
   }
 
+  getStatistics(organizationId: string): Observable<any> {
+    const url = `${this.url}/${organizationId}/statistics`;
+    return this.serverService.get<OrganizationStatistics>(url);
+  }
+
   addUser(organizationId: string, userEmail: string): Observable<any> {
-    const emails = [userEmail];
     const data = {
-      userEmails: emails
+      userEmails: [userEmail]
     };
     const url = `${this.url}/${organizationId}/invitations`;
     return this.serverService.post(url, data);

@@ -5,18 +5,15 @@
   <app-alert-error [errorMessage]="errorMessage" (close)="errorMessage = ''"></app-alert-error>
 </div>
 
-<div class="mx-4">
-  <li>
-    <b><u>Cantidad total de usuarios:</u></b> {{users.length}}
-  </li>
-  <li>
-    <b><u>Cantidad de usuarios creadores:</u></b> {{creatorUser.length}}
-  </li>
-  <li>
-    <b><u>Cantidad de usuarios administradores:</u></b> {{administratorUser.length}}
-  </li>
-  <li>
-    <b><u>Cantidad de usuarios miembro:</u></b> {{memberUser.length}}
-  </li>
+<div *ngIf="!stats" class="d-flex justify-content-center my-5">
+  <p> Cargando estadísticas </p>
 </div>
+
+<ng-container *ngIf="stats">
+  <h3 class="text-center">Usuarios de la organización</h3>
+  <app-pie-chart [data]="stats.usersCount" [labels]="userRoles"></app-pie-chart>
+
+  <h3 class="text-center mt-5">Mensajes enviados</h3>
+  <app-pie-chart [data]="stats.messagesCount" [labels]="messageTypes"></app-pie-chart>
+</ng-container>
 

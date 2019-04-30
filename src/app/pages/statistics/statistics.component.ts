@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import {UserService} from '../../services/user.service';
-import {User} from '../../models/User';
 import {BaseComponent} from '../../components/base/base.component';
+import {OrganizationService} from '../../services/organization.service';
+import {OrganizationStatistics} from '../../models/OrganizationStatistics';
+import {UserRoleHelper} from '../../helpers/UserRoleHelper';
+import {MessageTypeHelper} from '../../helpers/MessageTypeHelper';
 
 @Component({
   selector: 'app-statistics',
@@ -12,28 +14,32 @@ import {BaseComponent} from '../../components/base/base.component';
 export class StatisticsComponent extends BaseComponent implements OnInit {
   title = 'Estadísticas';
   organizationId: string;
-  users: Array<User> = [];
-  errorMessage = '';
-  creatorUser: Array<User> = [];
-  administratorUser: Array<User> = [];
-  memberUser: Array<User> = [];
+  stats: OrganizationStatistics;
+  userRoles: string[];
+  messageTypes: string[];
 
-  constructor(private route: ActivatedRoute, private userService: UserService) {
+
+  constructor(private route: ActivatedRoute, private organizationService: OrganizationService) {
     super();
   }
 
   ngOnInit() {
     this.organizationId = this.route.snapshot.paramMap.get('id');
-    this.userService.getOrganizationUsers(this.organizationId).
-    subscribe(data => {
-      this.users = data;
-      // TODO Do it in general with hash
-      // TODO show result with a graph
-      this.creatorUser = this.users.filter(user => user.userOrganizations.role === 'creator');
-      this.administratorUser = this.users.filter(user => user.userOrganizations.role === 'administrator');
-      this.memberUser = this.users.filter(user => user.userOrganizations.role === 'member');
-      },
-      error =>  this.setError(this.connectionError)
-    );
+    this.organizationService.getStatistics(this.organizationId)
+      .subscribe(data => {
+          this.stats = data;
+          this.userRoles = this.getUserRoles();
+          this.messageTypes = this.getMessageTypes();
+        },
+        error =>  this.setError(this.connectionError)
+      );
+  }
+
+  getUserRoles() {
+    return this.stats.usersCount.map(role => UserRoleHelper.translate(role.role));
+  }
+
+  getMessageTypes() {
+    return this.stats.messagesCount.map(type => MessageTypeHelper.translate(type.type));
   }
 }
