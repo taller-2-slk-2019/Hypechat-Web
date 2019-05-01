@@ -32,7 +32,7 @@ export class ChannelService {
   }
 
   deleteUser(channelId: string, user: User) {
-    const url = `${this.url}/${channelId}/users/${user.id.toString()}/`;
+    const url = `${this.url}/${channelId}/users/${user.id}/`;
     return this.serverService.delete(url);
   }
 

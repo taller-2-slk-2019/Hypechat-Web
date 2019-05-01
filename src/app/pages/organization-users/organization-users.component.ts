@@ -56,7 +56,7 @@ export class OrganizationUsersComponent extends BaseComponent implements OnInit 
   }
 
   deleteUser(deletedUser: User) {
-    this.organizationService.deleteUser(this.organizationId, deletedUser.id)
+    this.organizationService.deleteUser(this.organizationId, deletedUser)
       .subscribe(data => {
       this.users = this.users.filter(user => user.id !== deletedUser.id);
       this.setSuccess(`Se eliminó al usuario "${deletedUser.name}" de la organización`);
