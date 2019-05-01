@@ -8,7 +8,7 @@ export class BaseComponent {
 
   constructor(localStorageService: MyLocalStorageService, router: Router) {
     if (!localStorageService.isLoggedIn()) {
-      router.navigate(['login']);
+      router.navigate(['']);
     }
   }
 

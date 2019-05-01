@@ -15,7 +15,11 @@ export class LoginComponent implements OnInit {
   invalid = false;
 
   constructor(private localStorageService: MyLocalStorageService, private loginService: LoginService,
-              private router: Router) { }
+              private router: Router) {
+    if (this.localStorageService.isLoggedIn()) {
+      this.router.navigate(['organization']);
+    }
+  }
 
   ngOnInit() {
   }
@@ -29,7 +33,7 @@ export class LoginComponent implements OnInit {
     this.loginService.login(this.username, this.password)
       .subscribe(data => {
         this.localStorageService.setAdmin(data);
-        this.router.navigate(['']);
+        this.router.navigate(['organization']);
       }, error => this.invalid = true);
   }
 }

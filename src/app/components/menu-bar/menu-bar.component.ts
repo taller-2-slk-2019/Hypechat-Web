@@ -21,6 +21,6 @@ export class MenuBarComponent implements OnInit {
 
   signOut() {
     this.localStorageService.clear();
-    this.router.navigate(['login']);
+    this.router.navigate(['']);
   }
 }

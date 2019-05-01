@@ -38,7 +38,7 @@ export class ServerService {
       params = new HttpParams();
     }
 
-    const admin = this.localStorageService.getUser();
+    const admin = this.localStorageService.getAdmin();
 
     if (admin) {
       params = params.set('adminToken', admin.token);

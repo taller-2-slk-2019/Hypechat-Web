@@ -13,7 +13,7 @@ export class MyLocalStorageService {
     this.localStorageService.set('admin', admin);
   }
 
-  getUser(): Admin {
+  getAdmin(): Admin {
     return this.localStorageService.get('admin');
   }
 
@@ -22,6 +22,6 @@ export class MyLocalStorageService {
   }
 
   clear() {
-    this.localStorageService.clearAll();
+    this.localStorageService.remove('admin');
   }
 }
