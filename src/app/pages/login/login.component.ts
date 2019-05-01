@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
   title = 'Login';
   username = '';
   password = '';
+  invalid = false;
 
   constructor(private localStorageService: LocalStorageService, private loginService: LoginService,
               private router: Router) { }
@@ -29,6 +30,6 @@ export class LoginComponent implements OnInit {
       .subscribe(data => {
         this.localStorageService.set('user', data);
         this.router.navigate(['']);
-      });
+      }, error => this.invalid = true);
   }
 }
