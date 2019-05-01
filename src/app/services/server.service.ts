@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { ForbiddenWord } from '../models/ForbiddenWord';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import {LocalStorageService} from 'angular-2-local-storage';
+import {Admin} from '../models/Admin';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ import { throwError } from 'rxjs';
 export class ServerService {
   private baseUrl = environment.baseUrl;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private localStorageService: LocalStorageService ) { }
 
   get<T>(extension, params = null) {
     return this.http.get<T>(this.baseUrl + extension, this.getParams(params)).pipe(catchError(this.handleError));
@@ -38,7 +39,11 @@ export class ServerService {
       params = new HttpParams();
     }
 
-    params = params.set('adminToken', 'uS3Y91RLpnpmTa7L83m6'); // TODO harcoded token, implement login
+    const admin = this.localStorageService.get<Admin>('user');
+
+    if (admin) {
+      params = params.set('adminToken', admin.token);
+    }
 
     return { params: params };
   }
