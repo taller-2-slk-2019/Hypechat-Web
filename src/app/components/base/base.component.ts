@@ -1,9 +1,16 @@
+import {Router} from '@angular/router';
+import {MyLocalStorageService} from '../../services/my-local-storage.service';
+
 export class BaseComponent {
   successMessage = '';
   errorMessage = '';
   connectionError = 'Error de conexión';
 
-  constructor() { }
+  constructor(localStorageService: MyLocalStorageService, router: Router) {
+    if (!localStorageService.isLoggedIn()) {
+      router.navigate(['']);
+    }
+  }
 
   setError(message: string) {
     this.errorMessage = message;

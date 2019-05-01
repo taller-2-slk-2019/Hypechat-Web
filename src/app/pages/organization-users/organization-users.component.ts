@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/User';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { OrganizationService } from '../../services/organization.service';
 import { BaseComponent } from '../../components/base/base.component';
 import { RoleEvent } from '../../models/RoleEvent';
+import {MyLocalStorageService} from '../../services/my-local-storage.service';
 
 @Component({
   selector: 'app-organization-users',
@@ -19,8 +20,9 @@ export class OrganizationUsersComponent extends BaseComponent implements OnInit 
   email = '';
 
   constructor(private route: ActivatedRoute, private userService: UserService,
-              private organizationService: OrganizationService) {
-    super();
+              private organizationService: OrganizationService,
+              private localStorageService: MyLocalStorageService, private router: Router) {
+    super(localStorageService, router);
   }
 
   ngOnInit() {
@@ -54,7 +56,7 @@ export class OrganizationUsersComponent extends BaseComponent implements OnInit 
   }
 
   deleteUser(deletedUser: User) {
-    this.organizationService.deleteUser(this.organizationId, deletedUser.id)
+    this.organizationService.deleteUser(this.organizationId, deletedUser)
       .subscribe(data => {
       this.users = this.users.filter(user => user.id !== deletedUser.id);
       this.setSuccess(`Se eliminó al usuario "${deletedUser.name}" de la organización`);

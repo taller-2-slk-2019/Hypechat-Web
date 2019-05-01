@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Organization } from '../models/Organization';
 import {OrganizationStatistics} from '../models/OrganizationStatistics';
 import {HttpParams} from '@angular/common/http';
+import {User} from '../models/User';
 
 @Injectable({
   providedIn: 'root'
@@ -31,8 +32,8 @@ export class OrganizationService {
     return this.serverService.post(url, data);
   }
 
-  deleteUser(organizationId: string, userId: number) {
-    const url = `${this.url}/${organizationId}/users/${userId.toString()}`;
+  deleteUser(organizationId: string, user: User) {
+    const url = `${this.url}/${organizationId}/users/${user.id}`;
     return this.serverService.delete(url);
   }
 

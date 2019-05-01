@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { BaseComponent } from '../../components/base/base.component';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { ChannelService } from '../../services/channel.service';
 import {Channel} from '../../models/Channel';
+import {MyLocalStorageService} from '../../services/my-local-storage.service';
 
 @Component({
   selector: 'app-channel-create',
@@ -17,8 +18,9 @@ export class ChannelCreateComponent extends BaseComponent implements OnInit {
   welcome: string;
   type: string;
 
-  constructor(private route: ActivatedRoute, private channelService: ChannelService) {
-    super();
+  constructor(private route: ActivatedRoute, private channelService: ChannelService,
+              private router: Router, private localStorageService: MyLocalStorageService) {
+    super(localStorageService, router);
   }
 
   ngOnInit() {

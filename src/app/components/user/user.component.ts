@@ -13,7 +13,7 @@ export class UserComponent implements OnInit {
   @Input() user: User;
   @Input() showRoles = false;
   @Input() isDelete = true;
-  @Output() click = new EventEmitter<User>();
+  @Output() onClick = new EventEmitter<User>();
   @Output() roleChange = new EventEmitter<RoleEvent>();
 
   allRoles: any;
@@ -33,7 +33,7 @@ export class UserComponent implements OnInit {
   }
 
   emitEvent() {
-    this.click.emit(this.user);
+    this.onClick.emit(this.user);
   }
 
   emitRoleEvent(role: string) {
