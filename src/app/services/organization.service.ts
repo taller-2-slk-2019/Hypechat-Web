@@ -32,7 +32,7 @@ export class OrganizationService {
   }
 
   deleteUser(organizationId: string, userId: number) {
-    const url = `${this.url}/${organizationId}/users/${userId}`;
+    const url = `${this.url}/${organizationId}/users/${userId.toString()}`;
     return this.serverService.delete(url);
   }
 

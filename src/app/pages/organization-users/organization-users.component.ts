@@ -45,6 +45,7 @@ export class OrganizationUsersComponent extends BaseComponent implements OnInit 
       .subscribe(data => {
         if (data.length === 0) {
           this.setSuccess('El usuario fue invitado a la organización');
+          this.email = '';
         } else {
           this.setError('No se pudo invitar al usuario');
         }
@@ -53,12 +54,12 @@ export class OrganizationUsersComponent extends BaseComponent implements OnInit 
   }
 
   deleteUser(deletedUser: User) {
-      this.organizationService.deleteUser(this.organizationId, deletedUser.id)
-        .subscribe(data => {
-        this.users = this.users.filter(user => user.id !== deletedUser.id);
-        this.setSuccess(`Se eliminó al usuario "${deletedUser.name}" de la organización`);
-      },
-      error =>  this.setError('No se pudo eliminar al usuario'));
+    this.organizationService.deleteUser(this.organizationId, deletedUser.id)
+      .subscribe(data => {
+      this.users = this.users.filter(user => user.id !== deletedUser.id);
+      this.setSuccess(`Se eliminó al usuario "${deletedUser.name}" de la organización`);
+    },
+    error =>  this.setError('No se pudo eliminar al usuario'));
   }
 
   changeRole(roleEvent: RoleEvent) {
