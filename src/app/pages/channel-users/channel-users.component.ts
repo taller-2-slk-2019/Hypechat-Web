@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../../services/user.service';
 import {ChannelService} from '../../services/channel.service';
 import {User} from '../../models/User';
 import {BaseComponent} from '../../components/base/base.component';
+import {LocalStorageService} from 'angular-2-local-storage';
 
 @Component({
   selector: 'app-channel-users',
@@ -18,8 +19,9 @@ export class ChannelUsersComponent extends BaseComponent implements OnInit {
   channelId: string;
 
   constructor(private route: ActivatedRoute, private userService: UserService,
-              private channelService: ChannelService) {
-    super();
+              private channelService: ChannelService, private localStorageService: LocalStorageService,
+              private router: Router) {
+    super(localStorageService, router);
   }
 
   ngOnInit() {

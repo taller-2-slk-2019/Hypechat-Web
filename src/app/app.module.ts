@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
+import { LocalStorageModule } from 'angular-2-local-storage';
 
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +23,7 @@ import { ChannelCreateComponent } from './pages/channel-create/channel-create.co
 import { OrganizationCreateComponent } from './pages/organization-create/organization-create.component';
 import { ChartsModule } from 'ng2-charts';
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
+import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,7 @@ import { PieChartComponent } from './components/pie-chart/pie-chart.component';
     PieChartComponent,
     ChannelCreateComponent,
     OrganizationCreateComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +54,11 @@ import { PieChartComponent } from './components/pie-chart/pie-chart.component';
     BrowserAnimationsModule,
     ChartsModule,
     TabsModule,
-    MatRadioModule
+    MatRadioModule,
+    LocalStorageModule.forRoot({
+      prefix: 'my-app',
+      storageType: 'localStorage'
+    })
   ],
   providers: [ForbiddenWordService],
   bootstrap: [AppComponent],

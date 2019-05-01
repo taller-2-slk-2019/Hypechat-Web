@@ -3,6 +3,8 @@ import {Organization} from '../../models/Organization';
 import {OrganizationService} from '../../services/organization.service';
 import {BaseComponent} from '../../components/base/base.component';
 import {DialogService} from '../../services/dialog.service';
+import {Router} from '@angular/router';
+import {LocalStorageService} from 'angular-2-local-storage';
 
 @Component({
   selector: 'app-organization-list',
@@ -15,14 +17,15 @@ export class OrganizationListComponent extends BaseComponent implements OnInit {
   organizations: Array<Organization> = [];
 
   constructor(private organizationService: OrganizationService,
-              private dialogService: DialogService) {
-    super();
+              private dialogService: DialogService, private router: Router,
+              private localStorageService: LocalStorageService) {
+    super(localStorageService, router);
   }
 
   ngOnInit() {
     this.organizationService.getOrganizations()
       .subscribe(data => this.organizations = data,
-        error =>  this.setError(this.connectionError)
+        error => this.setError(this.connectionError)
       );
   }
 

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {BaseComponent} from '../../components/base/base.component';
 import {OrganizationService} from '../../services/organization.service';
 import {OrganizationStatistics} from '../../models/OrganizationStatistics';
 import {UserRoleHelper} from '../../helpers/UserRoleHelper';
 import {MessageTypeHelper} from '../../helpers/MessageTypeHelper';
+import {LocalStorageService} from 'angular-2-local-storage';
 
 @Component({
   selector: 'app-statistics',
@@ -19,8 +20,9 @@ export class StatisticsComponent extends BaseComponent implements OnInit {
   messageTypes: string[];
 
 
-  constructor(private route: ActivatedRoute, private organizationService: OrganizationService) {
-    super();
+  constructor(private route: ActivatedRoute, private organizationService: OrganizationService,
+              private localStorageService: LocalStorageService, private router: Router) {
+    super(localStorageService, router);
   }
 
   ngOnInit() {

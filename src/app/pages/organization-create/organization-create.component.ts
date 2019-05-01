@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { BaseComponent } from '../../components/base/base.component';
 import {OrganizationService} from '../../services/organization.service';
 import {Organization} from '../../models/Organization';
+import {LocalStorageService} from 'angular-2-local-storage';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-organization-create',
@@ -13,12 +15,13 @@ export class OrganizationCreateComponent extends BaseComponent implements OnInit
   name: string;
   picture: string;
   latitude: number;
-  longitude: number
+  longitude: number;
   description: string;
   welcome: string;
 
-  constructor(private organizationService: OrganizationService) {
-    super();
+  constructor(private organizationService: OrganizationService,
+              private localStorageService: LocalStorageService, private router: Router) {
+    super(localStorageService, router);
   }
 
   ngOnInit() {

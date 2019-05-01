@@ -1,19 +1,26 @@
-<mat-toolbar style="background-color: blueviolet; color: white">
-  <img src="../../../assets/favicon.png" class="mr-2">
-  <h1 class="mr-4"><b>Hypechat</b></h1>
-  <button mat-button routerLink="" *ngIf="showOrganizations"><b>Organizaciones</b></button>
-  <ng-container *ngIf="organizationId">
-    <button mat-button routerLink="/organization/{{organizationId}}/channels">
-      <b>Canales</b>
+<mat-toolbar style="background-color: blueviolet; color: white" class="d-flex justify-content-between">
+  <div class="d-flex float-left">
+    <img src="../../../assets/favicon.png" class="mr-2">
+    <h1 class="mr-4"><b>Hypechat</b></h1>
+    <button mat-button routerLink="" *ngIf="showOrganizations"><b>Organizaciones</b></button>
+    <ng-container *ngIf="organizationId" class="ml-1">
+      <button mat-button routerLink="/organization/{{organizationId}}/channels">
+        <b>Canales</b>
+      </button>
+      <button mat-button routerLink="/organization/{{organizationId}}/users">
+        <b>Usuarios</b>
+      </button>
+      <button mat-button routerLink="/organization/{{organizationId}}/statistics">
+        <b>Estadísticas</b>
+      </button>
+      <button mat-button routerLink="/organization/{{organizationId}}/forbiddenWords">
+        <b>Palabras Prohibidas</b>
+      </button>
+    </ng-container>
+  </div>
+  <div class="d-flex float-right" *ngIf="isLogged">
+    <button mat-button (click)="signOut()">
+      <b>Cerrar sesión</b>
     </button>
-    <button mat-button routerLink="/organization/{{organizationId}}/users">
-      <b>Usuarios</b>
-    </button>
-    <button mat-button routerLink="/organization/{{organizationId}}/statistics">
-      <b>Estadísticas</b>
-    </button>
-    <button mat-button routerLink="/organization/{{organizationId}}/forbiddenWords">
-      <b>Palabras Prohibidas</b>
-    </button>
-  </ng-container>
+  </div>
 </mat-toolbar>
