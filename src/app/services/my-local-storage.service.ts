@@ -21,7 +21,7 @@ export class MyLocalStorageService {
     return this.localStorageService.get('admin') !== null;
   }
 
-  clear() {
+  clearAdmin() {
     this.localStorageService.remove('admin');
   }
 }

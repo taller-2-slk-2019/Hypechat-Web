@@ -20,7 +20,7 @@ export class MenuBarComponent implements OnInit {
   }
 
   signOut() {
-    this.localStorageService.clear();
+    this.localStorageService.clearAdmin();
     this.router.navigate(['']);
   }
 }
