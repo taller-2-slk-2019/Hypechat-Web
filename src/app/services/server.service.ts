@@ -3,8 +3,7 @@ import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http'
 import { environment } from '../../environments/environment';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
-import {LocalStorageService} from 'angular-2-local-storage';
-import {Admin} from '../models/Admin';
+import { MyLocalStorageService } from './my-local-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +11,7 @@ import {Admin} from '../models/Admin';
 export class ServerService {
   private baseUrl = environment.baseUrl;
 
-  constructor(private http: HttpClient, private localStorageService: LocalStorageService ) { }
+  constructor(private http: HttpClient, private localStorageService: MyLocalStorageService ) { }
 
   get<T>(extension, params = null) {
     return this.http.get<T>(this.baseUrl + extension, this.getParams(params)).pipe(catchError(this.handleError));
@@ -39,7 +38,7 @@ export class ServerService {
       params = new HttpParams();
     }
 
-    const admin = this.localStorageService.get<Admin>('user');
+    const admin = this.localStorageService.getUser();
 
     if (admin) {
       params = params.set('adminToken', admin.token);

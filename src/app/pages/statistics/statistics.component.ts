@@ -5,7 +5,7 @@ import {OrganizationService} from '../../services/organization.service';
 import {OrganizationStatistics} from '../../models/OrganizationStatistics';
 import {UserRoleHelper} from '../../helpers/UserRoleHelper';
 import {MessageTypeHelper} from '../../helpers/MessageTypeHelper';
-import {LocalStorageService} from 'angular-2-local-storage';
+import {MyLocalStorageService} from '../../services/my-local-storage.service';
 
 @Component({
   selector: 'app-statistics',
@@ -21,7 +21,7 @@ export class StatisticsComponent extends BaseComponent implements OnInit {
 
 
   constructor(private route: ActivatedRoute, private organizationService: OrganizationService,
-              private localStorageService: LocalStorageService, private router: Router) {
+              private localStorageService: MyLocalStorageService, private router: Router) {
     super(localStorageService, router);
   }
 

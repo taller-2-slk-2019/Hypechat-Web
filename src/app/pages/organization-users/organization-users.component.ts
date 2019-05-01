@@ -5,7 +5,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import { OrganizationService } from '../../services/organization.service';
 import { BaseComponent } from '../../components/base/base.component';
 import { RoleEvent } from '../../models/RoleEvent';
-import {LocalStorageService} from 'angular-2-local-storage';
+import {MyLocalStorageService} from '../../services/my-local-storage.service';
 
 @Component({
   selector: 'app-organization-users',
@@ -21,7 +21,7 @@ export class OrganizationUsersComponent extends BaseComponent implements OnInit 
 
   constructor(private route: ActivatedRoute, private userService: UserService,
               private organizationService: OrganizationService,
-              private localStorageService: LocalStorageService, private router: Router) {
+              private localStorageService: MyLocalStorageService, private router: Router) {
     super(localStorageService, router);
   }
 

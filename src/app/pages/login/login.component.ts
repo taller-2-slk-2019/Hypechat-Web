@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { LocalStorageService } from 'angular-2-local-storage';
 import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
+import {MyLocalStorageService} from '../../services/my-local-storage.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   password = '';
   invalid = false;
 
-  constructor(private localStorageService: LocalStorageService, private loginService: LoginService,
+  constructor(private localStorageService: MyLocalStorageService, private loginService: LoginService,
               private router: Router) { }
 
   ngOnInit() {
@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
   login() {
     this.loginService.login(this.username, this.password)
       .subscribe(data => {
-        this.localStorageService.set('user', data);
+        this.localStorageService.setAdmin(data);
         this.router.navigate(['']);
       }, error => this.invalid = true);
   }

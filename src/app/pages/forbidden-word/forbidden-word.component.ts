@@ -3,7 +3,7 @@ import { ForbiddenWordService } from '../../services/forbidden-word.service';
 import { ForbiddenWord } from '../../models/ForbiddenWord';
 import {ActivatedRoute, Router} from '@angular/router';
 import { BaseComponent } from '../../components/base/base.component';
-import {LocalStorageService} from 'angular-2-local-storage';
+import {MyLocalStorageService} from '../../services/my-local-storage.service';
 
 const SPACE = ' ';
 const EMPTY_WORD = '';
@@ -24,7 +24,7 @@ export class ForbiddenWordComponent extends BaseComponent implements OnInit {
   newWord = EMPTY_WORD;
 
   constructor(private route: ActivatedRoute, private forbiddenWordService: ForbiddenWordService,
-              private localStorageService: LocalStorageService, private router: Router) {
+              private localStorageService: MyLocalStorageService, private router: Router) {
     super(localStorageService, router);
   }
 

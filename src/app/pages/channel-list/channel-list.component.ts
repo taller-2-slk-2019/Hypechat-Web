@@ -4,7 +4,7 @@ import { ChannelService } from '../../services/channel.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import { BaseComponent } from '../../components/base/base.component';
 import { DialogService } from '../../services/dialog.service';
-import {LocalStorageService} from 'angular-2-local-storage';
+import {MyLocalStorageService} from '../../services/my-local-storage.service';
 
 @Component({
   selector: 'app-channel-list',
@@ -18,7 +18,7 @@ export class ChannelListComponent extends BaseComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private channelService: ChannelService,
               private dialogService: DialogService, private router: Router,
-              private localStorageService: LocalStorageService) {
+              private localStorageService: MyLocalStorageService) {
     super(localStorageService, router);
   }
 

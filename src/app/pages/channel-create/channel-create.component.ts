@@ -3,8 +3,7 @@ import { BaseComponent } from '../../components/base/base.component';
 import {ActivatedRoute, Router} from '@angular/router';
 import { ChannelService } from '../../services/channel.service';
 import {Channel} from '../../models/Channel';
-import {DialogService} from '../../services/dialog.service';
-import {LocalStorageService} from 'angular-2-local-storage';
+import {MyLocalStorageService} from '../../services/my-local-storage.service';
 
 @Component({
   selector: 'app-channel-create',
@@ -20,7 +19,7 @@ export class ChannelCreateComponent extends BaseComponent implements OnInit {
   type: string;
 
   constructor(private route: ActivatedRoute, private channelService: ChannelService,
-              private router: Router, private localStorageService: LocalStorageService) {
+              private router: Router, private localStorageService: MyLocalStorageService) {
     super(localStorageService, router);
   }
 

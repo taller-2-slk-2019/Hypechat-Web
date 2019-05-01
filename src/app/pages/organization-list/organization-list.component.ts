@@ -4,7 +4,7 @@ import {OrganizationService} from '../../services/organization.service';
 import {BaseComponent} from '../../components/base/base.component';
 import {DialogService} from '../../services/dialog.service';
 import {Router} from '@angular/router';
-import {LocalStorageService} from 'angular-2-local-storage';
+import {MyLocalStorageService} from '../../services/my-local-storage.service';
 
 @Component({
   selector: 'app-organization-list',
@@ -18,7 +18,7 @@ export class OrganizationListComponent extends BaseComponent implements OnInit {
 
   constructor(private organizationService: OrganizationService,
               private dialogService: DialogService, private router: Router,
-              private localStorageService: LocalStorageService) {
+              private localStorageService: MyLocalStorageService) {
     super(localStorageService, router);
   }
 

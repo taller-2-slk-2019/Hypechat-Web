@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {LocalStorageService} from 'angular-2-local-storage';
+import {MyLocalStorageService} from '../../services/my-local-storage.service';
 
 @Component({
   selector: 'app-menu-bar',
@@ -12,15 +12,15 @@ export class MenuBarComponent implements OnInit {
   @Input() showOrganizations = true;
   isLogged: boolean;
 
-  constructor(private router: Router, private localStorageService: LocalStorageService) {
-    this.isLogged = this.localStorageService.get('user') !== null;
+  constructor(private router: Router, private localStorageService: MyLocalStorageService) {
+    this.isLogged = this.localStorageService.isLoggedIn();
   }
 
   ngOnInit() {
   }
 
   signOut() {
-    this.localStorageService.clearAll();
+    this.localStorageService.clear();
     this.router.navigate(['login']);
   }
 }
