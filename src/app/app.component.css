@@ -1,0 +1,4 @@
+:host ::ng-deep .overlay {
+  position: fixed !important;
+}
+

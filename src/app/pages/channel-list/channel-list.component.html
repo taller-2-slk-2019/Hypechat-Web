@@ -13,7 +13,7 @@
   <app-alert-error [errorMessage]="errorMessage" (close)="errorMessage = ''"></app-alert-error>
 </div>
 
-<div *ngIf="channels.length == 0" class="d-flex justify-content-center my-5">
+<div *ngIf="!loading && channels.length == 0" class="d-flex justify-content-center my-5">
   <p> La organización no presenta canales </p>
 </div>
 

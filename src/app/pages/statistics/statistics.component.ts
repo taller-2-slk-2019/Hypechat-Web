@@ -6,6 +6,7 @@ import {OrganizationStatistics} from '../../models/OrganizationStatistics';
 import {UserRoleHelper} from '../../helpers/UserRoleHelper';
 import {MessageTypeHelper} from '../../helpers/MessageTypeHelper';
 import {MyLocalStorageService} from '../../services/my-local-storage.service';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
   selector: 'app-statistics',
@@ -21,19 +22,25 @@ export class StatisticsComponent extends BaseComponent implements OnInit {
 
 
   constructor(private route: ActivatedRoute, private organizationService: OrganizationService,
-              private localStorageService: MyLocalStorageService, private router: Router) {
-    super(localStorageService, router);
+              private localStorageService: MyLocalStorageService, private router: Router,
+              private spinnerService: NgxSpinnerService) {
+    super(localStorageService, router, spinnerService);
   }
 
   ngOnInit() {
     this.organizationId = this.route.snapshot.paramMap.get('id');
+    this.showLoading();
     this.organizationService.getStatistics(this.organizationId)
       .subscribe(data => {
           this.stats = data;
           this.userRoles = this.getUserRoles();
           this.messageTypes = this.getMessageTypes();
+          this.hideLoading();
         },
-        error =>  this.setError(this.connectionError)
+        error =>  {
+          this.setError(this.connectionError);
+          this.hideLoading();
+        }
       );
   }
 

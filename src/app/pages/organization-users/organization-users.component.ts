@@ -6,6 +6,7 @@ import { OrganizationService } from '../../services/organization.service';
 import { BaseComponent } from '../../components/base/base.component';
 import { RoleEvent } from '../../models/RoleEvent';
 import {MyLocalStorageService} from '../../services/my-local-storage.service';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
   selector: 'app-organization-users',
@@ -20,18 +21,23 @@ export class OrganizationUsersComponent extends BaseComponent implements OnInit 
   email = '';
 
   constructor(private route: ActivatedRoute, private userService: UserService,
-              private organizationService: OrganizationService,
+              private organizationService: OrganizationService, private spinnerService: NgxSpinnerService,
               private localStorageService: MyLocalStorageService, private router: Router) {
-    super(localStorageService, router);
+    super(localStorageService, router, spinnerService);
   }
 
   ngOnInit() {
     this.organizationId = this.route.snapshot.paramMap.get('id');
-    this.userService.getOrganizationUsers(this.organizationId).
-    subscribe(data => {
+    this.showLoading();
+    this.userService.getOrganizationUsers(this.organizationId)
+      .subscribe(data => {
         this.users = data;
+        this.hideLoading();
       },
-      error =>  this.setError(this.connectionError)
+      error =>  {
+        this.setError(this.connectionError);
+        this.hideLoading();
+      }
     );
   }
 
@@ -43,6 +49,7 @@ export class OrganizationUsersComponent extends BaseComponent implements OnInit 
   }
 
   addUser() {
+    this.showLoading();
     this.organizationService.addUser(this.organizationId, this.email)
       .subscribe(data => {
         if (data.length === 0) {
@@ -51,29 +58,42 @@ export class OrganizationUsersComponent extends BaseComponent implements OnInit 
         } else {
           this.setError('No se pudo invitar al usuario');
         }
+        this.hideLoading();
       },
-      error =>  this.setError('No se pudo invitar al usuario'));
+      error =>  {
+        this.setError('No se pudo invitar al usuario');
+        this.hideLoading();
+      });
   }
 
   deleteUser(deletedUser: User) {
+    this.showLoading();
     this.organizationService.deleteUser(this.organizationId, deletedUser)
       .subscribe(data => {
-      this.users = this.users.filter(user => user.id !== deletedUser.id);
-      this.setSuccess(`Se eliminó al usuario "${deletedUser.name}" de la organización`);
-    },
-    error =>  this.setError('No se pudo eliminar al usuario'));
+        this.users = this.users.filter(user => user.id !== deletedUser.id);
+        this.setSuccess(`Se eliminó al usuario "${deletedUser.name}" de la organización`);
+        this.hideLoading();
+      },
+error =>  {
+        this.setError('No se pudo eliminar al usuario');
+        this.hideLoading();
+      });
   }
 
   changeRole(roleEvent: RoleEvent) {
     // TODO change role in the server
     const newRole = roleEvent.newRole;
     /*
+    this.showLoading();
     this.organizationService.changeRole(roleEvent.user.id.toString(), this.organizationId, newRole)
       .subscribe( data => {
           this.setSuccess('Se modifico el rol del usuario');
           roleEvent.user.userOrganizations.role = newRole;
+          this.hideLoading();
         },
-        error => this.setError('No se pudo modificar el rol')
+        error => {
+          this.setError('No se pudo modificar el rol');
+          this.hideLoading();
       );
      */
     roleEvent.user.userOrganizations.role = newRole;

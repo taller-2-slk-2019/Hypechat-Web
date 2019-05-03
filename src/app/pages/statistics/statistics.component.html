@@ -5,10 +5,6 @@
   <app-alert-error [errorMessage]="errorMessage" (close)="errorMessage = ''"></app-alert-error>
 </div>
 
-<div *ngIf="!stats" class="d-flex justify-content-center my-5">
-  <p> Cargando estadísticas </p>
-</div>
-
 <ng-container *ngIf="stats">
   <h3 class="text-center">Usuarios de la organización</h3>
   <app-pie-chart [data]="stats.usersCount" [labels]="userRoles" *ngIf="stats.usersCount.length > 0"></app-pie-chart>

@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import { ChannelService } from '../../services/channel.service';
 import {Channel} from '../../models/Channel';
 import {MyLocalStorageService} from '../../services/my-local-storage.service';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
   selector: 'app-channel-create',
@@ -19,8 +20,9 @@ export class ChannelCreateComponent extends BaseComponent implements OnInit {
   type: string;
 
   constructor(private route: ActivatedRoute, private channelService: ChannelService,
-              private router: Router, private localStorageService: MyLocalStorageService) {
-    super(localStorageService, router);
+              private router: Router, private localStorageService: MyLocalStorageService,
+              private spinnerService: NgxSpinnerService) {
+    super(localStorageService, router, spinnerService);
   }
 
   ngOnInit() {
@@ -43,12 +45,17 @@ export class ChannelCreateComponent extends BaseComponent implements OnInit {
     channel.welcome = this.welcome;
     channel.organizationId = +this.organizationId;
 
+    this.showLoading();
     this.channelService.createChannel(channel).subscribe(
       data => {
         this.setSuccess(`El canal "${data.name}" fue creado`);
         this.reset();
+        this.hideLoading();
       },
-      error => this.setError('No se pudo crear el canal')
+      error => {
+        this.setError('No se pudo crear el canal');
+        this.hideLoading();
+      }
     );
   }
 

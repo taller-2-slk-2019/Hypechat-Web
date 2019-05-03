@@ -4,6 +4,7 @@ import {OrganizationService} from '../../services/organization.service';
 import {Organization} from '../../models/Organization';
 import {Router} from '@angular/router';
 import {MyLocalStorageService} from '../../services/my-local-storage.service';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
   selector: 'app-organization-create',
@@ -19,9 +20,9 @@ export class OrganizationCreateComponent extends BaseComponent implements OnInit
   description: string;
   welcome: string;
 
-  constructor(private organizationService: OrganizationService,
+  constructor(private organizationService: OrganizationService, private spinnerService: NgxSpinnerService,
               private localStorageService: MyLocalStorageService, private router: Router) {
-    super(localStorageService, router);
+    super(localStorageService, router, spinnerService);
   }
 
   ngOnInit() {
@@ -54,12 +55,18 @@ export class OrganizationCreateComponent extends BaseComponent implements OnInit
     organization.longitude = this.longitude;
     organization.description = this.description;
     organization.welcome = this.welcome;
+
+    this.showLoading();
     this.organizationService.createOrganization(organization).subscribe(
       data => {
         this.setSuccess(`La organización "${data.name}" fue creada`);
         this.reset();
+        this.hideLoading();
       },
-      error => this.setError('No se pudo crear la organización')
+      error => {
+        this.setError('No se pudo crear la organización');
+        this.hideLoading();
+      }
     );
   }
 }
