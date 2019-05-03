@@ -5,17 +5,21 @@
   <app-alert-error [errorMessage]="errorMessage" (close)="errorMessage = ''"></app-alert-error>
 </div>
 
-<ng-container *ngIf="stats">
-  <h3 class="text-center">Usuarios de la organización</h3>
-  <app-pie-chart [data]="stats.usersCount" [labels]="userRoles" *ngIf="stats.usersCount.length > 0"></app-pie-chart>
-  <div *ngIf="stats.usersCount.length == 0" class="d-flex justify-content-center my-5">
-    <p> No hay usuarios en la organizacion </p>
+<div *ngIf="stats" class="d-flex text-center" style="justify-content: space-evenly;">
+  <div>
+    <h3 class="text-center">Usuarios de la organización</h3>
+    <app-pie-chart [data]="stats.usersCount" [labels]="userRoles" *ngIf="stats.usersCount.length > 0"></app-pie-chart>
+    <div *ngIf="stats.usersCount.length == 0" class="d-flex justify-content-center my-5">
+      <p> No hay usuarios en la organizacion </p>
+    </div>
   </div>
 
-  <h3 class="text-center mt-5">Mensajes enviados</h3>
-  <app-pie-chart [data]="stats.messagesCount" [labels]="messageTypes" *ngIf="stats.messagesCount.length > 0"></app-pie-chart>
-  <div *ngIf="stats.messagesCount.length == 0" class="d-flex justify-content-center my-5">
-    <p> No hay mensajes en la organizacion </p>
+  <div>
+    <h3 class="text-center">Mensajes enviados</h3>
+    <app-pie-chart [data]="stats.messagesCount" [labels]="messageTypes" *ngIf="stats.messagesCount.length > 0"></app-pie-chart>
+    <div *ngIf="stats.messagesCount.length == 0" class="d-flex justify-content-center my-5">
+      <p> No hay mensajes en la organizacion </p>
+    </div>
   </div>
-</ng-container>
+</div>
 

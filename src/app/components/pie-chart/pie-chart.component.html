@@ -1,11 +1,12 @@
 <div>
   <div>
-    <div style="display: block">
+    <div style="display: block" [style.height.px]="300" [style.width.px]="300">
       <canvas baseChart
               [data]="chartData"
               [labels]="labels"
               [chartType]="chartType"
-              [legend]="chartLegend">
+              [legend]="chartLegend"
+              [options]="{responsive: true, maintainAspectRatio: false}">
       </canvas>
     </div>
   </div>
