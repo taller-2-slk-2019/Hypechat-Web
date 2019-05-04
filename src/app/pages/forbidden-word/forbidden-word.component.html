@@ -24,7 +24,7 @@
   <app-alert-error [errorMessage]="errorMessage" (close)="errorMessage = ''"></app-alert-error>
 </div>
 
-<div *ngIf="words.length == 0" class="d-flex justify-content-center my-5">
+<div *ngIf="!loading && words.length == 0" class="d-flex justify-content-center my-5">
   <p> La organización no tiene palabras prohibidas </p>
 </div>
 

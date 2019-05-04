@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
 import {MyLocalStorageService} from '../../services/my-local-storage.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit {
   invalid = false;
 
   constructor(private localStorageService: MyLocalStorageService, private loginService: LoginService,
-              private router: Router) {
+              private router: Router, private spinner: NgxSpinnerService) {
     if (this.localStorageService.isLoggedIn()) {
       this.router.navigate(['organization']);
     }
@@ -30,10 +31,16 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    this.invalid = false;
+    this.spinner.show();
     this.loginService.login(this.username, this.password)
       .subscribe(data => {
+        this.spinner.hide();
         this.localStorageService.setAdmin(data);
         this.router.navigate(['organization']);
-      }, error => this.invalid = true);
+      }, error => {
+        this.invalid = true;
+        this.spinner.hide();
+      });
   }
 }

@@ -9,7 +9,7 @@
   <app-alert-error [errorMessage]="errorMessage" (close)="errorMessage = ''"></app-alert-error>
 </div>
 
-<div *ngIf="organizations.length == 0" class="d-flex justify-content-center my-5">
+<div *ngIf="!loading && organizations.length == 0" class="d-flex justify-content-center my-5">
   <p> No hay organizaciones </p>
 </div>
 

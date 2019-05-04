@@ -9,7 +9,7 @@
 <ngb-tabset type="pills" justify="center">
   <ngb-tab title="Miembros del canal">
     <ng-template ngbTabContent>
-      <div *ngIf="channelUsers.length == 0" class="d-flex justify-content-center my-5">
+      <div *ngIf="!loading && channelUsers.length == 0" class="d-flex justify-content-center my-5">
         <p> El canal no tiene usuarios </p>
       </div>
       <div class="d-flex justify-content-center my-4">

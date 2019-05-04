@@ -5,6 +5,7 @@ import {ChannelService} from '../../services/channel.service';
 import {User} from '../../models/User';
 import {BaseComponent} from '../../components/base/base.component';
 import {MyLocalStorageService} from '../../services/my-local-storage.service';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
   selector: 'app-channel-users',
@@ -20,55 +21,75 @@ export class ChannelUsersComponent extends BaseComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private userService: UserService,
               private channelService: ChannelService, private localStorageService: MyLocalStorageService,
-              private router: Router) {
-    super(localStorageService, router);
+              private router: Router,  private spinnerService: NgxSpinnerService) {
+    super(localStorageService, router, spinnerService);
   }
 
   ngOnInit() {
     this.organizationId = this.route.snapshot.paramMap.get('id');
     this.channelId = this.route.snapshot.paramMap.get('channelId');
+    this.showLoading();
     this.userService.getOrganizationUsers(this.organizationId)
       .subscribe(data => {
           this.organizationUsers = data;
+          this.hideLoading();
           this.initChannelUsers();
         },
-        error =>  this.setError(this.connectionError)
+        error =>  {
+          this.setError(this.connectionError);
+          this.hideLoading();
+        }
       );
   }
 
   addUser(user: User) {
+    this.showLoading();
     this.channelService.addUser(this.channelId, user)
       .subscribe(data => {
           this.channelUsers.push(user);
           this.organizationUsers = this.organizationUsers.filter(usr => usr.id !== user.id);
           this.setSuccess(`Se agregó al usuario "${user.name}" al canal`);
+          this.hideLoading();
       },
-      error =>  this.setError('No se pudo agregar al usuario')
+      error =>  {
+        this.setError('No se pudo agregar al usuario');
+        this.hideLoading();
+      }
     );
   }
 
   deleteUser(user: User) {
+    this.showLoading();
     this.channelService.deleteUser(this.channelId, user)
       .subscribe(data => {
           this.organizationUsers.push(user);
           this.channelUsers = this.channelUsers.filter(usr => usr.id !== user.id);
           this.setSuccess(`Se eliminó al usuario "${user.name}" del canal`);
+          this.hideLoading();
         },
-        error =>  this.setError('No se pudo eliminar al usuario')
+        error =>  {
+          this.setError('No se pudo eliminar al usuario');
+          this.hideLoading();
+        }
       );
   }
 
   private initChannelUsers() {
+    this.showLoading();
     this.channelService.getUsers(this.channelId)
       .subscribe(data => {
           this.channelUsers = data;
           this.organizationUsers = this.organizationUsers.filter(user => !this.channelContainsUser(user));
+          this.hideLoading();
         },
-        error =>  this.setError(this.connectionError)
+        error =>  {
+          this.setError(this.connectionError);
+          this.hideLoading();
+        }
       );
   }
 
   private channelContainsUser(user: User) {
-    return this.channelUsers.filter(usr => usr.id === user.id).length === 1;
+    return this.channelUsers.some(usr => usr.id === user.id);
   }
 }

@@ -24,6 +24,7 @@ import { OrganizationCreateComponent } from './pages/organization-create/organiz
 import { ChartsModule } from 'ng2-charts';
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 import { LoginComponent } from './pages/login/login.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { LoginComponent } from './pages/login/login.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxSpinnerModule,
     MatToolbarModule,
     MatButtonModule,
     MatDialogModule,
