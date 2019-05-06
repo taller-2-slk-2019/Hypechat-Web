@@ -18,4 +18,18 @@ export class BotService {
     const params = new HttpParams().set(QUERY_PARAMETER, organizationId);
     return this.serverService.get<Bot[]>(this.url, params);
   }
+
+  addBot(botName: string, botUrl: string, id: string) {
+    const data = {
+      name: botName,
+      url: botUrl,
+      organizationId: id
+    };
+    return this.serverService.post<Bot>(this.url, data);
+  }
+
+  deleteBot(botId: number) {
+    const url = `${this.url}/${botId}`;
+    return this.serverService.delete(url);
+  }
 }

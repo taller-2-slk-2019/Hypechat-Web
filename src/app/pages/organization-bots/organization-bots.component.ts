@@ -15,6 +15,8 @@ export class OrganizationBotsComponent extends BaseComponent implements OnInit {
   organizationId: string;
   title = 'Bots';
   bots: Array<Bot> = [];
+  botName = '';
+  botUrl = '';
 
   constructor(private route: ActivatedRoute, private botService: BotService,
               private localStorageService: MyLocalStorageService,
@@ -36,4 +38,39 @@ export class OrganizationBotsComponent extends BaseComponent implements OnInit {
       });
   }
 
+  addBot() {
+    if (this.bots.filter(bot => bot.name === this.botName).length === 0) {
+      this.showLoading();
+      this.botService.addBot(this.botName, this.botUrl, this.organizationId)
+        .subscribe(data => {
+          this.bots.push(data);
+          this.setSuccess('El bot se cargó correctamente');
+          this.hideLoading();
+        }, error => {
+          this.setError('No se pudo agregar el bot');
+          this.hideLoading();
+        });
+    }
+  }
+
+  deleteBot(deleteBot: Bot) {
+    this.showLoading();
+    this.botService.deleteBot(deleteBot.id)
+      .subscribe(data => {
+        this.bots = this.bots.filter(bot => bot.id !== deleteBot.id);
+        this.setSuccess('El bot se eliminó correctamente');
+        this.hideLoading();
+      }, error => {
+        this.setError('No se pudo eliminar al bot');
+        this.hideLoading();
+      });
+  }
+
+  isInvalidName() {
+    return this.botName.includes(' ');
+  }
+
+  isInvalidUrl() {
+    return this.botUrl.includes(' ');
+  }
 }
