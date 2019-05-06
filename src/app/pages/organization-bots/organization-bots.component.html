@@ -1,0 +1,11 @@
+<app-menu-bar [organizationId]="organizationId"></app-menu-bar>
+<h1 class="text-center my-5">{{ title }}</h1>
+
+<div class="d-flex justify-content-center my-3">
+  <app-alert-success [successMessage]="successMessage" (close)="successMessage = ''"></app-alert-success>
+  <app-alert-error [errorMessage]="errorMessage" (close)="errorMessage = ''"></app-alert-error>
+</div>
+
+<p>
+  organization-bots works!
+</p>
