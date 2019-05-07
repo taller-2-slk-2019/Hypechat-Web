@@ -8,11 +8,18 @@ export class BaseComponent {
   loading = false;
   connectionError = 'Error de conexión';
   private spinner: NgxSpinnerService;
+  private router: Router;
+  private localStorageService: MyLocalStorageService;
 
   constructor(localStorageService: MyLocalStorageService, router: Router, spinner: NgxSpinnerService) {
     this.spinner = spinner;
-    if (!localStorageService.isLoggedIn()) {
-      router.navigate(['']);
+    this.router = router;
+    this.localStorageService = localStorageService;
+    if (!this.localStorageService.isLoggedIn()) {
+      this.router.navigate(['']);
+    }
+    if (this.router.url !== '/organization' && !this.localStorageService.getOrganization()) {
+      this.router.navigate(['/organization']);
     }
   }
 

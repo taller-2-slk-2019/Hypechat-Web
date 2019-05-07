@@ -22,8 +22,8 @@ export class StatisticsComponent extends BaseComponent implements OnInit {
 
 
   constructor(private route: ActivatedRoute, private organizationService: OrganizationService,
-              private localStorageService: MyLocalStorageService, private router: Router,
-              private spinnerService: NgxSpinnerService) {
+              localStorageService: MyLocalStorageService, router: Router,
+              spinnerService: NgxSpinnerService) {
     super(localStorageService, router, spinnerService);
   }
 

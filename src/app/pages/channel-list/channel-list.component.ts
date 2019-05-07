@@ -18,8 +18,8 @@ export class ChannelListComponent extends BaseComponent implements OnInit {
   channels: Array<Channel> = [];
 
   constructor(private route: ActivatedRoute, private channelService: ChannelService,
-              private dialogService: DialogService, private router: Router,
-              private localStorageService: MyLocalStorageService, private spinnerService: NgxSpinnerService) {
+              private dialogService: DialogService, router: Router,
+              localStorageService: MyLocalStorageService, spinnerService: NgxSpinnerService) {
     super(localStorageService, router, spinnerService);
   }
 

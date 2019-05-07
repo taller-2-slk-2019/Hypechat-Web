@@ -23,8 +23,8 @@ export class ForbiddenWordComponent extends BaseComponent implements OnInit {
   newWord = '';
 
   constructor(private route: ActivatedRoute, private forbiddenWordService: ForbiddenWordService,
-              private localStorageService: MyLocalStorageService, private router: Router,
-              private spinnerService: NgxSpinnerService) {
+              localStorageService: MyLocalStorageService, router: Router,
+              spinnerService: NgxSpinnerService) {
     super(localStorageService, router, spinnerService);
   }
 

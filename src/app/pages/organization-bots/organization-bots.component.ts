@@ -19,8 +19,8 @@ export class OrganizationBotsComponent extends BaseComponent implements OnInit {
   botUrl = '';
 
   constructor(private route: ActivatedRoute, private botService: BotService,
-              private localStorageService: MyLocalStorageService,
-              private router: Router, private spinnerService: NgxSpinnerService) {
+              localStorageService: MyLocalStorageService,
+              router: Router, spinnerService: NgxSpinnerService) {
     super(localStorageService, router, spinnerService);
   }
 

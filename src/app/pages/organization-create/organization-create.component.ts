@@ -20,8 +20,8 @@ export class OrganizationCreateComponent extends BaseComponent implements OnInit
   description: string;
   welcome: string;
 
-  constructor(private organizationService: OrganizationService, private spinnerService: NgxSpinnerService,
-              private localStorageService: MyLocalStorageService, private router: Router) {
+  constructor(private organizationService: OrganizationService, spinnerService: NgxSpinnerService,
+              localStorageService: MyLocalStorageService, router: Router) {
     super(localStorageService, router, spinnerService);
   }
 

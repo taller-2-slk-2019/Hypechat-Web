@@ -18,8 +18,8 @@ export class OrganizationListComponent extends BaseComponent implements OnInit {
   organizations: Array<Organization> = [];
 
   constructor(private organizationService: OrganizationService,
-              private dialogService: DialogService, private router: Router,
-              private localStorageService: MyLocalStorageService, private spinnerService: NgxSpinnerService) {
+              private dialogService: DialogService, router: Router,
+              localStorageService: MyLocalStorageService, spinnerService: NgxSpinnerService) {
     super(localStorageService, router, spinnerService);
   }
 
