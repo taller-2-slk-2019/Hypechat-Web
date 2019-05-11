@@ -42,7 +42,11 @@
 <div class="d-flex justify-content-center">
   <ul class="list-group w-50">
     <li *ngFor="let bot of bots" class="list-group-item d-flex justify-content-between">
-      <span style="width: 80%;word-break: break-word">{{bot.name}}</span>
+      <div style="width: 80%;word-break: break-word">
+        <span><b><u>Nombre:</u></b> {{bot.name}}</span>
+        <br>
+        <span><b><u>Url:</u></b> {{bot.url}}</span>
+      </div>
       <button class="btn btn-danger" (click)="deleteBot(bot)"><i class="fas fa-trash"></i></button>
     </li>
   </ul>

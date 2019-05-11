@@ -20,6 +20,11 @@ export class MenuBarComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (this.organizationId) {
+      if (!this.organization || this.organization.id.toString() !== this.organizationId) {
+        this.navigateToOrganization();
+      }
+    }
   }
 
   signOut() {

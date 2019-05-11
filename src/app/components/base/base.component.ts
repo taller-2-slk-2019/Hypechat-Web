@@ -18,9 +18,6 @@ export class BaseComponent {
     if (!this.localStorageService.isLoggedIn()) {
       this.router.navigate(['']);
     }
-    if (this.router.url !== '/organization' && !this.localStorageService.getOrganization()) {
-      this.router.navigate(['/organization']);
-    }
   }
 
   setError(message: string) {
