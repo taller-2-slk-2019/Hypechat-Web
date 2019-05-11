@@ -43,7 +43,7 @@ export class ForbiddenWordComponent extends BaseComponent implements OnInit {
   }
 
   addWord() {
-    if (!this.words.some(word => word.word === this.newWord)) {
+    if (this.words.every(word => word.word !== this.newWord)) {
       this.showLoading();
       this.forbiddenWordService.addForbiddenWord(this.newWord, this.organizationId)
         .subscribe(data => {
@@ -55,6 +55,8 @@ export class ForbiddenWordComponent extends BaseComponent implements OnInit {
           this.setError(ADD_WORD_ERROR);
           this.hideLoading();
         });
+    } else {
+      this.setError('La palabra ya existe');
     }
 
     this.newWord = '';

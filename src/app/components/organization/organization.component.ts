@@ -26,7 +26,7 @@ export class OrganizationComponent implements OnInit {
     this.delete.emit(this.organization);
   }
 
-  navigate() {
+  organizationSelected() {
     this.localStorageService.setOrganization(this.organization);
     this.router.navigate([`/organization/${this.organization.id}/channels`]);
   }

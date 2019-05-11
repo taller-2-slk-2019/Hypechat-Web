@@ -39,7 +39,7 @@ export class OrganizationBotsComponent extends BaseComponent implements OnInit {
   }
 
   addBot() {
-    if (!this.bots.some(bot => bot.name === this.botName)) {
+    if (this.bots.every(bot => bot.name !== this.botName)) {
       this.showLoading();
       this.botService.addBot(this.botName, this.botUrl, this.organizationId)
         .subscribe(data => {
@@ -50,6 +50,8 @@ export class OrganizationBotsComponent extends BaseComponent implements OnInit {
           this.setError('No se pudo agregar el bot');
           this.hideLoading();
         });
+    } else {
+      this.setError('Ya existe un bot con ese nombre en la organización');
     }
     this.botName = '';
     this.botUrl = '';
