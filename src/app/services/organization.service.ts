@@ -51,7 +51,6 @@ export class OrganizationService {
   }
 
   createOrganization(data): Observable<any> {
-    const params = new HttpParams().set('userToken', 'gAE4p7b1bRc4CZ77aExzgTFcv1O2'); // TODO change it for the new end point
-    return this.serverService.post(this.url, data, params);
+    return this.serverService.post(this.url, data);
   }
 }
