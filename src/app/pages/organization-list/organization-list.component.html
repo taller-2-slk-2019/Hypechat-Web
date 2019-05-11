@@ -2,7 +2,15 @@
 
 <h1 class="text-center mt-5">{{ title }}</h1>
 
-<!--TODO add create button -->
+<div class="d-flex justify-content-center mt-5">
+  <!--TODO add create button -->
+  <input type="text" class="form-control ml-3 w-50"
+         placeholder="Buscar organización" maxlength="50"
+         [(ngModel)]="search"/>
+  <div class="input-group-addon">
+    <i class="fas fa-search"></i>
+  </div>
+</div>
 
 <div class="d-flex justify-content-center my-3">
   <app-alert-success [successMessage]="successMessage" (close)="successMessage = ''"></app-alert-success>
@@ -16,7 +24,9 @@
 <div class="d-flex justify-content-center my-3">
   <div class="form-group w-50">
     <div *ngFor="let organization of organizations">
-      <app-organization [organization]="organization" (delete)="deleteOrganization($event)"></app-organization>
+      <app-organization [organization]="organization" (delete)="deleteOrganization($event)"
+                        *ngIf="organization.name.toLowerCase().includes(search.toLowerCase())">
+      </app-organization>
     </div>
   </div>
 </div>

@@ -16,6 +16,7 @@ export class ChannelListComponent extends BaseComponent implements OnInit {
   title = 'Canales';
   organizationId: string;
   channels: Array<Channel> = [];
+  search = '';
 
   constructor(private route: ActivatedRoute, private channelService: ChannelService,
               private dialogService: DialogService, router: Router,

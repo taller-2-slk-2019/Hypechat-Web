@@ -16,6 +16,7 @@ import {NgxSpinnerService} from 'ngx-spinner';
 export class OrganizationListComponent extends BaseComponent implements OnInit {
   title = 'Organizaciones';
   organizations: Array<Organization> = [];
+  search = '';
 
   constructor(private organizationService: OrganizationService,
               private dialogService: DialogService, router: Router,
