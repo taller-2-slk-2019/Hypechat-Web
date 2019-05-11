@@ -39,7 +39,7 @@ export class OrganizationBotsComponent extends BaseComponent implements OnInit {
   }
 
   addBot() {
-    if (this.bots.filter(bot => bot.name === this.botName).length === 0) {
+    if (!this.bots.some(bot => bot.name === this.botName)) {
       this.showLoading();
       this.botService.addBot(this.botName, this.botUrl, this.organizationId)
         .subscribe(data => {
@@ -51,6 +51,8 @@ export class OrganizationBotsComponent extends BaseComponent implements OnInit {
           this.hideLoading();
         });
     }
+    this.botName = '';
+    this.botUrl = '';
   }
 
   deleteBot(deleteBot: Bot) {

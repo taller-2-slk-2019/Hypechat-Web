@@ -43,7 +43,7 @@ export class ForbiddenWordComponent extends BaseComponent implements OnInit {
   }
 
   addWord() {
-    if (this.words.filter(word => word.word === this.newWord).length === 0) {
+    if (!this.words.some(word => word.word === this.newWord)) {
       this.showLoading();
       this.forbiddenWordService.addForbiddenWord(this.newWord, this.organizationId)
         .subscribe(data => {
