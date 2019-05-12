@@ -13,6 +13,7 @@ export class MenuBarComponent implements OnInit {
   @Input() showOrganizations = true;
   organization: Organization;
   isLogged: boolean;
+  urls = { channels: `/organization/${this.organizationId}/channels`};
 
   constructor(private router: Router, private localStorageService: MyLocalStorageService) {
     this.isLogged = this.localStorageService.isLoggedIn();
@@ -38,5 +39,10 @@ export class MenuBarComponent implements OnInit {
     this.localStorageService.clearOrganization();
     this.localStorageService.clearChannel();
     this.router.navigate(['/organization']);
+  }
+
+  redirect(extension) {
+    this.localStorageService.clearChannel();
+    this.router.navigate([`/organization/${this.organizationId}/${extension}`]);
   }
 }

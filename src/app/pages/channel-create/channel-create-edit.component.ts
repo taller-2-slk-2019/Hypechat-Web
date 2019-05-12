@@ -8,10 +8,10 @@ import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
   selector: 'app-channel-create',
-  templateUrl: './channel-create.component.html',
-  styleUrls: ['./channel-create.component.css']
+  templateUrl: './channel-create-edit.component.html',
+  styleUrls: ['./channel-create-edit.component.css']
 })
-export class ChannelCreateComponent extends BaseComponent implements OnInit {
+export class ChannelCreateEditComponent extends BaseComponent implements OnInit {
   title = 'Crear Canal';
   organizationId: string;
   type: string;

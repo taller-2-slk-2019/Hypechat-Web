@@ -4,19 +4,19 @@
     <h1 class="mr-4"><b>Hypechat</b></h1>
     <button mat-button (click)="navigateToOrganization()" *ngIf="showOrganizations"><b>Organizaciones</b></button>
     <ng-container *ngIf="organizationId" class="ml-1">
-      <button mat-button routerLink="/organization/{{organizationId}}/channels">
+      <button mat-button (click)="redirect('channels')">
         <b>Canales</b>
       </button>
-      <button mat-button routerLink="/organization/{{organizationId}}/users">
+      <button mat-button (click)="redirect('users')">
         <b>Usuarios</b>
       </button>
-      <button mat-button routerLink="/organization/{{organizationId}}/statistics">
+      <button mat-button (click)="redirect('statistics')">
         <b>Estadísticas</b>
       </button>
-      <button mat-button routerLink="/organization/{{organizationId}}/forbiddenWords">
+      <button mat-button (click)="redirect('forbiddenWords')">
         <b>Palabras Prohibidas</b>
       </button>
-      <button mat-button routerLink="/organization/{{organizationId}}/bots">
+      <button mat-button (click)="redirect('bots')">
         <b>Bots</b>
       </button>
     </ng-container>
