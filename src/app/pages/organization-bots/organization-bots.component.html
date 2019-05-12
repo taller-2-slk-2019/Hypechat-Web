@@ -35,6 +35,19 @@
   <app-alert-error [errorMessage]="errorMessage" (close)="errorMessage = ''"></app-alert-error>
 </div>
 
+<div class="d-flex justify-content-center my-3" style="white-space: pre">
+  <div class="alert alert-warning fade show" role="alert" >
+    Cuando son mencionados en un mensaje, los bots recibirán una llamada POST con el siguiente formato:<br><br>
+
+    {{ '{' }}<br>
+    <span class="ml-3">bot: string,<br></span>
+      <span class="ml-3">message: string,<br></span>
+      <span class="ml-3">channelId: integer,<br></span>
+      <span class="ml-3">senderId: integer<br></span>
+    {{ '}' }}
+  </div>
+</div>
+
 <div *ngIf="!loading && bots.length == 0" class="d-flex justify-content-center my-5">
   <p> La organización no tiene bots </p>
 </div>
