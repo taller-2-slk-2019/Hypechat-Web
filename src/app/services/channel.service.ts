@@ -44,4 +44,9 @@ export class ChannelService {
   createChannel(data): Observable<any> {
     return this.serverService.post(this.url, data);
   }
+
+  editChannel(channel): Observable<any> {
+    const url = `${this.url}/${channel.id}`;
+    return this.serverService.put(url, channel);
+  }
 }

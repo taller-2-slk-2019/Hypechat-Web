@@ -14,10 +14,8 @@ import {NgxSpinnerService} from 'ngx-spinner';
 export class ChannelCreateComponent extends BaseComponent implements OnInit {
   title = 'Crear Canal';
   organizationId: string;
-  name: string;
-  description: string;
-  welcome: string;
   type: string;
+  channel =  new Channel();
 
   constructor(private route: ActivatedRoute, private channelService: ChannelService,
               router: Router, localStorageService: MyLocalStorageService,
@@ -31,22 +29,18 @@ export class ChannelCreateComponent extends BaseComponent implements OnInit {
   }
 
   isInvalid() {
-    let invalid = this.name === '';
-    invalid = invalid || this.description === '';
-    invalid = invalid || this.welcome === '';
+    let invalid = this.channel.name === '';
+    invalid = invalid || this.channel.description === '';
+    invalid = invalid || this.channel.welcome === '';
     return invalid;
   }
 
   createChannel() {
-    const channel = new Channel();
-    channel.name = this.name;
-    channel.description = this.description;
-    channel.isPublic = this.type === 'Public';
-    channel.welcome = this.welcome;
-    channel.organizationId = +this.organizationId;
+    this.channel.isPublic = this.type === 'Public';
+    this.channel.organizationId = +this.organizationId;
 
     this.showLoading();
-    this.channelService.createChannel(channel).subscribe(
+    this.channelService.createChannel(this.channel).subscribe(
       data => {
         this.setSuccess(`El canal "${data.name}" fue creado`);
         this.reset();
@@ -60,9 +54,10 @@ export class ChannelCreateComponent extends BaseComponent implements OnInit {
   }
 
   reset() {
-    this.name = '';
-    this.description = '';
-    this.welcome = '';
     this.type = 'Public';
+    this.channel.name = '';
+    this.channel.description = '';
+    this.channel.welcome = '';
+    this.channel.isPublic = true;
   }
 }
