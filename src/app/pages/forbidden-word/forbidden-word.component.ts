@@ -23,8 +23,8 @@ export class ForbiddenWordComponent extends BaseComponent implements OnInit {
   newWord = '';
 
   constructor(private route: ActivatedRoute, private forbiddenWordService: ForbiddenWordService,
-              private localStorageService: MyLocalStorageService, private router: Router,
-              private spinnerService: NgxSpinnerService) {
+              localStorageService: MyLocalStorageService, router: Router,
+              spinnerService: NgxSpinnerService) {
     super(localStorageService, router, spinnerService);
   }
 
@@ -43,7 +43,7 @@ export class ForbiddenWordComponent extends BaseComponent implements OnInit {
   }
 
   addWord() {
-    if (this.words.filter(word => word.word === this.newWord).length === 0) {
+    if (this.words.every(word => word.word !== this.newWord)) {
       this.showLoading();
       this.forbiddenWordService.addForbiddenWord(this.newWord, this.organizationId)
         .subscribe(data => {
@@ -55,6 +55,8 @@ export class ForbiddenWordComponent extends BaseComponent implements OnInit {
           this.setError(ADD_WORD_ERROR);
           this.hideLoading();
         });
+    } else {
+      this.setError('La palabra ya existe');
     }
 
     this.newWord = '';

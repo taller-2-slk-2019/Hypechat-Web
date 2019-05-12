@@ -20,8 +20,8 @@ export class ChannelCreateComponent extends BaseComponent implements OnInit {
   type: string;
 
   constructor(private route: ActivatedRoute, private channelService: ChannelService,
-              private router: Router, private localStorageService: MyLocalStorageService,
-              private spinnerService: NgxSpinnerService) {
+              router: Router, localStorageService: MyLocalStorageService,
+              spinnerService: NgxSpinnerService) {
     super(localStorageService, router, spinnerService);
   }
 

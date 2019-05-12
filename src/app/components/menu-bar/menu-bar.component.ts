@@ -1,6 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
-import {MyLocalStorageService} from '../../services/my-local-storage.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { MyLocalStorageService } from '../../services/my-local-storage.service';
+import { Organization } from '../../models/Organization';
 
 @Component({
   selector: 'app-menu-bar',
@@ -10,17 +11,30 @@ import {MyLocalStorageService} from '../../services/my-local-storage.service';
 export class MenuBarComponent implements OnInit {
   @Input() organizationId = '';
   @Input() showOrganizations = true;
+  organization: Organization;
   isLogged: boolean;
 
   constructor(private router: Router, private localStorageService: MyLocalStorageService) {
     this.isLogged = this.localStorageService.isLoggedIn();
+    this.organization = this.localStorageService.getOrganization();
   }
 
   ngOnInit() {
+    if (this.organizationId) {
+      if (!this.organization || this.organization.id.toString() !== this.organizationId) {
+        this.navigateToOrganization();
+      }
+    }
   }
 
   signOut() {
     this.localStorageService.clearAdmin();
+    this.localStorageService.clearOrganization();
     this.router.navigate(['']);
+  }
+
+  navigateToOrganization() {
+    this.localStorageService.clearOrganization();
+    this.router.navigate(['/organization']);
   }
 }

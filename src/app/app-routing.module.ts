@@ -8,7 +8,8 @@ import { OrganizationUsersComponent } from './pages/organization-users/organizat
 import { ChannelListComponent } from './pages/channel-list/channel-list.component';
 import { ChannelUsersComponent } from './pages/channel-users/channel-users.component';
 import { ChannelCreateComponent } from './pages/channel-create/channel-create.component';
-import {LoginComponent} from './pages/login/login.component';
+import { LoginComponent } from './pages/login/login.component';
+import { OrganizationBotsComponent } from './pages/organization-bots/organization-bots.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'organization/:id/channels/:channelId', component: ChannelUsersComponent },
   { path: 'organization/:id/channels', component: ChannelListComponent },
   { path: 'organization/:id/users', component: OrganizationUsersComponent },
+  { path: 'organization/:id/bots', component: OrganizationBotsComponent },
   { path: 'organization/:id/statistics', component: StatisticsComponent },
   { path: 'organization/:id/forbiddenWords', component: ForbiddenWordComponent },
   { path: '**', component: PageNotFoundComponent }
@@ -33,4 +35,7 @@ export const routingComponents = [OrganizationListComponent,
                                   OrganizationUsersComponent,
                                   StatisticsComponent,
                                   ForbiddenWordComponent,
-                                  PageNotFoundComponent];
+                                  PageNotFoundComponent,
+                                  ChannelCreateComponent,
+                                  OrganizationBotsComponent,
+                                  LoginComponent];

@@ -1,0 +1,53 @@
+<app-menu-bar [organizationId]="organizationId"></app-menu-bar>
+<h1 class="text-center my-5">{{ title }}</h1>
+
+<div class="d-flex justify-content-center">
+  <div class="w-25">
+    <input type="text" class="form-control"
+           placeholder="Nombre del bot" maxlength="50"
+           [ngClass]="{ 'is-invalid': isInvalidName() }"
+           [(ngModel)]="botName"/>
+
+    <div *ngIf="isInvalidName()" class="text-danger">
+      <small class="error">Debe ingresar una sola palabra</small>
+    </div>
+  </div>
+
+  <div class="w-25 ml-3">
+    <input type="text" class="form-control"
+           placeholder="Url del bot" maxlength="50"
+           [ngClass]="{ 'is-invalid': isInvalidUrl() }"
+           [(ngModel)]="botUrl"/>
+
+    <div *ngIf="isInvalidUrl()" class="text-danger">
+      <small class="error">Url inválida</small>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary h-100 ml-4" (click)="addBot()"
+          [disabled]="isInvalidUrl() || isInvalidName() || !botUrl || !botName">
+    <i class="fas fa-plus"></i>
+  </button>
+</div>
+
+<div class="d-flex justify-content-center my-3">
+  <app-alert-success [successMessage]="successMessage" (close)="successMessage = ''"></app-alert-success>
+  <app-alert-error [errorMessage]="errorMessage" (close)="errorMessage = ''"></app-alert-error>
+</div>
+
+<div *ngIf="!loading && bots.length == 0" class="d-flex justify-content-center my-5">
+  <p> La organización no tiene bots </p>
+</div>
+
+<div class="d-flex justify-content-center">
+  <ul class="list-group w-50">
+    <li *ngFor="let bot of bots" class="list-group-item d-flex justify-content-between">
+      <div style="width: 80%;word-break: break-word">
+        <span><b><u>Nombre:</u></b> {{bot.name}}</span>
+        <br>
+        <span><b><u>Url:</u></b> {{bot.url}}</span>
+      </div>
+      <button class="btn btn-danger" (click)="deleteBot(bot)"><i class="fas fa-trash"></i></button>
+    </li>
+  </ul>
+</div>

@@ -2,7 +2,7 @@
   <div class="d-flex float-left align-items-center">
     <img src="../../../assets/favicon.png" class="mr-2">
     <h1 class="mr-4"><b>Hypechat</b></h1>
-    <button mat-button routerLink="/organization" *ngIf="showOrganizations"><b>Organizaciones</b></button>
+    <button mat-button (click)="navigateToOrganization()" *ngIf="showOrganizations"><b>Organizaciones</b></button>
     <ng-container *ngIf="organizationId" class="ml-1">
       <button mat-button routerLink="/organization/{{organizationId}}/channels">
         <b>Canales</b>
@@ -16,11 +16,21 @@
       <button mat-button routerLink="/organization/{{organizationId}}/forbiddenWords">
         <b>Palabras Prohibidas</b>
       </button>
+      <button mat-button routerLink="/organization/{{organizationId}}/bots">
+        <b>Bots</b>
+      </button>
     </ng-container>
   </div>
   <div class="d-flex float-right" *ngIf="isLogged">
     <button mat-button (click)="signOut()">
-      <b>Cerrar sesión</b>
+      <i class="fas fa-sign-out-alt"></i>
     </button>
   </div>
 </mat-toolbar>
+
+<div class="mt-2 mx-3" *ngIf="organizationId && organization">
+  <p class="d-flex justify-content-center" style="text-align: center;word-break: break-word">
+    <b>Organización: {{organization.name}}</b>
+  </p>
+  <hr>
+</div>

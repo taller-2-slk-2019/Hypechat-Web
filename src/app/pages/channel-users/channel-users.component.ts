@@ -20,8 +20,8 @@ export class ChannelUsersComponent extends BaseComponent implements OnInit {
   channelId: string;
 
   constructor(private route: ActivatedRoute, private userService: UserService,
-              private channelService: ChannelService, private localStorageService: MyLocalStorageService,
-              private router: Router,  private spinnerService: NgxSpinnerService) {
+              private channelService: ChannelService, localStorageService: MyLocalStorageService,
+              router: Router,  spinnerService: NgxSpinnerService) {
     super(localStorageService, router, spinnerService);
   }
 

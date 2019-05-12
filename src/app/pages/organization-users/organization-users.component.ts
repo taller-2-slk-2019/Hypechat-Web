@@ -21,8 +21,8 @@ export class OrganizationUsersComponent extends BaseComponent implements OnInit 
   email = '';
 
   constructor(private route: ActivatedRoute, private userService: UserService,
-              private organizationService: OrganizationService, private spinnerService: NgxSpinnerService,
-              private localStorageService: MyLocalStorageService, private router: Router) {
+              private organizationService: OrganizationService, spinnerService: NgxSpinnerService,
+              localStorageService: MyLocalStorageService, router: Router) {
     super(localStorageService, router, spinnerService);
   }
 
