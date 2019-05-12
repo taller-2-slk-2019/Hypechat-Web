@@ -16,16 +16,24 @@ export class ChannelCreateComponent extends BaseComponent implements OnInit {
   organizationId: string;
   type: string;
   channel =  new Channel();
+  savedChannel: Channel;
 
   constructor(private route: ActivatedRoute, private channelService: ChannelService,
-              router: Router, localStorageService: MyLocalStorageService,
+              localStorageService: MyLocalStorageService, router: Router,
               spinnerService: NgxSpinnerService) {
     super(localStorageService, router, spinnerService);
+    this.savedChannel = localStorageService.getChannel();
   }
 
   ngOnInit() {
     this.organizationId = this.route.snapshot.paramMap.get('id');
-    this.reset();
+    if (this.savedChannel) {
+      this.copyChannel();
+      this.type = this.translateType();
+    } else {
+      this.reset();
+    }
+    this.channel.organizationId = +this.organizationId;
   }
 
   isInvalid() {
@@ -37,7 +45,6 @@ export class ChannelCreateComponent extends BaseComponent implements OnInit {
 
   createChannel() {
     this.channel.isPublic = this.type === 'Public';
-    this.channel.organizationId = +this.organizationId;
 
     this.showLoading();
     this.channelService.createChannel(this.channel).subscribe(
@@ -53,11 +60,49 @@ export class ChannelCreateComponent extends BaseComponent implements OnInit {
     );
   }
 
+  editChannel() {
+    this.channel.isPublic = this.type === 'Public';
+    this.showLoading();
+    this.channelService.editChannel(this.channel).subscribe(
+      data => {
+        this.setSuccess(`El canal "${this.channel.name}" fue actualizado`);
+        this.hideLoading();
+      },
+      error => {
+        this.setError('No se pudo actualizar el canal');
+        this.hideLoading();
+      }
+    );
+  }
+
+  executeFunction() {
+    if (this.savedChannel) {
+      this.editChannel();
+    } else {
+      this.createChannel();
+    }
+  }
+
   reset() {
     this.type = 'Public';
     this.channel.name = '';
     this.channel.description = '';
     this.channel.welcome = '';
     this.channel.isPublic = true;
+  }
+
+  private copyChannel() {
+    this.channel.name = this.savedChannel.name;
+    this.channel.description = this.savedChannel.description;
+    this.channel.welcome = this.savedChannel.welcome;
+    this.channel.isPublic = this.savedChannel.isPublic;
+    this.channel.id = this.savedChannel.id;
+  }
+
+  private translateType() {
+    if (this.channel.isPublic) {
+      return 'Public';
+    }
+    return 'Private';
   }
 }

@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Channel } from '../../models/Channel';
 import * as moment from 'moment';
+import { Router } from '@angular/router';
+import { MyLocalStorageService } from '../../services/my-local-storage.service';
 
 @Component({
   selector: 'app-channel',
@@ -12,7 +14,7 @@ export class ChannelComponent implements OnInit {
   @Input() organizationId: string;
   @Output() delete = new EventEmitter<Channel>();
 
-  constructor() { }
+  constructor(private router: Router, private localStorageService: MyLocalStorageService) { }
 
   ngOnInit() {
   }
@@ -23,5 +25,10 @@ export class ChannelComponent implements OnInit {
 
   deleteChannel() {
     this.delete.emit(this.channel);
+  }
+
+  editChannel() {
+    this.localStorageService.setChannel(this.channel);
+    this.router.navigate([`/organization/${this.organizationId}/channels/create`]);
   }
 }

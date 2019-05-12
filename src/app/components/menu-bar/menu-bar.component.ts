@@ -30,11 +30,13 @@ export class MenuBarComponent implements OnInit {
   signOut() {
     this.localStorageService.clearAdmin();
     this.localStorageService.clearOrganization();
+    this.localStorageService.clearChannel();
     this.router.navigate(['']);
   }
 
   navigateToOrganization() {
     this.localStorageService.clearOrganization();
+    this.localStorageService.clearChannel();
     this.router.navigate(['/organization']);
   }
 }
