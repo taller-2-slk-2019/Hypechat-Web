@@ -28,7 +28,7 @@ export class ChannelCreateEditComponent extends BaseComponent implements OnInit 
   ngOnInit() {
     this.organizationId = this.route.snapshot.paramMap.get('id');
     if (this.savedChannel) {
-      this.copyChannel();
+      this.initializeChannel();
       this.type = this.translateType();
     } else {
       this.reset();
@@ -75,7 +75,7 @@ export class ChannelCreateEditComponent extends BaseComponent implements OnInit 
     );
   }
 
-  executeFunction() {
+  saveChannel() {
     if (this.savedChannel) {
       this.editChannel();
     } else {
@@ -91,7 +91,7 @@ export class ChannelCreateEditComponent extends BaseComponent implements OnInit 
     this.channel.isPublic = true;
   }
 
-  private copyChannel() {
+  private initializeChannel() {
     this.channel.name = this.savedChannel.name;
     this.channel.description = this.savedChannel.description;
     this.channel.welcome = this.savedChannel.welcome;
