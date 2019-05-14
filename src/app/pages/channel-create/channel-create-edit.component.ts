@@ -14,7 +14,6 @@ import {NgxSpinnerService} from 'ngx-spinner';
 export class ChannelCreateEditComponent extends BaseComponent implements OnInit {
   title = 'Crear Canal';
   organizationId: string;
-  type: string;
   channel =  new Channel();
   savedChannel: Channel;
 
@@ -29,7 +28,6 @@ export class ChannelCreateEditComponent extends BaseComponent implements OnInit 
     this.organizationId = this.route.snapshot.paramMap.get('id');
     if (this.savedChannel) {
       this.initializeChannel();
-      this.type = this.translateType();
     } else {
       this.reset();
     }
@@ -44,8 +42,6 @@ export class ChannelCreateEditComponent extends BaseComponent implements OnInit 
   }
 
   createChannel() {
-    this.channel.isPublic = this.type === 'Public';
-
     this.showLoading();
     this.channelService.createChannel(this.channel).subscribe(
       data => {
@@ -61,7 +57,6 @@ export class ChannelCreateEditComponent extends BaseComponent implements OnInit 
   }
 
   editChannel() {
-    this.channel.isPublic = this.type === 'Public';
     this.showLoading();
     this.channelService.editChannel(this.channel).subscribe(
       data => {
@@ -84,7 +79,6 @@ export class ChannelCreateEditComponent extends BaseComponent implements OnInit 
   }
 
   reset() {
-    this.type = 'Public';
     this.channel.name = '';
     this.channel.description = '';
     this.channel.welcome = '';
@@ -97,12 +91,5 @@ export class ChannelCreateEditComponent extends BaseComponent implements OnInit 
     this.channel.welcome = this.savedChannel.welcome;
     this.channel.isPublic = this.savedChannel.isPublic;
     this.channel.id = this.savedChannel.id;
-  }
-
-  private translateType() {
-    if (this.channel.isPublic) {
-      return 'Public';
-    }
-    return 'Private';
   }
 }

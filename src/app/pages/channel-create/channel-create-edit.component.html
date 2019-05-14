@@ -12,15 +12,10 @@
     <div class="form-group">
 
       <label class="mt-3"><b>Tipo de canal</b></label>
-      <div class="form-control d-flex">
-        <label class="radio-inline mr-3">
-          <input type="radio" value="Public" name="channel-type" [(ngModel)]="type">
-          Público
-        </label>
-        <label class="radio-inline">
-          <input type="radio" value="Private" name="channel-type" [(ngModel)]="type">
-          Privado
-        </label>
+      <div class="form-control">
+        <i class="mr-3 fas fa-lock"></i>
+        <mat-slide-toggle color="primary" [(ngModel)]="channel.isPublic"></mat-slide-toggle>
+        <i class="mx-3 fas fa-lock-open"></i>
       </div>
 
       <label class="mt-3"><b>Nombre del canal</b></label>

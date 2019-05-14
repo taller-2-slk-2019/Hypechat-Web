@@ -13,7 +13,7 @@ import { AlertSuccessComponent } from './components/alert-success/alert-success.
 import { AlertErrorComponent } from './components/alert-error/alert-error.component';
 import { OrganizationComponent } from './components/organization/organization.component';
 import { MenuBarComponent } from './components/menu-bar/menu-bar.component';
-import { MatButtonModule, MatToolbarModule, MatDialogModule, MatRadioModule } from '@angular/material';
+import {MatButtonModule, MatToolbarModule, MatDialogModule, MatRadioModule, MatSlideToggleModule} from '@angular/material';
 import { ChannelComponent } from './components/channel/channel.component';
 import { TabsModule } from 'ngx-bootstrap';
 import { UserComponent } from './components/user/user.component';
@@ -56,7 +56,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     LocalStorageModule.forRoot({
       prefix: 'my-app',
       storageType: 'localStorage'
-    })
+    }),
+    MatSlideToggleModule
   ],
   providers: [ForbiddenWordService],
   bootstrap: [AppComponent],
