@@ -7,7 +7,7 @@ import { StatisticsComponent } from './pages/statistics/statistics.component';
 import { OrganizationUsersComponent } from './pages/organization-users/organization-users.component';
 import { ChannelListComponent } from './pages/channel-list/channel-list.component';
 import { ChannelUsersComponent } from './pages/channel-users/channel-users.component';
-import { ChannelCreateEditComponent } from './pages/channel-create/channel-create-edit.component';
+import { ChannelCreateEditComponent } from './pages/channel-create-edit/channel-create-edit.component';
 import { LoginComponent } from './pages/login/login.component';
 import { OrganizationBotsComponent } from './pages/organization-bots/organization-bots.component';
 

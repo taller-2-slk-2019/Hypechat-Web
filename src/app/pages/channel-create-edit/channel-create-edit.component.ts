@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { BaseComponent } from '../../components/base/base.component';
-import {ActivatedRoute, Router} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ChannelService } from '../../services/channel.service';
-import {Channel} from '../../models/Channel';
-import {MyLocalStorageService} from '../../services/my-local-storage.service';
-import {NgxSpinnerService} from 'ngx-spinner';
+import { Channel } from '../../models/Channel';
+import { MyLocalStorageService } from '../../services/my-local-storage.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-channel-create',
