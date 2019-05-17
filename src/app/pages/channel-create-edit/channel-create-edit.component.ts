@@ -28,6 +28,7 @@ export class ChannelCreateEditComponent extends BaseComponent implements OnInit 
     this.organizationId = this.route.snapshot.paramMap.get('id');
     if (this.savedChannel) {
       this.initializeChannel();
+      this.title = 'Editar Canal';
     } else {
       this.reset();
     }

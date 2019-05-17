@@ -14,13 +14,9 @@ import {AngularFireStorage} from '@angular/fire/storage';
 })
 export class OrganizationCreateComponent extends BaseComponent implements OnInit {
   title = 'Crear Organización';
-  name: string;
-  picture: string;
-  latitude: number;
-  longitude: number;
-  description: string;
-  welcome: string;
+  organization: Organization = new Organization();
   file: File;
+  files: FileList;
 
   constructor(private organizationService: OrganizationService, private storage: AngularFireStorage,
               spinnerService: NgxSpinnerService,
@@ -33,45 +29,31 @@ export class OrganizationCreateComponent extends BaseComponent implements OnInit
   }
 
   reset() {
-    this.name = '';
-    // TODO Upload photo to firebase
-    this.picture = 'https://firebasestorage.googleapis.com/v0/b/hypechat-2fee8.appspot.com/o/fc693346-c672-4252-b8e6-627dc4050507image%3A77?alt=media&token=1620d265-238d-42b1-88a1-b687fefa70de';
-    this.latitude = -34.617566; // TODO Use Google map
-    this.longitude = -58.368440; // TODO Use Google map
-    this.description = '';
-    this.welcome = '';
+    this.organization.name = '';
+    this.organization.picture = '';
+    this.organization.latitude = -34.617566; // TODO Use Google map
+    this.organization.longitude = -58.368440; // TODO Use Google map
+    this.organization.description = '';
+    this.organization.welcome = '';
+    this.file = null;
+    this.files = null;
   }
 
   isInvalid() {
-    let invalid = this.name === '';
-    invalid = invalid || this.picture === '';
-    invalid = invalid || this.description === '';
-    invalid = invalid || this.welcome === '';
+    let invalid = this.organization.name === '';
+    invalid = invalid || this.organization.description === '';
+    invalid = invalid || this.organization.welcome === '';
+    invalid = invalid || this.file === null;
     return invalid;
   }
 
   createOrganization() {
-    const organization = new Organization();
-    organization.name = this.name;
-    organization.picture = this.picture;
-    organization.latitude = this.latitude;
-    organization.longitude = this.longitude;
-    organization.description = this.description;
-    organization.welcome = this.welcome;
-    this.upload(organization);
-  }
-
-  onNewFile(event) {
-    this.file = event.target.files[0];
-  }
-
-  upload(organization: Organization) {
     this.showLoading();
     const path = `${Date.now()}_${this.file.name}`;
     const ref = this.storage.ref(path);
     this.storage.upload(path, this.file).then().finally(async () => {
-      organization.picture = await ref.getDownloadURL().toPromise();
-      this.organizationService.createOrganization(organization).subscribe(
+      this.organization.picture = await ref.getDownloadURL().toPromise();
+      this.organizationService.createOrganization(this.organization).subscribe(
         data => {
           this.setSuccess(`La organización "${data.name}" fue creada`);
           this.reset();
@@ -83,5 +65,9 @@ export class OrganizationCreateComponent extends BaseComponent implements OnInit
         }
       );
     });
+  }
+
+  onNewFile(event) {
+    this.file = event.target.files[0];
   }
 }
