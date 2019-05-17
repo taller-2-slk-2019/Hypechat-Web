@@ -10,14 +10,16 @@
 <div class="d-flex justify-content-center">
   <div class="w-75">
     <div class="form-group">
+      <label class="mt-3"><b>Seleccionar imagen</b></label>
+      <input type="file" class="form-control" (change)="onNewFile($event)"/>
       <label class="mt-3"><b>Nombre de la organización</b></label>
       <input type="text" class="form-control"
-             placeholder="Nombre del canal" maxlength="50"
+             placeholder="Nombre de la organización" maxlength="50"
              [(ngModel)]="name"/>
 
       <label class="mt-3"><b>Descripción de la organización</b></label>
       <input type="text" class="form-control"
-             placeholder="Descripción del canal" maxlength="50"
+             placeholder="Descripción de la organización" maxlength="50"
              [(ngModel)]="description"/>
 
       <label class="mt-3"><b>Mensaje de bienvenida de la organización</b></label>

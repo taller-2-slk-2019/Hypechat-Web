@@ -7,6 +7,8 @@ import { LocalStorageModule } from 'angular-2-local-storage';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { AgmCoreModule } from '@agm/core';
+
 import { ForbiddenWordService } from './services/forbidden-word.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AlertSuccessComponent } from './components/alert-success/alert-success.component';
@@ -23,6 +25,11 @@ import { OrganizationCreateComponent } from './pages/organization-create/organiz
 import { ChartsModule } from 'ng2-charts';
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+
+// Firebase
+import { environment } from '../environments/environment';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 @NgModule({
   declarations: [
@@ -57,7 +64,10 @@ import { NgxSpinnerModule } from 'ngx-spinner';
       prefix: 'my-app',
       storageType: 'localStorage'
     }),
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule,
+    AgmCoreModule.forRoot()
   ],
   providers: [ForbiddenWordService],
   bootstrap: [AppComponent],

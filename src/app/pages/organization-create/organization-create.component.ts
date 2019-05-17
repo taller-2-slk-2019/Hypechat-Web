@@ -5,6 +5,7 @@ import {Organization} from '../../models/Organization';
 import {Router} from '@angular/router';
 import {MyLocalStorageService} from '../../services/my-local-storage.service';
 import {NgxSpinnerService} from 'ngx-spinner';
+import {AngularFireStorage} from '@angular/fire/storage';
 
 @Component({
   selector: 'app-organization-create',
@@ -19,8 +20,10 @@ export class OrganizationCreateComponent extends BaseComponent implements OnInit
   longitude: number;
   description: string;
   welcome: string;
+  file: File;
 
-  constructor(private organizationService: OrganizationService, spinnerService: NgxSpinnerService,
+  constructor(private organizationService: OrganizationService, private storage: AngularFireStorage,
+              spinnerService: NgxSpinnerService,
               localStorageService: MyLocalStorageService, router: Router) {
     super(localStorageService, router, spinnerService);
   }
@@ -55,18 +58,30 @@ export class OrganizationCreateComponent extends BaseComponent implements OnInit
     organization.longitude = this.longitude;
     organization.description = this.description;
     organization.welcome = this.welcome;
+    this.upload(organization);
+  }
 
+  onNewFile(event) {
+    this.file = event.target.files[0];
+  }
+
+  upload(organization: Organization) {
     this.showLoading();
-    this.organizationService.createOrganization(organization).subscribe(
-      data => {
-        this.setSuccess(`La organización "${data.name}" fue creada`);
-        this.reset();
-        this.hideLoading();
-      },
-      error => {
-        this.setError('No se pudo crear la organización');
-        this.hideLoading();
-      }
-    );
+    const path = `${Date.now()}_${this.file.name}`;
+    const ref = this.storage.ref(path);
+    this.storage.upload(path, this.file).then().finally(async () => {
+      organization.picture = await ref.getDownloadURL().toPromise();
+      this.organizationService.createOrganization(organization).subscribe(
+        data => {
+          this.setSuccess(`La organización "${data.name}" fue creada`);
+          this.reset();
+          this.hideLoading();
+        },
+        error => {
+          this.setError('No se pudo crear la organización');
+          this.hideLoading();
+        }
+      );
+    });
   }
 }
