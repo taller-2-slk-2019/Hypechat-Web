@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { LocalStorageService } from 'angular-2-local-storage';
 import { Admin } from '../models/Admin';
 import { Organization } from '../models/Organization';
+import {Channel} from '../models/Channel';
 
 @Injectable({
   providedIn: 'root'
@@ -36,5 +37,17 @@ export class MyLocalStorageService {
 
   clearOrganization() {
     this.localStorageService.remove('organization');
+  }
+
+  setChannel(channel: Channel) {
+    this.localStorageService.set('channel', channel);
+  }
+
+  getChannel(): Channel {
+    return this.localStorageService.get('channel');
+  }
+
+  clearChannel() {
+    this.localStorageService.remove('channel');
   }
 }

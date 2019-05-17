@@ -1,2 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.form-control+.input-group-addon {
+  background-color: #0275d8;
+  color: white;
+}
+
+#search-bar {
+  border-radius: 0;
+}
+
+input.form-control.is-invalid {
+  border-color: red;
+}
