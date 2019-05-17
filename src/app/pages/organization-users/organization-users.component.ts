@@ -81,7 +81,6 @@ error =>  {
   }
 
   changeRole(roleEvent: RoleEvent) {
-    // TODO change role in the server
     const newRole = roleEvent.newRole;
     this.showLoading();
     this.organizationService.changeRole(roleEvent.user.id.toString(), this.organizationId, newRole)

@@ -31,7 +31,7 @@ export class ChannelCreateEditComponent extends BaseComponent implements OnInit 
     } else {
       this.reset();
     }
-    this.channel.organizationId = +this.organizationId;
+    this.channel.organizationId = Number(this.organizationId);
   }
 
   isInvalid() {
