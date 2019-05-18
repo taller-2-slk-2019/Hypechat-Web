@@ -106,6 +106,9 @@ export class OrganizationCreateEditComponent extends BaseComponent implements On
           this.hideLoading();
         }
       );
+    }).catch(firebaseError => {
+      this.setError('No se pudo crear la organización');
+      this.hideLoading();
     });
   }
 
@@ -115,6 +118,9 @@ export class OrganizationCreateEditComponent extends BaseComponent implements On
       this.firebase.upload(this.file).then(async () => {
         this.organization.picture = await this.firebase.getReference().getDownloadURL().toPromise();
         this.updateOrganization();
+      }).catch(error => {
+        this.setError('No se pudo actualizar la organización');
+        this.hideLoading();
       });
     } else {
       this.updateOrganization();
