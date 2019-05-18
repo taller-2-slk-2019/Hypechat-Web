@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { BaseComponent } from '../../components/base/base.component';
-import {OrganizationService} from '../../services/organization.service';
-import {Organization} from '../../models/Organization';
-import {Router} from '@angular/router';
-import {MyLocalStorageService} from '../../services/my-local-storage.service';
-import {NgxSpinnerService} from 'ngx-spinner';
-import {AngularFireStorage} from '@angular/fire/storage';
+import { OrganizationService } from '../../services/organization.service';
+import { Organization } from '../../models/Organization';
+import { Router } from '@angular/router';
+import { MyLocalStorageService } from '../../services/my-local-storage.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { FirebaseService } from '../../services/firebase.service';
 
 @Component({
   selector: 'app-organization-create-edit',
@@ -22,9 +22,9 @@ export class OrganizationCreateEditComponent extends BaseComponent implements On
   files: FileList;
   imageUrl: any;
 
-  constructor(private organizationService: OrganizationService, private storage: AngularFireStorage,
-              spinnerService: NgxSpinnerService,
-              localStorageService: MyLocalStorageService, router: Router) {
+  constructor(private organizationService: OrganizationService, private firebase: FirebaseService,
+              spinnerService: NgxSpinnerService, localStorageService: MyLocalStorageService,
+              router: Router) {
     super(localStorageService, router, spinnerService);
     this.savedOrganization = localStorageService.getOrganization();
   }
@@ -93,10 +93,8 @@ export class OrganizationCreateEditComponent extends BaseComponent implements On
 
   createOrganization() {
     this.showLoading();
-    const path = `${Date.now()}_${this.file.name}`;
-    const ref = this.storage.ref(path);
-    this.storage.upload(path, this.file).then().finally(async () => {
-      this.organization.picture = await ref.getDownloadURL().toPromise();
+    this.firebase.upload(this.file).then(async () => {
+      this.organization.picture = await this.firebase.getReference().getDownloadURL().toPromise();
       this.organizationService.createOrganization(this.organization).subscribe(
         data => {
           this.setSuccess(`La organización "${data.name}" fue creada`);
@@ -114,10 +112,8 @@ export class OrganizationCreateEditComponent extends BaseComponent implements On
   editOrganization() {
     this.showLoading();
     if (this.file) {
-      const path = `${Date.now()}_${this.file.name}`;
-      const ref = this.storage.ref(path);
-      this.storage.upload(path, this.file).then().finally(async () => {
-        this.organization.picture = await ref.getDownloadURL().toPromise();
+      this.firebase.upload(this.file).then(async () => {
+        this.organization.picture = await this.firebase.getReference().getDownloadURL().toPromise();
         this.updateOrganization();
       });
     } else {
