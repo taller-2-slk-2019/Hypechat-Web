@@ -35,6 +35,7 @@ export class OrganizationCreateEditComponent extends BaseComponent implements On
       this.initializeOrganization();
       this.title = 'Editar Organización';
       this.organizationId = this.savedOrganization.id.toString();
+      this.imageUrl = this.organization.picture;
       this.hasImage = true;
     }
   }
@@ -47,7 +48,6 @@ export class OrganizationCreateEditComponent extends BaseComponent implements On
     this.organization.description = this.savedOrganization.description;
     this.organization.welcome = this.savedOrganization.welcome;
     this.organization.id = this.savedOrganization.id;
-    this.imageUrl = this.organization.picture;
   }
 
   reset() {
@@ -60,6 +60,7 @@ export class OrganizationCreateEditComponent extends BaseComponent implements On
     this.hasImage = false;
     this.file = null;
     this.files = null;
+    this.imageUrl = '../../../assets/no_image.png';
   }
 
   onNewFile(event) {
