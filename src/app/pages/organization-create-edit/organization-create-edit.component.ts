@@ -21,6 +21,7 @@ export class OrganizationCreateEditComponent extends BaseComponent implements On
   file: File;
   files: FileList;
   imageUrl: any;
+  locationChosen: boolean;
 
   constructor(private organizationService: OrganizationService, private firebase: FirebaseService,
               spinnerService: NgxSpinnerService, localStorageService: MyLocalStorageService,
@@ -37,6 +38,7 @@ export class OrganizationCreateEditComponent extends BaseComponent implements On
       this.organizationId = this.savedOrganization.id.toString();
       this.imageUrl = this.organization.picture;
       this.hasImage = true;
+      this.locationChosen = true;
     }
   }
 
@@ -53,14 +55,15 @@ export class OrganizationCreateEditComponent extends BaseComponent implements On
   reset() {
     this.organization.name = '';
     this.organization.picture = '';
-    this.organization.latitude = -34.617566; // TODO Use Google map
-    this.organization.longitude = -58.368440; // TODO Use Google map
+    this.organization.latitude = -34.617566;
+    this.organization.longitude = -58.368440;
     this.organization.description = '';
     this.organization.welcome = '';
     this.hasImage = false;
     this.file = null;
     this.files = null;
     this.imageUrl = '../../../assets/no_image.png';
+    this.locationChosen = false;
   }
 
   onNewFile(event) {
@@ -75,11 +78,18 @@ export class OrganizationCreateEditComponent extends BaseComponent implements On
     }
   }
 
+  onChoseLocation(event) {
+    this.organization.longitude = event.coords.lng;
+    this.organization.latitude = event.coords.lat;
+    this.locationChosen = true;
+  }
+
   isInvalid() {
     let invalid = this.organization.name === '';
     invalid = invalid || this.organization.description === '';
     invalid = invalid || this.organization.welcome === '';
     invalid = invalid || !this.hasImage;
+    invalid = invalid || !this.locationChosen;
     return invalid;
   }
 

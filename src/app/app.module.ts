@@ -7,8 +7,6 @@ import { LocalStorageModule } from 'angular-2-local-storage';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { AgmCoreModule } from '@agm/core';
-
 import { ForbiddenWordService } from './services/forbidden-word.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AlertSuccessComponent } from './components/alert-success/alert-success.component';
@@ -29,6 +27,9 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule } from '@angular/fire/storage';
+
+// Google maps
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
