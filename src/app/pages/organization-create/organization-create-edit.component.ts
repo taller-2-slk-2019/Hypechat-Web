@@ -8,11 +8,11 @@ import {NgxSpinnerService} from 'ngx-spinner';
 import {AngularFireStorage} from '@angular/fire/storage';
 
 @Component({
-  selector: 'app-organization-create',
-  templateUrl: './organization-create.component.html',
-  styleUrls: ['./organization-create.component.css']
+  selector: 'app-organization-create-edit',
+  templateUrl: './organization-create-edit.component.html',
+  styleUrls: ['./organization-create-edit.component.css']
 })
-export class OrganizationCreateComponent extends BaseComponent implements OnInit {
+export class OrganizationCreateEditComponent extends BaseComponent implements OnInit {
   title = 'Crear Organización';
   organization: Organization = new Organization();
   savedOrganization: Organization;

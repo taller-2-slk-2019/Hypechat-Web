@@ -7,7 +7,7 @@ import { MyLocalStorageService } from '../../services/my-local-storage.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
-  selector: 'app-channel-create',
+  selector: 'app-channel-create-edit',
   templateUrl: './channel-create-edit.component.html',
   styleUrls: ['./channel-create-edit.component.css']
 })

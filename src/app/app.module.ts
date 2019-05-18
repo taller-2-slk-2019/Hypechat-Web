@@ -21,7 +21,6 @@ import { TabsModule } from 'ngx-bootstrap';
 import { UserComponent } from './components/user/user.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { OrganizationCreateComponent } from './pages/organization-create/organization-create.component';
 import { ChartsModule } from 'ng2-charts';
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
@@ -43,7 +42,6 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
     UserComponent,
     ConfirmDialogComponent,
     PieChartComponent,
-    OrganizationCreateComponent,
   ],
   imports: [
     BrowserModule,
