@@ -20,6 +20,7 @@ export class OrganizationCreateComponent extends BaseComponent implements OnInit
   hasImage = false;
   file: File;
   files: FileList;
+  imageUrl: any;
 
   constructor(private organizationService: OrganizationService, private storage: AngularFireStorage,
               spinnerService: NgxSpinnerService,
@@ -46,6 +47,7 @@ export class OrganizationCreateComponent extends BaseComponent implements OnInit
     this.organization.description = this.savedOrganization.description;
     this.organization.welcome = this.savedOrganization.welcome;
     this.organization.id = this.savedOrganization.id;
+    this.imageUrl = this.organization.picture;
   }
 
   reset() {
@@ -61,8 +63,15 @@ export class OrganizationCreateComponent extends BaseComponent implements OnInit
   }
 
   onNewFile(event) {
-    this.file = event.target.files[0];
-    this.hasImage = true;
+    if (event.target.files && event.target.files[0]) {
+      this.file = event.target.files[0];
+      this.hasImage = true;
+      const reader = new FileReader();
+      reader.onload = (_event: any) => {
+        this.imageUrl = reader.result;
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    }
   }
 
   isInvalid() {
