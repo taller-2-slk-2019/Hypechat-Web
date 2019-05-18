@@ -10,7 +10,7 @@ import { ChannelUsersComponent } from './pages/channel-users/channel-users.compo
 import { ChannelCreateEditComponent } from './pages/channel-create-edit/channel-create-edit.component';
 import { LoginComponent } from './pages/login/login.component';
 import { OrganizationBotsComponent } from './pages/organization-bots/organization-bots.component';
-import { OrganizationCreateEditComponent } from './pages/organization-create/organization-create-edit.component';
+import { OrganizationCreateEditComponent } from './pages/organization-create-edit/organization-create-edit.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
