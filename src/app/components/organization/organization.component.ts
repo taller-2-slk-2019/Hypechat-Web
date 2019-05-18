@@ -28,6 +28,6 @@ export class OrganizationComponent implements OnInit {
 
   organizationSelected() {
     this.localStorageService.setOrganization(this.organization);
-    this.router.navigate([`/organization/${this.organization.id}/channels`]);
+    this.router.navigate([`/organization/${this.organization.id}/edit`]);
   }
 }

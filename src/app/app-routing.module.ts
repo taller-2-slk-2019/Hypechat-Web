@@ -16,6 +16,7 @@ const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'organization', component: OrganizationListComponent },
   { path: 'organization/create', component: OrganizationCreateComponent },
+  { path: 'organization/:id/edit', component: OrganizationCreateComponent },
   { path: 'organization/:id/channels/create', component: ChannelCreateEditComponent },
   { path: 'organization/:id/channels/edit', component: ChannelCreateEditComponent },
   { path: 'organization/:id/channels/:channelId', component: ChannelUsersComponent },
