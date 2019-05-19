@@ -15,7 +15,7 @@ export class FirebaseService {
     return this.storage.upload(path, file);
   }
 
-  getReference(): AngularFireStorageReference {
-    return this.ref;
+  getDownloadUrl() {
+    return this.ref.getDownloadURL().toPromise();
   }
 }

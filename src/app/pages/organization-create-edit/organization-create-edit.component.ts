@@ -71,7 +71,7 @@ export class OrganizationCreateEditComponent extends BaseComponent implements On
       this.file = event.target.files[0];
       this.hasImage = true;
       const reader = new FileReader();
-      reader.onload = (_event: any) => {
+      reader.onload = (aux: any) => {
         this.imageUrl = reader.result;
       };
       reader.readAsDataURL(event.target.files[0]);
@@ -104,7 +104,7 @@ export class OrganizationCreateEditComponent extends BaseComponent implements On
   createOrganization() {
     this.showLoading();
     this.firebase.upload(this.file).then(async () => {
-      this.organization.picture = await this.firebase.getReference().getDownloadURL().toPromise();
+      this.organization.picture = await this.firebase.getDownloadUrl();
       this.organizationService.createOrganization(this.organization).subscribe(
         data => {
           this.setSuccess(`La organización "${data.name}" fue creada`);
@@ -126,7 +126,7 @@ export class OrganizationCreateEditComponent extends BaseComponent implements On
     this.showLoading();
     if (this.file) {
       this.firebase.upload(this.file).then(async () => {
-        this.organization.picture = await this.firebase.getReference().getDownloadURL().toPromise();
+        this.organization.picture = await this.firebase.getDownloadUrl();
         this.updateOrganization();
       }).catch(error => {
         this.setError('No se pudo actualizar la organización');
