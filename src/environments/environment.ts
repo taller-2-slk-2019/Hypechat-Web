@@ -5,8 +5,9 @@
 export const environment = {
   production: false,
   baseUrl: 'http://localhost:3000/',
+  mapsKey: process.env.MAPS_KEY,
   firebaseConfig: {
-    apiKey: "AIzaSyDazVK7i04idMVm3ymmTRum1n8_uXVZ8ag",
+    apiKey: process.env.FIREBASE_KEY,
     authDomain: "hypechat-2fee8.firebaseapp.com",
     databaseURL: "https://hypechat-2fee8.firebaseio.com",
     projectId: "hypechat-2fee8",

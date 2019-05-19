@@ -1,8 +1,9 @@
 export const environment = {
   production: true,
   baseUrl: 'https://slack-taller2.herokuapp.com/',
+  mapsKey: process.env.MAPS_KEY,
   firebaseConfig: {
-    apiKey: "AIzaSyDazVK7i04idMVm3ymmTRum1n8_uXVZ8ag",
+    apiKey: process.env.FIREBASE_KEY,
     authDomain: "hypechat-2fee8.firebaseapp.com",
     databaseURL: "https://hypechat-2fee8.firebaseio.com",
     projectId: "hypechat-2fee8",

@@ -66,7 +66,9 @@ import { AgmCoreModule } from '@agm/core';
     MatSlideToggleModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
-    AgmCoreModule.forRoot()
+    AgmCoreModule.forRoot({
+      apiKey: environment.mapsKey
+    })
   ],
   providers: [ForbiddenWordService],
   bootstrap: [AppComponent],
