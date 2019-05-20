@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BaseComponent } from '../../components/base/base.component';
 import { OrganizationService } from '../../services/organization.service';
 import { Organization } from '../../models/Organization';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { MyLocalStorageService } from '../../services/my-local-storage.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { FirebaseService } from '../../services/firebase.service';
@@ -25,9 +25,10 @@ export class OrganizationCreateEditComponent extends BaseComponent implements On
 
   constructor(private organizationService: OrganizationService, private firebase: FirebaseService,
               spinnerService: NgxSpinnerService, localStorageService: MyLocalStorageService,
-              router: Router) {
+              router: Router, route: ActivatedRoute) {
     super(localStorageService, router, spinnerService);
     this.savedOrganization = localStorageService.getOrganization();
+    this.organizationId = route.snapshot.paramMap.get('id');
   }
 
   ngOnInit() {
@@ -35,7 +36,6 @@ export class OrganizationCreateEditComponent extends BaseComponent implements On
     if (this.savedOrganization) {
       this.initializeOrganization();
       this.title = 'Editar Organización';
-      this.organizationId = this.savedOrganization.id.toString();
       this.imageUrl = this.organization.picture;
       this.hasImage = true;
       this.locationChosen = true;

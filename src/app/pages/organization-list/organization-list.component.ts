@@ -22,6 +22,8 @@ export class OrganizationListComponent extends BaseComponent implements OnInit {
               private dialogService: DialogService, router: Router,
               localStorageService: MyLocalStorageService, spinnerService: NgxSpinnerService) {
     super(localStorageService, router, spinnerService);
+    localStorageService.clearOrganization();
+    localStorageService.clearChannel();
   }
 
   ngOnInit() {
