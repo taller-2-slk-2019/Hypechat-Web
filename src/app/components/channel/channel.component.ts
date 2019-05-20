@@ -29,6 +29,6 @@ export class ChannelComponent implements OnInit {
 
   editChannel() {
     this.localStorageService.setChannel(this.channel);
-    this.router.navigate([`/organization/${this.organizationId}/channels/edit`]);
+    this.router.navigate([`/organization/${this.organizationId}/channels/${this.channel.id.toString()}/edit`]);
   }
 }

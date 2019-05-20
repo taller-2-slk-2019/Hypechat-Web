@@ -22,10 +22,14 @@ export class ChannelCreateEditComponent extends BaseComponent implements OnInit 
               spinnerService: NgxSpinnerService) {
     super(localStorageService, router, spinnerService);
     this.savedChannel = localStorageService.getChannel();
+    this.organizationId = this.route.snapshot.paramMap.get('id');
+    const channelId = this.route.snapshot.paramMap.get('channelId');
+    if (channelId && (!this.savedChannel || this.savedChannel.id.toString() !== channelId)) {
+      router.navigate([`/organization/${this.organizationId}/channels`]);
+    }
   }
 
   ngOnInit() {
-    this.organizationId = this.route.snapshot.paramMap.get('id');
     if (this.savedChannel) {
       this.initializeChannel();
       this.title = 'Editar Canal';
