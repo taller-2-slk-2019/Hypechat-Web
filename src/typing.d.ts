@@ -1,7 +1,7 @@
 declare var process: Process;
 
 interface Process {
-  env: Env
+  env: Env;
 }
 
 interface Env {
@@ -10,5 +10,5 @@ interface Env {
 }
 
 interface GlobalEnvironment {
-  process: Process
+  process: Process;
 }
