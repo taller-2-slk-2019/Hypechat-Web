@@ -31,7 +31,7 @@ export class ChannelCreateEditComponent extends BaseComponent implements OnInit 
 
   ngOnInit() {
     if (this.savedChannel) {
-      this.initializeChannel();
+      this.channel = this.savedChannel;
       this.title = 'Editar Canal';
     } else {
       this.reset();
@@ -88,13 +88,5 @@ export class ChannelCreateEditComponent extends BaseComponent implements OnInit 
     this.channel.description = '';
     this.channel.welcome = '';
     this.channel.isPublic = true;
-  }
-
-  private initializeChannel() {
-    this.channel.name = this.savedChannel.name;
-    this.channel.description = this.savedChannel.description;
-    this.channel.welcome = this.savedChannel.welcome;
-    this.channel.isPublic = this.savedChannel.isPublic;
-    this.channel.id = this.savedChannel.id;
   }
 }

@@ -34,22 +34,12 @@ export class OrganizationCreateEditComponent extends BaseComponent implements On
   ngOnInit() {
     this.reset();
     if (this.savedOrganization) {
-      this.initializeOrganization();
+      this.organization = this.savedOrganization;
       this.title = 'Editar Organización';
       this.imageUrl = this.organization.picture;
       this.hasImage = true;
       this.locationChosen = true;
     }
-  }
-
-  initializeOrganization() {
-    this.organization.name = this.savedOrganization.name;
-    this.organization.picture = this.savedOrganization.picture;
-    this.organization.latitude = this.savedOrganization.latitude;
-    this.organization.longitude = this.savedOrganization.longitude;
-    this.organization.description = this.savedOrganization.description;
-    this.organization.welcome = this.savedOrganization.welcome;
-    this.organization.id = this.savedOrganization.id;
   }
 
   reset() {
