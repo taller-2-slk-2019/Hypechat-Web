@@ -24,10 +24,10 @@ export class OrganizationCreateEditComponent extends BaseComponent implements On
   locationChosen: boolean;
 
   constructor(private organizationService: OrganizationService, private firebase: FirebaseService,
-              spinnerService: NgxSpinnerService, localStorageService: MyLocalStorageService,
+              private storageService: MyLocalStorageService, spinnerService: NgxSpinnerService,
               router: Router, route: ActivatedRoute) {
-    super(localStorageService, router, spinnerService);
-    this.savedOrganization = localStorageService.getOrganization();
+    super(storageService, router, spinnerService);
+    this.savedOrganization = this.storageService.getOrganization();
     this.organizationId = route.snapshot.paramMap.get('id');
   }
 
@@ -143,6 +143,7 @@ export class OrganizationCreateEditComponent extends BaseComponent implements On
         this.setSuccess(`La organización "${this.organization.name}" fue actualizada`);
         this.file = null;
         this.files = null;
+        this.storageService.setOrganization(this.organization);
         this.hideLoading();
       }, error => {
         this.setError('No se pudo actualizar la organización');
