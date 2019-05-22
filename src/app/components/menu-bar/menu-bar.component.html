@@ -4,6 +4,9 @@
     <h1 class="mr-4"><b>Hypechat</b></h1>
     <button mat-button (click)="navigateToOrganization()" *ngIf="showOrganizations"><b>Organizaciones</b></button>
     <ng-container *ngIf="organizationId" class="ml-1">
+      <button mat-button (click)="redirect('edit')">
+        <b>Perfil</b>
+      </button>
       <button mat-button (click)="redirect('channels')">
         <b>Canales</b>
       </button>

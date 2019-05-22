@@ -10,13 +10,16 @@ import { ChannelUsersComponent } from './pages/channel-users/channel-users.compo
 import { ChannelCreateEditComponent } from './pages/channel-create-edit/channel-create-edit.component';
 import { LoginComponent } from './pages/login/login.component';
 import { OrganizationBotsComponent } from './pages/organization-bots/organization-bots.component';
+import { OrganizationCreateEditComponent } from './pages/organization-create-edit/organization-create-edit.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'organization', component: OrganizationListComponent },
+  { path: 'organization/create', component: OrganizationCreateEditComponent },
+  { path: 'organization/:id/edit', component: OrganizationCreateEditComponent },
   { path: 'organization/:id/channels/create', component: ChannelCreateEditComponent },
-  { path: 'organization/:id/channels/edit', component: ChannelCreateEditComponent },
-  { path: 'organization/:id/channels/:channelId', component: ChannelUsersComponent },
+  { path: 'organization/:id/channels/:channelId/users', component: ChannelUsersComponent },
+  { path: 'organization/:id/channels/:channelId/edit', component: ChannelCreateEditComponent },
   { path: 'organization/:id/channels', component: ChannelListComponent },
   { path: 'organization/:id/users', component: OrganizationUsersComponent },
   { path: 'organization/:id/bots', component: OrganizationBotsComponent },
@@ -39,4 +42,5 @@ export const routingComponents = [OrganizationListComponent,
                                   PageNotFoundComponent,
                                   ChannelCreateEditComponent,
                                   OrganizationBotsComponent,
-                                  LoginComponent];
+                                  LoginComponent,
+                                  OrganizationCreateEditComponent];

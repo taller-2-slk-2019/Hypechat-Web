@@ -19,10 +19,17 @@ import { TabsModule } from 'ngx-bootstrap';
 import { UserComponent } from './components/user/user.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { OrganizationCreateComponent } from './pages/organization-create/organization-create.component';
 import { ChartsModule } from 'ng2-charts';
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+
+// Firebase
+import { environment } from '../environments/environment';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+
+// Google maps
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -36,7 +43,6 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     UserComponent,
     ConfirmDialogComponent,
     PieChartComponent,
-    OrganizationCreateComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,7 +63,12 @@ import { NgxSpinnerModule } from 'ngx-spinner';
       prefix: 'my-app',
       storageType: 'localStorage'
     }),
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule,
+    AgmCoreModule.forRoot({
+      apiKey: environment.mapsKey
+    })
   ],
   providers: [ForbiddenWordService],
   bootstrap: [AppComponent],

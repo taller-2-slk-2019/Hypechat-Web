@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 import { ServerService } from './server.service';
 import { Observable } from 'rxjs';
 import { Organization } from '../models/Organization';
-import {OrganizationStatistics} from '../models/OrganizationStatistics';
-import {HttpParams} from '@angular/common/http';
-import {User} from '../models/User';
+import { OrganizationStatistics } from '../models/OrganizationStatistics';
+import { User } from '../models/User';
 
 @Injectable({
   providedIn: 'root'
@@ -52,5 +51,10 @@ export class OrganizationService {
 
   createOrganization(data): Observable<any> {
     return this.serverService.post(this.url, data);
+  }
+
+  editOrganization(organization): Observable<any> {
+    const url = `${this.url}/${organization.id}`;
+    return this.serverService.put(url, organization);
   }
 }

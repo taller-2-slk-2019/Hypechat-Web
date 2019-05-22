@@ -22,6 +22,7 @@ export class ChannelListComponent extends BaseComponent implements OnInit {
               private dialogService: DialogService, router: Router,
               localStorageService: MyLocalStorageService, spinnerService: NgxSpinnerService) {
     super(localStorageService, router, spinnerService);
+    localStorageService.clearChannel();
   }
 
   ngOnInit() {

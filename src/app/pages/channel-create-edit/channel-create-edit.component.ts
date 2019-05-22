@@ -7,7 +7,7 @@ import { MyLocalStorageService } from '../../services/my-local-storage.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
-  selector: 'app-channel-create',
+  selector: 'app-channel-create-edit',
   templateUrl: './channel-create-edit.component.html',
   styleUrls: ['./channel-create-edit.component.css']
 })
@@ -22,12 +22,17 @@ export class ChannelCreateEditComponent extends BaseComponent implements OnInit 
               spinnerService: NgxSpinnerService) {
     super(localStorageService, router, spinnerService);
     this.savedChannel = localStorageService.getChannel();
+    this.organizationId = this.route.snapshot.paramMap.get('id');
+    const channelId = this.route.snapshot.paramMap.get('channelId');
+    if (channelId && (!this.savedChannel || this.savedChannel.id.toString() !== channelId)) {
+      router.navigate([`/organization/${this.organizationId}/channels`]);
+    }
   }
 
   ngOnInit() {
-    this.organizationId = this.route.snapshot.paramMap.get('id');
     if (this.savedChannel) {
-      this.initializeChannel();
+      this.channel = this.savedChannel;
+      this.title = 'Editar Canal';
     } else {
       this.reset();
     }
@@ -83,13 +88,5 @@ export class ChannelCreateEditComponent extends BaseComponent implements OnInit 
     this.channel.description = '';
     this.channel.welcome = '';
     this.channel.isPublic = true;
-  }
-
-  private initializeChannel() {
-    this.channel.name = this.savedChannel.name;
-    this.channel.description = this.savedChannel.description;
-    this.channel.welcome = this.savedChannel.welcome;
-    this.channel.isPublic = this.savedChannel.isPublic;
-    this.channel.id = this.savedChannel.id;
   }
 }

@@ -35,8 +35,6 @@ export class MenuBarComponent implements OnInit {
   }
 
   navigateToOrganization() {
-    this.localStorageService.clearOrganization();
-    this.localStorageService.clearChannel();
     this.router.navigate(['/organization']);
   }
 
