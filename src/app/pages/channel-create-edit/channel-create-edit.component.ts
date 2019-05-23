@@ -16,6 +16,7 @@ export class ChannelCreateEditComponent extends BaseComponent implements OnInit 
   organizationId: string;
   channel =  new Channel();
   savedChannel: Channel;
+  hasChanged = false;
 
   constructor(private route: ActivatedRoute, private channelService: ChannelService,
               localStorageService: MyLocalStorageService, router: Router,
@@ -39,10 +40,15 @@ export class ChannelCreateEditComponent extends BaseComponent implements OnInit 
     this.channel.organizationId = Number(this.organizationId);
   }
 
+  onInputChange() {
+    this.hasChanged = true;
+  }
+
   isInvalid() {
     let invalid = this.channel.name === '';
     invalid = invalid || this.channel.description === '';
     invalid = invalid || this.channel.welcome === '';
+    invalid = invalid || !this.hasChanged;
     return invalid;
   }
 
@@ -66,6 +72,7 @@ export class ChannelCreateEditComponent extends BaseComponent implements OnInit 
     this.channelService.editChannel(this.channel).subscribe(
       data => {
         this.setSuccess(`El canal "${this.channel.name}" fue actualizado`);
+        this.hasChanged = false;
         this.hideLoading();
       },
       error => {
@@ -88,5 +95,6 @@ export class ChannelCreateEditComponent extends BaseComponent implements OnInit 
     this.channel.description = '';
     this.channel.welcome = '';
     this.channel.isPublic = true;
+    this.hasChanged = false;
   }
 }
