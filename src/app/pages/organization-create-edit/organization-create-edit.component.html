@@ -20,17 +20,17 @@
       <label class="mt-3"><b>Nombre de la organización</b></label>
       <input type="text" class="form-control"
              placeholder="Nombre de la organización" maxlength="50"
-             [(ngModel)]="organization.name"/>
+             [(ngModel)]="organization.name" (change)="onInputChange()"/>
 
       <label class="mt-3"><b>Descripción de la organización</b></label>
       <input type="text" class="form-control"
              placeholder="Descripción de la organización" maxlength="50"
-             [(ngModel)]="organization.description"/>
+             [(ngModel)]="organization.description" (change)="onInputChange()"/>
 
       <label class="mt-3"><b>Mensaje de bienvenida de la organización</b></label>
       <input type="text" class="form-control"
              placeholder="Mensaje de bienvenida" maxlength="50"
-             [(ngModel)]="organization.welcome"/>
+             [(ngModel)]="organization.welcome" (change)="onInputChange()"/>
     </div>
   </div>
 </div>

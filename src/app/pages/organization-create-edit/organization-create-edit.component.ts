@@ -22,6 +22,7 @@ export class OrganizationCreateEditComponent extends BaseComponent implements On
   files: FileList;
   imageUrl: any;
   locationChosen: boolean;
+  hasChanged = false;
 
   constructor(private organizationService: OrganizationService, private firebase: FirebaseService,
               private storageService: MyLocalStorageService, spinnerService: NgxSpinnerService,
@@ -54,24 +55,39 @@ export class OrganizationCreateEditComponent extends BaseComponent implements On
     this.files = null;
     this.imageUrl = '../../../assets/no_image.png';
     this.locationChosen = false;
+    this.hasChanged = false;
   }
 
   onNewFile(event) {
     if (event.target.files && event.target.files[0]) {
       this.file = event.target.files[0];
       this.hasImage = true;
+      this.hasChanged = true;
       const reader = new FileReader();
       reader.onload = (aux: any) => {
         this.imageUrl = reader.result;
       };
       reader.readAsDataURL(event.target.files[0]);
+    } else {
+      this.file = null;
+      if (this.savedOrganization) {
+        this.imageUrl = this.organization.picture;
+      } else {
+        this.imageUrl = '../../../assets/no_image.png';
+        this.hasImage = false;
+      }
     }
+  }
+
+  onInputChange() {
+    this.hasChanged = true;
   }
 
   onChoseLocation(event) {
     this.organization.longitude = event.coords.lng;
     this.organization.latitude = event.coords.lat;
     this.locationChosen = true;
+    this.hasChanged = true;
   }
 
   isInvalid() {
@@ -80,6 +96,7 @@ export class OrganizationCreateEditComponent extends BaseComponent implements On
     invalid = invalid || this.organization.welcome === '';
     invalid = invalid || !this.hasImage;
     invalid = invalid || !this.locationChosen;
+    invalid = invalid || !this.hasChanged;
     return invalid;
   }
 
@@ -133,6 +150,7 @@ export class OrganizationCreateEditComponent extends BaseComponent implements On
         this.setSuccess(`La organización "${this.organization.name}" fue actualizada`);
         this.file = null;
         this.files = null;
+        this.hasChanged = false;
         this.storageService.setOrganization(this.organization);
         this.hideLoading();
       }, error => {
