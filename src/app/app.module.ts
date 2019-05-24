@@ -9,8 +9,6 @@ import { AppComponent } from './app.component';
 
 import { ForbiddenWordService } from './services/forbidden-word.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AlertSuccessComponent } from './components/alert-success/alert-success.component';
-import { AlertErrorComponent } from './components/alert-error/alert-error.component';
 import { OrganizationComponent } from './components/organization/organization.component';
 import { MenuBarComponent } from './components/menu-bar/menu-bar.component';
 import { MatButtonModule, MatToolbarModule, MatDialogModule, MatRadioModule, MatSlideToggleModule } from '@angular/material';
@@ -36,8 +34,6 @@ import { AgmCoreModule } from '@agm/core';
 @NgModule({
   declarations: [
     AppComponent,
-    AlertSuccessComponent,
-    AlertErrorComponent,
     routingComponents,
     OrganizationComponent,
     MenuBarComponent,

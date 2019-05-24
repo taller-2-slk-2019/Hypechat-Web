@@ -19,11 +19,6 @@
   </button>
 </div>
 
-<div class="d-flex justify-content-center my-3">
-  <app-alert-success [successMessage]="successMessage" (close)="successMessage = ''"></app-alert-success>
-  <app-alert-error [errorMessage]="errorMessage" (close)="errorMessage = ''"></app-alert-error>
-</div>
-
 <div *ngIf="!loading && words.length == 0" class="d-flex justify-content-center my-5">
   <p> La organización no tiene palabras prohibidas </p>
 </div>
