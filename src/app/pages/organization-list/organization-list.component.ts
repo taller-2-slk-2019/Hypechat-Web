@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {Organization} from '../../models/Organization';
-import {OrganizationService} from '../../services/organization.service';
-import {BaseComponent} from '../../components/base/base.component';
-import {DialogService} from '../../services/dialog.service';
-import {Router} from '@angular/router';
-import {MyLocalStorageService} from '../../services/my-local-storage.service';
-import {NgxSpinnerService} from 'ngx-spinner';
+import { Organization } from '../../models/Organization';
+import { OrganizationService } from '../../services/organization.service';
+import { BaseComponent } from '../../components/base/base.component';
+import { DialogService } from '../../services/dialog.service';
+import { Router } from '@angular/router';
+import { MyLocalStorageService } from '../../services/my-local-storage.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-organization-list',
@@ -20,8 +21,9 @@ export class OrganizationListComponent extends BaseComponent implements OnInit {
 
   constructor(private organizationService: OrganizationService,
               private dialogService: DialogService, router: Router,
-              localStorageService: MyLocalStorageService, spinnerService: NgxSpinnerService) {
-    super(localStorageService, router, spinnerService);
+              localStorageService: MyLocalStorageService, spinnerService: NgxSpinnerService,
+              toastService: ToastrService) {
+    super(localStorageService, router, spinnerService, toastService);
     localStorageService.clearOrganization();
     localStorageService.clearChannel();
   }

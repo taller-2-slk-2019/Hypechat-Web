@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {BaseComponent} from '../../components/base/base.component';
-import {OrganizationService} from '../../services/organization.service';
-import {OrganizationStatistics} from '../../models/OrganizationStatistics';
-import {UserRoleHelper} from '../../helpers/UserRoleHelper';
-import {MessageTypeHelper} from '../../helpers/MessageTypeHelper';
-import {MyLocalStorageService} from '../../services/my-local-storage.service';
-import {NgxSpinnerService} from 'ngx-spinner';
+import { ActivatedRoute, Router } from '@angular/router';
+import { BaseComponent } from '../../components/base/base.component';
+import { OrganizationService } from '../../services/organization.service';
+import { OrganizationStatistics } from '../../models/OrganizationStatistics';
+import { UserRoleHelper } from '../../helpers/UserRoleHelper';
+import { MessageTypeHelper } from '../../helpers/MessageTypeHelper';
+import { MyLocalStorageService } from '../../services/my-local-storage.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-statistics',
@@ -23,8 +24,8 @@ export class StatisticsComponent extends BaseComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private organizationService: OrganizationService,
               localStorageService: MyLocalStorageService, router: Router,
-              spinnerService: NgxSpinnerService) {
-    super(localStorageService, router, spinnerService);
+              spinnerService: NgxSpinnerService, toastService: ToastrService) {
+    super(localStorageService, router, spinnerService, toastService);
   }
 
   ngOnInit() {

@@ -6,6 +6,7 @@ import { BaseComponent } from '../../components/base/base.component';
 import { DialogService } from '../../services/dialog.service';
 import { MyLocalStorageService } from '../../services/my-local-storage.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-channel-list',
@@ -20,8 +21,9 @@ export class ChannelListComponent extends BaseComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private channelService: ChannelService,
               private dialogService: DialogService, router: Router,
-              localStorageService: MyLocalStorageService, spinnerService: NgxSpinnerService) {
-    super(localStorageService, router, spinnerService);
+              localStorageService: MyLocalStorageService, spinnerService: NgxSpinnerService,
+              toastService: ToastrService) {
+    super(localStorageService, router, spinnerService, toastService);
     localStorageService.clearChannel();
   }
 

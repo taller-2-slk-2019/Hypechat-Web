@@ -22,6 +22,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChartsModule } from 'ng2-charts';
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { ToastrModule } from 'ngx-toastr';
+
 
 // Firebase
 import { environment } from '../environments/environment';
@@ -56,6 +58,11 @@ import { AgmCoreModule } from '@agm/core';
     MatButtonModule,
     MatDialogModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 2000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+    }),
     ChartsModule,
     TabsModule,
     MatRadioModule,

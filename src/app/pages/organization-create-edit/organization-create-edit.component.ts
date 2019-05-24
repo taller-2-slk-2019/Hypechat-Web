@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { BaseComponent } from '../../components/base/base.component';
 import { OrganizationService } from '../../services/organization.service';
 import { Organization } from '../../models/Organization';
-import {ActivatedRoute, Router} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MyLocalStorageService } from '../../services/my-local-storage.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { FirebaseService } from '../../services/firebase.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-organization-create-edit',
@@ -26,8 +27,8 @@ export class OrganizationCreateEditComponent extends BaseComponent implements On
 
   constructor(private organizationService: OrganizationService, private firebase: FirebaseService,
               private storageService: MyLocalStorageService, spinnerService: NgxSpinnerService,
-              router: Router, route: ActivatedRoute) {
-    super(storageService, router, spinnerService);
+              router: Router, route: ActivatedRoute, toastService: ToastrService) {
+    super(storageService, router, spinnerService, toastService);
     this.savedOrganization = this.storageService.getOrganization();
     this.organizationId = route.snapshot.paramMap.get('id');
   }

@@ -5,6 +5,7 @@ import { ChannelService } from '../../services/channel.service';
 import { Channel } from '../../models/Channel';
 import { MyLocalStorageService } from '../../services/my-local-storage.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-channel-create-edit',
@@ -20,8 +21,8 @@ export class ChannelCreateEditComponent extends BaseComponent implements OnInit 
 
   constructor(private route: ActivatedRoute, private channelService: ChannelService,
               localStorageService: MyLocalStorageService, router: Router,
-              spinnerService: NgxSpinnerService) {
-    super(localStorageService, router, spinnerService);
+              spinnerService: NgxSpinnerService, toastService: ToastrService) {
+    super(localStorageService, router, spinnerService, toastService);
     this.savedChannel = localStorageService.getChannel();
     this.organizationId = this.route.snapshot.paramMap.get('id');
     const channelId = this.route.snapshot.paramMap.get('channelId');
