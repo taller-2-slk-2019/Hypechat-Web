@@ -10,7 +10,7 @@ const QUERY_PARAMETER = 'organizationId';
   providedIn: 'root'
 })
 export class ForbiddenWordService {
-  private url = 'forbiddenWords';
+  private url = 'forbidden-words';
 
   constructor(private http: HttpClient, private serverService: ServerService) { }
 
