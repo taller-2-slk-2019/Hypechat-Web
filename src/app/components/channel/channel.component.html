@@ -1,6 +1,6 @@
 <ngb-panel class="card my-5" style="background-color: white; border-color: black; word-break: break-word">
   <div class="card-header font-weight-bold d-flex justify-content-between"
-       style="background-color: blueviolet; color: white; border-color: black">
+       style="background: linear-gradient(to right, #493240, #A00965); color: white; border-color: black">
     <div class="d-flex justify-content-between">
       <i class="fas fa-lock-open mr-3" *ngIf="channel.isPublic"></i>
       <i class="fas fa-lock  mr-3" *ngIf="!channel.isPublic"></i>
@@ -8,15 +8,15 @@
     </div>
     <div>
       <button class="btn btn-info right border-0"
-              style="background-color: blueviolet" (click)="editChannel()">
+              style="background-color: rgba(0, 0, 0, 0)" (click)="editChannel()">
         <i class="fas fa-edit"></i>
       </button>
       <button class="btn btn-info right border-0"
-              style="background-color: blueviolet" routerLink="/organization/{{organizationId}}/channels/{{channel.id}}/users">
+              style="background-color: rgba(0, 0, 0, 0)" routerLink="/organization/{{organizationId}}/channels/{{channel.id}}/users">
         <i class="fas fa-users"></i>
       </button>
       <button class="btn btn-danger right border-0"
-              style="background-color: blueviolet" (click)="deleteChannel()">
+              style="background-color: rgba(0, 0, 0, 0)" (click)="deleteChannel()">
         <i class="fas fa-trash"></i>
       </button>
     </div>
