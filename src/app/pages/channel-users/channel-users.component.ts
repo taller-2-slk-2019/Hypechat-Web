@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {UserService} from '../../services/user.service';
-import {ChannelService} from '../../services/channel.service';
-import {User} from '../../models/User';
-import {BaseComponent} from '../../components/base/base.component';
-import {MyLocalStorageService} from '../../services/my-local-storage.service';
-import {NgxSpinnerService} from 'ngx-spinner';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UserService } from '../../services/user.service';
+import { ChannelService } from '../../services/channel.service';
+import { User } from '../../models/User';
+import { BaseComponent } from '../../components/base/base.component';
+import { MyLocalStorageService } from '../../services/my-local-storage.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-channel-users',
@@ -21,8 +22,8 @@ export class ChannelUsersComponent extends BaseComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private userService: UserService,
               private channelService: ChannelService, localStorageService: MyLocalStorageService,
-              router: Router,  spinnerService: NgxSpinnerService) {
-    super(localStorageService, router, spinnerService);
+              router: Router,  spinnerService: NgxSpinnerService, toastService: ToastrService) {
+    super(localStorageService, router, spinnerService, toastService);
   }
 
   ngOnInit() {

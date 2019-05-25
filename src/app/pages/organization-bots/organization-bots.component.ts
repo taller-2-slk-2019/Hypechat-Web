@@ -5,6 +5,7 @@ import { MyLocalStorageService } from '../../services/my-local-storage.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Bot } from '../../models/Bot';
 import { BotService } from '../../services/bot.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-organization-bots',
@@ -20,8 +21,9 @@ export class OrganizationBotsComponent extends BaseComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private botService: BotService,
               localStorageService: MyLocalStorageService,
-              router: Router, spinnerService: NgxSpinnerService) {
-    super(localStorageService, router, spinnerService);
+              router: Router, spinnerService: NgxSpinnerService,
+              toastService: ToastrService) {
+    super(localStorageService, router, spinnerService, toastService);
   }
 
   ngOnInit() {
@@ -51,7 +53,7 @@ export class OrganizationBotsComponent extends BaseComponent implements OnInit {
           this.hideLoading();
         });
     } else {
-      this.setError('Ya existe un bot con ese nombre en la organización');
+      this.setWarning('Ya existe un bot con ese nombre en la organización');
     }
     this.botName = '';
     this.botUrl = '';

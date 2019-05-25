@@ -9,8 +9,6 @@ import { AppComponent } from './app.component';
 
 import { ForbiddenWordService } from './services/forbidden-word.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AlertSuccessComponent } from './components/alert-success/alert-success.component';
-import { AlertErrorComponent } from './components/alert-error/alert-error.component';
 import { OrganizationComponent } from './components/organization/organization.component';
 import { MenuBarComponent } from './components/menu-bar/menu-bar.component';
 import { MatButtonModule, MatToolbarModule, MatDialogModule, MatRadioModule, MatSlideToggleModule } from '@angular/material';
@@ -22,6 +20,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChartsModule } from 'ng2-charts';
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { ToastrModule } from 'ngx-toastr';
+
 
 // Firebase
 import { environment } from '../environments/environment';
@@ -34,8 +34,6 @@ import { AgmCoreModule } from '@agm/core';
 @NgModule({
   declarations: [
     AppComponent,
-    AlertSuccessComponent,
-    AlertErrorComponent,
     routingComponents,
     OrganizationComponent,
     MenuBarComponent,
@@ -56,6 +54,11 @@ import { AgmCoreModule } from '@agm/core';
     MatButtonModule,
     MatDialogModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 2000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+    }),
     ChartsModule,
     TabsModule,
     MatRadioModule,

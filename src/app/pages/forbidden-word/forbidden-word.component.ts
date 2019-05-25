@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ForbiddenWordService } from '../../services/forbidden-word.service';
 import { ForbiddenWord } from '../../models/ForbiddenWord';
-import {ActivatedRoute, Router} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BaseComponent } from '../../components/base/base.component';
-import {MyLocalStorageService} from '../../services/my-local-storage.service';
-import {NgxSpinnerService} from 'ngx-spinner';
+import { MyLocalStorageService } from '../../services/my-local-storage.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 
 const SUCCESSFULLY_ADDED_WORD = 'La palabra se cargó correctamente';
 const ADD_WORD_ERROR = 'No se pudo agregar la palabra';
@@ -24,8 +25,8 @@ export class ForbiddenWordComponent extends BaseComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private forbiddenWordService: ForbiddenWordService,
               localStorageService: MyLocalStorageService, router: Router,
-              spinnerService: NgxSpinnerService) {
-    super(localStorageService, router, spinnerService);
+              spinnerService: NgxSpinnerService, toastService: ToastrService) {
+    super(localStorageService, router, spinnerService, toastService);
   }
 
   ngOnInit() {
@@ -56,7 +57,7 @@ export class ForbiddenWordComponent extends BaseComponent implements OnInit {
           this.hideLoading();
         });
     } else {
-      this.setError('La palabra ya existe');
+      this.setWarning('La palabra ya existe');
     }
 
     this.newWord = '';

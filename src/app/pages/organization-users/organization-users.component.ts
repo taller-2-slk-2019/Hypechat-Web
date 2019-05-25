@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/User';
-import {ActivatedRoute, Router} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { OrganizationService } from '../../services/organization.service';
 import { BaseComponent } from '../../components/base/base.component';
 import { RoleEvent } from '../../models/RoleEvent';
-import {MyLocalStorageService} from '../../services/my-local-storage.service';
-import {NgxSpinnerService} from 'ngx-spinner';
+import { MyLocalStorageService } from '../../services/my-local-storage.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-organization-users',
@@ -22,8 +23,8 @@ export class OrganizationUsersComponent extends BaseComponent implements OnInit 
 
   constructor(private route: ActivatedRoute, private userService: UserService,
               private organizationService: OrganizationService, spinnerService: NgxSpinnerService,
-              localStorageService: MyLocalStorageService, router: Router) {
-    super(localStorageService, router, spinnerService);
+              localStorageService: MyLocalStorageService, router: Router, toastService: ToastrService) {
+    super(localStorageService, router, spinnerService, toastService);
   }
 
   ngOnInit() {
