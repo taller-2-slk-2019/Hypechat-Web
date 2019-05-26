@@ -36,6 +36,10 @@ button.btn-primary {
   background: linear-gradient(to right, rgba(73, 50, 64, 0.9), rgba(160, 9, 101, 0.9));
 }
 
+.nav-pills .nav-item.show .nav-link, .nav-pills .nav-link.active {
+    background: linear-gradient(to right, #493240, #A00965);
+}
+
 #search-bar {
   border-radius: 0;
 }
