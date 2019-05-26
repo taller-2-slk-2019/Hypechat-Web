@@ -2,8 +2,38 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 .form-control+.input-group-addon {
-  background-color: #0275d8;
+  background: linear-gradient(to right, #493240, #A00965);
   color: white;
+}
+
+button.btn-info.transparent-button {
+  background-color: rgba(0, 0, 0, 0);
+  border: 0;
+}
+
+button.btn-danger.transparent-button {
+  background-color: rgba(0, 0, 0, 0);
+  border: 0;
+}
+
+button.btn-primary:hover {
+  border: 0;
+  background: linear-gradient(to right, #493240, #A00965);
+}
+
+button.btn-primary:disabled {
+  border: 0;
+  background: linear-gradient(to right, rgba(73, 50, 64, 0.5), rgba(160, 9, 101, 0.5));
+}
+
+button.btn-primary.dropdown-toggle:focus {
+  border: 0;
+  background: linear-gradient(to right, #493240, #A00965);
+}
+
+button.btn-primary {
+  border: 0;
+  background: linear-gradient(to right, rgba(73, 50, 64, 0.9), rgba(160, 9, 101, 0.9));
 }
 
 #search-bar {
