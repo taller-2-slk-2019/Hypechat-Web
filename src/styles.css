@@ -16,22 +16,27 @@ button.btn-danger.transparent-button {
   border: 0;
 }
 
-button.btn-primary {
+button.btn-primary.custom-style {
   border: 0;
   background-color: #A00965;
 }
 
-button.btn-primary:hover {
+button.btn-primary.custom-style:hover {
   border: 0;
   background-color: #6f2250;
 }
 
-button.btn-primary:disabled {
+button.btn-primary.custom-style:disabled {
   border: 0;
   background-color: rgba(160, 9, 101, 0.5);
 }
 
-button.btn-primary.dropdown-toggle, button.btn-primary.dropdown-toggle:focus {
+button.btn-primary.dropdown-toggle.custom-style {
+  border: 0;
+  background: linear-gradient(to right, rgba(73, 50, 64, 0.9), rgba(160, 9, 101, 0.9));
+}
+
+button.btn-primary.dropdown-toggle.custom-style:hover, button.btn-primary.dropdown-toggle.custom-style:focus {
   border: 0;
   background: linear-gradient(to right, #493240, #A00965);
 }
