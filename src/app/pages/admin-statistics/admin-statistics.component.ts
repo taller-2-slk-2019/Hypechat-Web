@@ -16,7 +16,7 @@ import { BarChartDataset } from '../../models/statistics/BarChartDataset';
 export class AdminStatisticsComponent extends BaseComponent implements OnInit {
   title = 'Estadísticas Generales';
   stats: Array<RequestStats> = [];
-  adminCalls = '0.0';
+  adminCalls = 0;
   methods: Array<BarChartDataset> = [];
   codes: Array<BarChartDataset> = [];
   responseTime = { min: +Infinity, max: 0, average: 0 };
@@ -45,8 +45,8 @@ export class AdminStatisticsComponent extends BaseComponent implements OnInit {
 
   private calculateAdminCallsPercentage() {
     if (this.stats.length > 0) {
-      const adminCalls = this.stats.filter(item => item.isAdmin).length;
-      this.adminCalls = (adminCalls * 100 / this.stats.length).toFixed(2);
+      this.adminCalls = this.stats.filter(item => item.isAdmin).length;
+      this.adminCalls = this.adminCalls * 100 / this.stats.length;
     }
   }
 
@@ -88,7 +88,6 @@ export class AdminStatisticsComponent extends BaseComponent implements OnInit {
         this.responseTime.average += item.responseTime;
       });
       this.responseTime.average /= this.stats.length;
-      this.responseTime.average.toFixed(2);
     }
   }
 }
