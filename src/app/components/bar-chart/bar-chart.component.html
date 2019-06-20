@@ -6,7 +6,9 @@
               [labels]="labels"
               [chartType]="chartType"
               [legend]="chartLegend"
-              [options]="{responsive: true, maintainAspectRatio: false}">
+              [options]="{ responsive: true, maintainAspectRatio: false,
+                           scales: { xAxes: [{}], yAxes: [ { ticks: { beginAtZero: true } } ] }
+                         }">
       </canvas>
     </div>
   </div>

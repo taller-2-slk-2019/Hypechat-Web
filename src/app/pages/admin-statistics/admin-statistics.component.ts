@@ -18,6 +18,7 @@ export class AdminStatisticsComponent extends BaseComponent implements OnInit {
   stats: Array<RequestStats> = [];
   adminCalls = '0.0';
   methods: Array<BarChartDataset> = [];
+  codes: Array<BarChartDataset> = [];
 
   constructor(private adminService: AdminService, spinnerService: NgxSpinnerService,
               localStorageService: MyLocalStorageService, router: Router, toastService: ToastrService) {
@@ -32,6 +33,7 @@ export class AdminStatisticsComponent extends BaseComponent implements OnInit {
       this.stats = data;
       this.calculateAdminCallsPercentage();
       this.getMethodTypes();
+      this.getStatusCodes();
       this.hideLoading();
     }, error => {
       this.setError(this.connectionError);
@@ -57,5 +59,18 @@ export class AdminStatisticsComponent extends BaseComponent implements OnInit {
       dictionary.get(item.method).data[0] += 1;
     });
     this.methods = Array.from(dictionary.values());
+  }
+
+  private getStatusCodes() {
+    const dictionary = new Map();
+    this.stats.forEach( item => {
+      if (!dictionary.has(item.statusCode)) {
+        dictionary.set(item.statusCode, new BarChartDataset());
+        dictionary.get(item.statusCode).label = item.statusCode;
+        dictionary.get(item.statusCode).data = [0];
+      }
+      dictionary.get(item.statusCode).data[0] += 1;
+    });
+    this.codes = Array.from(dictionary.values());
   }
 }
