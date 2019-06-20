@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from '../../services/login.service';
+import { AdminService } from '../../services/admin.service';
 import { Router } from '@angular/router';
 import {MyLocalStorageService} from '../../services/my-local-storage.service';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   password = '';
   invalid = false;
 
-  constructor(private localStorageService: MyLocalStorageService, private loginService: LoginService,
+  constructor(private localStorageService: MyLocalStorageService, private loginService: AdminService,
               private router: Router, private spinner: NgxSpinnerService) {
     if (this.localStorageService.isLoggedIn()) {
       this.router.navigate(['organization']);
