@@ -58,9 +58,7 @@ export class AdminStatisticsComponent extends BaseComponent implements OnInit {
     const dictionary = new Map();
     this.stats.forEach( item => {
       if (!dictionary.has(item.method)) {
-        dictionary.set(item.method, new BarChartDataset());
-        dictionary.get(item.method).label = item.method;
-        dictionary.get(item.method).data = [0];
+        dictionary.set(item.method, new BarChartDataset(item.method));
       }
       dictionary.get(item.method).data[0] += 1;
     });
@@ -71,9 +69,7 @@ export class AdminStatisticsComponent extends BaseComponent implements OnInit {
     const dictionary = new Map();
     this.stats.forEach( item => {
       if (!dictionary.has(item.statusCode)) {
-        dictionary.set(item.statusCode, new BarChartDataset());
-        dictionary.get(item.statusCode).label = item.statusCode;
-        dictionary.get(item.statusCode).data = [0];
+        dictionary.set(item.statusCode, new BarChartDataset(item.statusCode.toString()));
       }
       dictionary.get(item.statusCode).data[0] += 1;
     });
