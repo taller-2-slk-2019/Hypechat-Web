@@ -20,6 +20,7 @@ export class AdminStatisticsComponent extends BaseComponent implements OnInit {
   methods: Array<BarChartDataset> = [];
   codes: Array<BarChartDataset> = [];
   responseTime = { min: +Infinity, max: 0, average: 0 };
+  errorPercentage = 0;
 
   constructor(private adminService: AdminService, spinnerService: NgxSpinnerService,
               localStorageService: MyLocalStorageService, router: Router, toastService: ToastrService) {
@@ -36,6 +37,7 @@ export class AdminStatisticsComponent extends BaseComponent implements OnInit {
       this.getMethodTypes();
       this.getStatusCodes();
       this.calculateResponseTime();
+      this.calculateErrorPercentage();
       this.hideLoading();
     }, error => {
       this.setError(this.connectionError);
@@ -89,5 +91,10 @@ export class AdminStatisticsComponent extends BaseComponent implements OnInit {
       });
       this.responseTime.average /= this.stats.length;
     }
+  }
+
+  private calculateErrorPercentage() {
+    this.errorPercentage = this.stats.filter(item => item.error).length;
+    this.errorPercentage = this.errorPercentage * 100 / this.stats.length;
   }
 }
