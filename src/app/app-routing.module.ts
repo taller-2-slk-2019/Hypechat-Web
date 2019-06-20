@@ -11,9 +11,11 @@ import { ChannelCreateEditComponent } from './pages/channel-create-edit/channel-
 import { LoginComponent } from './pages/login/login.component';
 import { OrganizationBotsComponent } from './pages/organization-bots/organization-bots.component';
 import { OrganizationCreateEditComponent } from './pages/organization-create-edit/organization-create-edit.component';
+import { AdminStatisticsComponent } from './pages/admin-statistics/admin-statistics.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
+  { path: 'generalStatistics', component: AdminStatisticsComponent },
   { path: 'organization', component: OrganizationListComponent },
   { path: 'organization/create', component: OrganizationCreateEditComponent },
   { path: 'organization/:id/edit', component: OrganizationCreateEditComponent },
@@ -43,4 +45,5 @@ export const routingComponents = [OrganizationListComponent,
                                   ChannelCreateEditComponent,
                                   OrganizationBotsComponent,
                                   LoginComponent,
-                                  OrganizationCreateEditComponent];
+                                  OrganizationCreateEditComponent,
+                                  AdminStatisticsComponent];
