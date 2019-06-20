@@ -1,6 +1,14 @@
 <app-menu-bar></app-menu-bar>
 <h1 class="text-center my-5">{{ title }}</h1>
 
+<div class="d-flex justify-content-center my-3">
+  <div class="alert alert-warning fade show" role="alert" clas>
+    <div style="word-break: break-word">
+      Las estadísticas visualizadas se obtienen de los últimos 30 días
+    </div>
+  </div>
+</div>
+
 <div class="mb-3">
   <div class="mx-4"><b><u>Porcentaje de llamadas Admin:</u></b> {{adminCalls.toFixed(2)}}%</div>
   <div class="mx-4"><b><u>Porcentaje de errores:</u></b> {{errorPercentage.toFixed(2)}}%</div>
