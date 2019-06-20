@@ -30,6 +30,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 
 // Google maps
 import { AgmCoreModule } from '@agm/core';
+import { BarChartComponent } from './components/bar-chart/bar-chart.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { AgmCoreModule } from '@agm/core';
     UserComponent,
     ConfirmDialogComponent,
     PieChartComponent,
+    BarChartComponent,
   ],
   imports: [
     BrowserModule,

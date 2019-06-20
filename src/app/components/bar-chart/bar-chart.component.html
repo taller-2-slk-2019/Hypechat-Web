@@ -1,0 +1,15 @@
+<div>
+  <div>
+    <div style="display: block" [style.height.px]="400" [style.width.px]="400">
+      <canvas baseChart
+              [datasets]="chartData"
+              [labels]="labels"
+              [chartType]="chartType"
+              [legend]="chartLegend"
+              [options]="{ responsive: true, maintainAspectRatio: false,
+                           scales: { xAxes: [{}], yAxes: [ { ticks: { beginAtZero: true } } ] }
+                         }">
+      </canvas>
+    </div>
+  </div>
+</div>

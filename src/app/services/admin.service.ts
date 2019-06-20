@@ -6,7 +6,7 @@ import { Admin } from '../models/Admin';
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class AdminService {
   private url = 'admin';
 
   constructor(private serverService: ServerService) { }
@@ -17,5 +17,9 @@ export class LoginService {
       password: pass
     };
     return this.serverService.post(this.url + '/login', data);
+  }
+
+  getGeneralStats(): Observable<any> {
+    return this.serverService.get(this.url + '/request-stats');
   }
 }

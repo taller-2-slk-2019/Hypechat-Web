@@ -38,6 +38,10 @@ export class MenuBarComponent implements OnInit {
     this.router.navigate(['/organization']);
   }
 
+  navigateToGeneralStatistics() {
+    this.router.navigate(['/generalStatistics']);
+  }
+
   redirect(address) {
     this.localStorageService.clearChannel();
     this.router.navigate([`/organization/${this.organizationId}/${address}`]);
