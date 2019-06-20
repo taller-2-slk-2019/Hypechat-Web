@@ -20,6 +20,7 @@ export class AdminStatisticsComponent extends BaseComponent implements OnInit {
   methods: Array<BarChartDataset> = [];
   codes: Array<BarChartDataset> = [];
   responseTime = { min: +Infinity, max: 0, average: 0 };
+  mostUsedResource: string;
   errorPercentage = 0;
 
   constructor(private adminService: AdminService, spinnerService: NgxSpinnerService,
@@ -38,6 +39,7 @@ export class AdminStatisticsComponent extends BaseComponent implements OnInit {
       this.getStatusCodes();
       this.calculateResponseTime();
       this.calculateErrorPercentage();
+      this.getMostUsedResource();
       this.hideLoading();
     }, error => {
       this.setError(this.connectionError);
@@ -96,5 +98,19 @@ export class AdminStatisticsComponent extends BaseComponent implements OnInit {
   private calculateErrorPercentage() {
     this.errorPercentage = this.stats.filter(item => item.error).length;
     this.errorPercentage = this.errorPercentage * 100 / this.stats.length;
+  }
+
+  private getMostUsedResource() {
+    const dictionary = new Map();
+    this.stats.forEach( item => {
+      if (!dictionary.has(item.resource)) {
+        const resource = { resource: item.resource, count: 0 };
+        dictionary.set(item.resource, resource);
+      }
+      dictionary.get(item.resource).count += 1;
+    });
+    this.mostUsedResource = Array.from(dictionary.values()).reduce((previous, current) => {
+      return (previous.count > current.count) ? previous : current;
+    }).resource;
   }
 }
