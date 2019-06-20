@@ -19,6 +19,7 @@ export class AdminStatisticsComponent extends BaseComponent implements OnInit {
   adminCalls = '0.0';
   methods: Array<BarChartDataset> = [];
   codes: Array<BarChartDataset> = [];
+  responseTime = { min: +Infinity, max: 0, average: 0 };
 
   constructor(private adminService: AdminService, spinnerService: NgxSpinnerService,
               localStorageService: MyLocalStorageService, router: Router, toastService: ToastrService) {
@@ -34,6 +35,7 @@ export class AdminStatisticsComponent extends BaseComponent implements OnInit {
       this.calculateAdminCallsPercentage();
       this.getMethodTypes();
       this.getStatusCodes();
+      this.calculateResponseTime();
       this.hideLoading();
     }, error => {
       this.setError(this.connectionError);
@@ -72,5 +74,21 @@ export class AdminStatisticsComponent extends BaseComponent implements OnInit {
       dictionary.get(item.statusCode).data[0] += 1;
     });
     this.codes = Array.from(dictionary.values());
+  }
+
+  private calculateResponseTime() {
+    if (this.stats.length > 0) {
+      this.stats.forEach(item => {
+        if (item.responseTime < this.responseTime.min) {
+          this.responseTime.min = item.responseTime;
+        }
+        if (item.responseTime > this.responseTime.max) {
+          this.responseTime.max = item.responseTime;
+        }
+        this.responseTime.average += item.responseTime;
+      });
+      this.responseTime.average /= this.stats.length;
+      this.responseTime.average.toFixed(2);
+    }
   }
 }
