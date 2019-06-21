@@ -19,7 +19,14 @@ export class BarChartComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.chartData = this.data;
+    this.chartData = this.data.sort((dataset1, dataset2) => {
+      if (dataset1.data[0] > dataset2.data[0]) {
+        return 1;
+      } else if (dataset1.data[0] < dataset2.data[0]) {
+        return -1;
+      }
+      return 0;
+    });
   }
 
   getTotal() {
